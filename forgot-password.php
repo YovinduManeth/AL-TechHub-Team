@@ -126,3 +126,115 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
             if ($insert_stmt->execute()) {
+
+             // ==========================================
+                // DEVELOPMENT RESET LINK
+                // ==========================================
+
+                $reset_link =
+                    "reset-password.php?token=" .
+                    urlencode($token);
+
+
+        
+                    $message =
+                        "Reset link generated successfully." .
+                        "<br><br>" .
+                        "<strong>Development Reset Link:</strong>" .
+                        "<div style=\"margin-top: 8px; overflow-wrap: anywhere; word-break: break-word;\">" .
+                            "<a href=\"" .
+                            htmlspecialchars($reset_link) .
+                            "\" style=\"display: inline-block;\">" .
+                            htmlspecialchars($reset_link) .
+                            "</a>" .
+                        "</div>" .
+                        "<br>" .
+                        "<small>This link will expire in 15 minutes.</small>";
+
+
+
+                $message_type = "success";
+
+            }
+
+            else {
+
+                $message =
+                    "Unable to create password reset link.";
+
+                $message_type = "danger";
+
+            }
+
+
+            $insert_stmt->close();
+
+        }
+
+        else {
+
+            // Don't reveal whether an account exists.
+
+            $message =
+                "If an account exists with that email address, " .
+                "a password reset link has been generated.";
+
+            $message_type = "success";
+
+        }
+
+
+        $stmt->close();
+
+    }
+
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Forgot Password | A/L TechHub</title>
+
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="login-page">
+
+
+<div class="login-wrapper">
