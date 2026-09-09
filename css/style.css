@@ -1752,3 +1752,99 @@ main > .mb-3 p {
     }
 
 }
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .login-wrapper {
+        display: block;
+
+        height: auto;
+    }
+
+
+    .login-sidebar {
+        width: 100%;
+
+        min-width: 0;
+
+        min-height: auto;
+    }
+
+
+    .login-sidebar-content {
+        padding: 30px;
+    }
+
+
+    .login-sidebar-main {
+        margin-top: 50px;
+    }
+
+
+    .login-sidebar-main h1 {
+        font-size: 2.3rem;
+    }
+
+
+    .login-benefits {
+        margin-top: 30px;
+    }
+
+
+    .login-sidebar-footer {
+        margin-top: 25px;
+    }
+
+
+    .login-content {
+        width: 100%;
+
+        height: auto;
+
+        overflow: visible;
+    }
+
+
+    .login-form-container {
+        max-width: 620px;
+
+        padding: 35px 25px 50px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .login-sidebar-main h1 {
+        font-size: 2rem;
+    }
+
+
+    .login-form-container {
+        padding: 25px 15px 40px;
+    }
+
+
+    .login-form-card {
+        padding: 20px;
+    }
+
+
+    .login-top {
+        margin-bottom: 40px;
+    }
+
+}
+
+.login-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
