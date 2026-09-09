@@ -110,3 +110,70 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+// ==========================================
+// REGISTRATION SUCCESS MESSAGE
+// ==========================================
+
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.get("registered") === "success") {
+
+    const registrationMessage =
+        document.getElementById("registrationMessage");
+
+    if (registrationMessage) {
+
+        registrationMessage.classList.remove("d-none");
+        registrationMessage.classList.add("d-flex");
+
+    }
+
+}
+
+
+
+// ==========================================
+// LOGIN ERROR MESSAGE
+// ==========================================
+
+const loginUrlParams = new URLSearchParams(window.location.search);
+
+if (loginUrlParams.get("error") === "invalid") {
+
+    const loginErrorMessage =
+        document.getElementById("loginErrorMessage");
+
+    if (loginErrorMessage) {
+
+        loginErrorMessage.classList.remove("d-none");
+        loginErrorMessage.classList.add("d-flex");
+
+    }
+
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
+
+}
+
+
+// ==========================================
+// Global Day / Night Mode
+// ==========================================
+
+function setupThemeMode() {
+
+    const modeButton =
+        document.getElementById("themeToggle");
+
+    const modeIcon =
+        document.getElementById("themeIcon");
+
+
+    // Stop if theme button does not exist
+    if (!modeButton || !modeIcon) {
+        return;
+    }
