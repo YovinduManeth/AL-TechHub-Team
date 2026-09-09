@@ -744,3 +744,202 @@ exit();
                     </div>
 
                 </div>
+                <!-- =====================================
+                     ANSWER BREAKDOWN
+                ====================================== -->
+
+                <div class="answer-card">
+
+
+                    <div class="answer-heading">
+
+                        <div class="answer-heading-icon">
+
+                            <i class="bi bi-list-check"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h5>
+                                Answer Breakdown
+                            </h5>
+
+                            <p>
+                                Review your answers and see the correct answers.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <?php if (count($wrong_answers) > 0): ?>
+
+    <?php foreach ($wrong_answers as $wrong): ?>
+
+        <div class="answer-item incorrect-answer">
+
+            <div class="answer-item-top">
+
+                <span class="answer-question-number">
+
+                    Question
+                    <?php echo str_pad(
+                        $wrong["question_number"],
+                        2,
+                        "0",
+                        STR_PAD_LEFT
+                    ); ?>
+
+                </span>
+
+                <span class="answer-correct">
+
+                    <i class="bi bi-x-circle-fill me-1"></i>
+
+                    Incorrect
+
+                </span>
+
+            </div>
+
+
+            <p class="answer-question">
+
+                <?php echo htmlspecialchars(
+                    $wrong["question_text"]
+                ); ?>
+
+            </p>
+
+
+            <!-- Your Answer -->
+
+            <div class="answer-choice">
+
+                <i class="bi bi-x-circle-fill"></i>
+
+                <span>
+
+                    Your Answer:
+
+                    <?php
+
+                    $your_answer = $wrong["selected_answer"];
+
+                        if ($your_answer === "") {
+
+                            echo "Not Answered";
+
+                        } else {
+
+                            $your_option =
+                                $wrong[
+                                    "option_" .
+                                    strtolower($your_answer)
+                                ];
+
+                            echo htmlspecialchars($your_answer);
+
+                            echo ") ";
+
+                            echo htmlspecialchars($your_option);
+
+                        }
+
+                    ?>
+
+                </span>
+
+            </div>
+
+
+            <!-- Correct Answer -->
+
+            <div class="answer-choice">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>
+
+                    Correct Answer:
+
+                    <?php
+
+                    $correct_answer =
+                        $wrong["correct_answer"];
+
+                    $correct_option =
+                        $wrong[
+                            "option_" .
+                            strtolower($correct_answer)
+                        ];
+
+                    echo htmlspecialchars(
+                        $correct_answer
+                    );
+
+                    echo ") ";
+
+                    echo htmlspecialchars(
+                        $correct_option
+                    );
+
+                    ?>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    <?php endforeach; ?>
+
+<?php else: ?>
+
+    <div class="text-center py-4">
+
+        <i class="bi bi-check-circle-fill fs-1 text-success"></i>
+
+        <h5 class="mt-3">
+
+            Perfect Score!
+
+        </h5>
+
+        <p class="text-muted">
+
+            You answered all questions correctly.
+
+        </p>
+
+    </div>
+
+<?php endif; ?>
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- Bootstrap JavaScript -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+</body>
+
+</html>
