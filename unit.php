@@ -337,3 +337,239 @@ if ($total_lessons > 0) {
     </div>
 
 </nav>
+
+<!-- ==============================
+     Main Content
+=============================== -->
+
+<main class="container py-4">
+
+
+    <!-- Back -->
+
+    <div class="mb-3">
+
+        <a
+            href="units.php?subject=<?php echo urlencode($unit["subject_code"]); ?>"
+            class="text-decoration-none"
+        >
+
+            <i class="bi bi-arrow-left me-1"></i>
+
+            Back to Units
+
+        </a>
+
+    </div>
+
+
+    <!-- Unit Header -->
+
+    <div class="welcome-card p-4 rounded-4 shadow-sm mb-4">
+
+        <p class="small dashboard-label mb-1">
+
+            GRADE <?php echo htmlspecialchars($unit["grade"]); ?>
+
+            •
+            
+            <?php echo htmlspecialchars($unit["subject_code"]); ?>
+
+        </p>
+
+
+        <h3 class="fw-bold mb-2">
+
+            Unit
+            <?php echo str_pad(
+                $unit["unit_number"],
+                2,
+                "0",
+                STR_PAD_LEFT
+            ); ?>
+
+            —
+            <?php echo htmlspecialchars($unit["unit_title"]); ?>
+
+        </h3>
+
+
+        <p class="text-muted small mb-0">
+
+            Access lessons, learning resources, and assessments for this unit.
+
+        </p>
+
+    </div>
+
+    <!-- Unit Progress -->
+
+<div class="card border-0 shadow-sm mb-4 unit-progress-card">
+
+    <div class="card-body p-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h5 class="mb-0 fw-bold unit-progress-title">
+                Unit Progress
+            </h5>
+
+            <span class="fw-semibold unit-progress-count">
+
+                <?php echo $completed_lessons; ?>
+                /
+                <?php echo $total_lessons; ?>
+                Lessons Completed
+
+            </span>
+
+        </div>
+
+
+        <div class="progress unit-progress-bar">
+
+            <div
+                class="progress-bar unit-progress-fill"
+                role="progressbar"
+                style="width: <?php echo $progress_percentage; ?>%;"
+                aria-valuenow="<?php echo $progress_percentage; ?>"
+                aria-valuemin="0"
+                aria-valuemax="100"
+            >
+
+            </div>
+
+        </div>
+
+
+        <div class="text-end mt-2">
+
+            <small class="text-muted fw-semibold">
+
+                <?php echo $progress_percentage; ?>% Complete
+
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- Learning Content -->
+
+    <div class="mb-3">
+
+        <p class="small dashboard-label mb-1">
+            LEARNING CONTENT
+        </p>
+
+        <h5 class="fw-bold mb-1">
+            Unit Resources
+        </h5>
+
+        <p class="text-muted small">
+            Select a learning resource to continue.
+        </p>
+
+    </div>
+
+
+    <!-- Resources -->
+
+    <div class="row g-4">
+
+        <!-- Short Notes -->
+
+        <div class="col-md-4">
+
+            <div class="card subject-card h-100 rounded-4">
+
+                <div class="card-body p-4">
+
+                    <div class="mb-3">
+
+                        <i class="bi bi-file-earmark-text-fill fs-2 text-primary"></i>
+
+                    </div>
+
+
+                    <h5 class="fw-bold">
+
+                        Short Notes
+
+                    </h5>
+
+
+                    <p class="text-muted small">
+
+                        Read concise notes and summaries for this unit.
+
+                    </p>
+
+
+                    <a
+                        href="short-notes.php?unit=<?php echo $unit_id; ?>"
+                        class="btn btn-dashboard fw-bold"
+                    >
+                        <i class="bi bi-file-earmark-text me-1"></i>
+                        View Notes
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Quiz -->
+
+        <div class="col-md-4">
+
+            <div class="card subject-card h-100 rounded-4">
+
+                <div class="card-body p-4">
+
+                    <div class="mb-3">
+
+                        <i class="bi bi-check-circle-fill fs-2 text-primary"></i>
+
+                    </div>
+
+
+                    <h5 class="fw-bold">
+
+                        Assessment Quiz
+
+                    </h5>
+
+
+                    <p class="text-muted small">
+
+                        Test your knowledge with a unit assessment.
+
+                    </p>
+
+
+                    <a
+                        href="#"
+                        class="btn btn-dashboard fw-bold"
+                    >
+
+                        <i class="bi bi-pencil-square me-1"></i>
+
+                        Take Quiz
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+        </div>
