@@ -605,3 +605,184 @@ if (
                                 </div>
 
                             </div>
+
+                            <!-- Submit -->
+
+                        <button
+                            type="submit"
+                            class="btn btn-login-new w-100"
+                        >
+
+                            <i class="bi bi-key-fill me-2"></i>
+
+                            Reset Password
+
+                        </button>
+
+
+                    </form>
+
+                <?php endif; ?>
+
+
+
+                <?php if (empty($message)): ?>
+
+                    <div class="login-redirect-new">
+
+                        <span>
+                            Remember your password?
+                        </span>
+
+                        <a
+                            href="login.html"
+                            class="login-link"
+                        >
+
+                            Back to Login
+
+                            <i
+                                class="bi bi-arrow-right ms-1"
+                            ></i>
+
+                        </a>
+
+                    </div>
+
+                <?php endif; ?>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    // ==========================================
+    // NEW PASSWORD TOGGLE
+    // ==========================================
+
+    const password =
+        document.getElementById("password");
+
+    const togglePassword =
+        document.getElementById("togglePassword");
+
+    const eyeIcon =
+        document.getElementById("eyeIcon");
+
+
+    togglePassword.addEventListener("click", function () {
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            eyeIcon.classList.remove("bi-eye");
+
+            eyeIcon.classList.add("bi-eye-slash");
+
+            togglePassword.setAttribute(
+                "aria-label",
+                "Hide password"
+            );
+
+        }
+
+        else {
+
+            password.type = "password";
+
+            eyeIcon.classList.remove("bi-eye-slash");
+
+            eyeIcon.classList.add("bi-eye");
+
+            togglePassword.setAttribute(
+                "aria-label",
+                "Show password"
+            );
+
+        }
+
+    });
+
+
+
+    // ==========================================
+    // CONFIRM PASSWORD TOGGLE
+    // ==========================================
+
+    const confirmPassword =
+        document.getElementById("confirm_password");
+
+    const toggleConfirmPassword =
+        document.getElementById(
+            "toggleConfirmPassword"
+        );
+
+    const confirmEyeIcon =
+        document.getElementById(
+            "confirmEyeIcon"
+        );
+
+
+    toggleConfirmPassword.addEventListener(
+        "click",
+        function () {
+
+            if (confirmPassword.type === "password") {
+
+                confirmPassword.type = "text";
+
+                confirmEyeIcon.classList.remove(
+                    "bi-eye"
+                );
+
+                confirmEyeIcon.classList.add(
+                    "bi-eye-slash"
+                );
+
+                toggleConfirmPassword.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            }
+
+            else {
+
+                confirmPassword.type = "password";
+
+                confirmEyeIcon.classList.remove(
+                    "bi-eye-slash"
+                );
+
+                confirmEyeIcon.classList.add(
+                    "bi-eye"
+                );
+
+                toggleConfirmPassword.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+
+
+</body>
+
+</html>
+
