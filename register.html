@@ -288,3 +288,316 @@
                     </div>
 
                 </div>
+
+
+                  <!-- =================================
+                     PASSWORD
+                ================================== -->
+
+                <div class="form-section">
+
+                    <div class="section-heading">
+
+                        <i class="bi bi-lock"></i>
+
+                        <div>
+
+                            <h5>Account Security</h5>
+
+                            <p>
+                                Create a secure password for your account.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="mb-3">
+
+                        <label
+                            for="password"
+                            class="form-label fw-semibold"
+                        >
+                            Password
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-lock"></i>
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Create a password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="input-group-text password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
+                            >
+                                <i
+                                    class="bi bi-eye"
+                                    id="eyeIcon"
+                                ></i>
+                            </button>
+
+                        </div>
+
+                        <div class="password-hint">
+                            Use at least 8 characters.
+                        </div>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="mb-3">
+
+                        <label
+                            for="confirmPassword"
+                            class="form-label fw-semibold"
+                        >
+                            Confirm Password
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-lock-fill"></i>
+                            </span>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirm_password"
+                                class="form-control"
+                                placeholder="Confirm your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="input-group-text password-toggle"
+                                id="toggleConfirmPassword"
+                                aria-label="Show password"
+                            >
+                                <i
+                                    class="bi bi-eye"
+                                    id="confirmEyeIcon"
+                                ></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     SUBJECT SELECTION
+                ================================== -->
+
+                <div class="form-section">
+
+                    <div class="section-heading">
+
+                        <i class="bi bi-journal-bookmark"></i>
+
+                        <div>
+
+                            <h5>Subject Selection</h5>
+
+                            <p>
+                                Select your Technology Stream subjects.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Main Subject -->
+                    <div class="mb-3">
+
+                        <label class="form-label fw-semibold">
+                            Main Subject
+                        </label>
+
+                        <div class="subject-option selected">
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="Science for Technology (SFT)"
+                                readonly
+                            >
+
+                            <span class="subject-tag">
+                                Compulsory
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Basket 02 -->
+                    <div class="mb-3">
+
+                        <label
+                            for="basket02"
+                            class="form-label fw-semibold"
+                        >
+                            Basket 02 Subject
+                        </label>
+
+                        <select
+                            id="basket02"
+                            name="basket02"
+                            class="form-select"
+                            required
+                        >
+
+                            <option value="" selected disabled>
+                                Select your subject
+                            </option>
+
+                            <option value="ET">
+                                Engineering Technology (ET)
+                            </option>
+
+                            <option value="BST">
+                                Bio Systems Technology (BST)
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Basket 03 -->
+                    <div class="mb-3">
+
+                        <label
+                            for="basket03"
+                            class="form-label fw-semibold"
+                        >
+                            Basket 03 Subject
+                        </label>
+
+                        <select
+                            id="basket03"
+                            name="basket03"
+                            class="form-select"
+                            required
+                        >
+
+                            <option value="" selected disabled>
+                                Select your subject
+                            </option>
+
+                            <option value="ICT">
+                                Information & Communication Technology (ICT)
+                            </option>
+
+                            <option value="Agriculture">
+                                Agricultural Science
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     TERMS
+                ================================== -->
+
+                <div class="terms-box">
+
+                    <div class="form-check">
+
+                        <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="terms"
+                            name="terms"
+                            required
+                        >
+
+                        <label
+                            class="form-check-label small"
+                            for="terms"
+                        >
+
+                            I agree to the
+
+                            <a
+                                href="#"
+                                class="theme-link fw-semibold"
+                                data-bs-toggle="modal"
+                                data-bs-target="#termsModal"
+                            >
+                                Terms and Conditions
+                            </a>
+
+                            of A/L TechHub.
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Register Button -->
+                <button
+                    type="submit"
+                    class="btn btn-register"
+                >
+                    <i class="bi bi-person-plus me-1"></i>
+                    Create Student Account
+                </button>
+
+
+            </form>
+
+
+
+            <!-- Bottom Login -->
+            <div class="register-bottom">
+
+                <span>
+                    Already registered?
+                </span>
+
+                <a
+                    href="login.html"
+                    class="theme-link fw-semibold"
+                >
+                    Sign in to your account
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+</div>
