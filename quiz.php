@@ -278,3 +278,192 @@ $_SESSION["active_quiz_id"] = $quiz_id;
             </span>
 
         </div>
+         <h5 class="quiz-question">
+
+            <?php
+            echo htmlspecialchars(
+                $question["question_text"]
+            );
+            ?>
+
+        </h5>
+
+
+        <!-- Option A -->
+
+        <label class="quiz-option">
+
+            <input
+                type="radio"
+                name="question_<?php echo $question["question_id"]; ?>"
+                value="A"
+                required
+            >
+
+            <span>
+                A)
+                <?php
+                echo htmlspecialchars(
+                    $question["option_a"]
+                );
+                ?>
+            </span>
+
+        </label>
+
+
+        <!-- Option B -->
+
+        <label class="quiz-option">
+
+            <input
+                type="radio"
+                name="question_<?php echo $question["question_id"]; ?>"
+                value="B"
+            >
+
+            <span>
+                B)
+                <?php
+                echo htmlspecialchars(
+                    $question["option_b"]
+                );
+                ?>
+            </span>
+
+        </label>
+
+
+        <!-- Option C -->
+
+        <label class="quiz-option">
+
+            <input
+                type="radio"
+                name="question_<?php echo $question["question_id"]; ?>"
+                value="C"
+            >
+
+            <span>
+                C)
+                <?php
+                echo htmlspecialchars(
+                    $question["option_c"]
+                );
+                ?>
+            </span>
+
+        </label>
+
+
+        <!-- Option D -->
+
+        <label class="quiz-option">
+
+            <input
+                type="radio"
+                name="question_<?php echo $question["question_id"]; ?>"
+                value="D"
+            >
+
+            <span>
+                D)
+                <?php
+                echo htmlspecialchars(
+                    $question["option_d"]
+                );
+                ?>
+            </span>
+
+        </label>
+
+    </div>
+
+<?php endforeach; ?>
+
+
+
+                    <!-- =====================================
+                         SUBMIT
+                    ====================================== -->
+
+                    <button
+                        type="submit"
+                        class="quiz-submit"
+                    >
+
+                        <i class="bi bi-send-check me-2"></i>
+
+                        Submit Answers
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         TIMER SCRIPT
+    ========================================== -->
+
+    <script>
+
+    let secondsLeft = <?php echo (int)$quiz["time_limit"]; ?> * 60;
+
+    const timerElem =
+        document.getElementById("quizTimer");
+
+    const quizForm =
+        document.querySelector("form");
+
+
+    const timer = setInterval(function () {
+
+        let mins =
+            Math.floor(secondsLeft / 60);
+
+        let secs =
+            secondsLeft % 60;
+
+
+        secs =
+            secs < 10
+            ? "0" + secs
+            : secs;
+
+
+        timerElem.innerText =
+            `${mins}:${secs}`;
+
+
+        if (secondsLeft <= 0) {
+
+            clearInterval(timer);
+
+            timerElem.innerText = "00:00";
+
+            quizForm.submit();
+
+        }
+
+
+        if (secondsLeft > 0) {
+
+            secondsLeft--;
+
+        }
+
+    }, 1000);
+
+</script>
+
+</body>
+
+</html>
