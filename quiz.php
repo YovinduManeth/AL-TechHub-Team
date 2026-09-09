@@ -120,3 +120,83 @@ $_SESSION["active_quiz_id"] = $quiz_id;
 
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Unit Assessment | A/L TechHub</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body class="quiz-page">
+
+
+    <!-- =========================================
+         QUIZ HEADER
+    ========================================== -->
+
+    <div class="quiz-header sticky-top">
+
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <!-- Quiz Information -->
+
+                <div>
+
+                    <div class="quiz-header-title">
+
+                        <i class="bi bi-pencil-square me-2"></i>
+
+                        <?php echo htmlspecialchars($quiz["title"]); ?>
+
+                    </div>
+
+                    <small class="quiz-header-subtitle">
+
+                        Science for Technology (SFT)
+
+                    </small>
+
+                </div>
+
+
+                <!-- Timer -->
+
+                <div class="quiz-timer">
+
+                    <i class="bi bi-clock me-1"></i>
+
+                    <span id="quizTimer">
+                        <?php echo htmlspecialchars($quiz["time_limit"]); ?>:00
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
