@@ -351,3 +351,168 @@ if (!$lesson) {
                             </select>
 
                         </div>
+                        <!-- =============================
+                         VIDEO PLAYER
+                    ============================== -->
+
+                    <div
+                        id="videoContainer"
+                        class="lesson-video-container"
+                    >
+
+                       <video
+                            id="videoPlayer"
+                            controls
+                            class="w-100"
+                            src="<?php echo htmlspecialchars($lesson["video_path"]); ?>"
+                        >
+
+                            Your browser does not support
+                            video streaming.
+
+                        </video>
+
+                    </div>
+
+
+
+                    <!-- =============================
+                         AUDIO PLAYER
+                    ============================== -->
+
+                    <div
+                        id="audioContainer"
+                        class="lesson-audio-container"
+                        style="display: none;"
+                    >
+
+                        <div class="audio-icon">
+
+                            <i class="bi bi-broadcast"></i>
+
+                        </div>
+
+
+                        <h5 class="fw-bold mb-1">
+                            Data-Saver Mode Active
+                        </h5>
+
+                        <p class="audio-description">
+                            64 kbps Mono
+                            <span>•</span>
+                            Reduced Data Usage
+                        </p>
+
+
+                        <audio
+                            id="audioPlayer"
+                            controls
+                            class="w-100"
+                        >
+
+                            <source
+                                src="<?php echo htmlspecialchars($lesson["audio_path"] ?? ""); ?>"
+                                type="audio/mpeg"
+                            >
+
+                        </audio>
+
+                    </div>
+
+
+
+                    <!-- =============================
+                         LESSON INFORMATION
+                    ============================== -->
+
+                    <div class="lesson-information">
+
+                        <span class="lesson-label">
+
+    LESSON <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
+
+</span>
+
+
+<h3 class="fw-bold">
+
+    Lesson
+    <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
+
+    <?php echo htmlspecialchars($lesson["title"]); ?>
+
+</h3>
+
+
+<p class="lesson-description mb-0">
+
+    <?php echo htmlspecialchars($lesson["description"]); ?>
+
+</p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+     SIDEBAR
+================================== -->
+
+<div class="col-lg-4">
+
+
+    <!-- =============================
+         UNIT RESOURCES
+    ============================== -->
+
+    <div class="lesson-side-card mb-4">
+
+        <div class="lesson-side-heading">
+
+            <div class="side-icon blue-side-icon">
+
+                <i class="bi bi-collection-fill"></i>
+
+            </div>
+
+            <div>
+
+                <h6 class="fw-bold mb-0">
+                    Unit Resources
+                </h6>
+
+                <small>
+                    Resources for Unit 01
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <p class="small text-muted mb-3">
+
+            Additional learning resources for
+            this unit are available from the
+            Unit page.
+
+        </p>
+
+
+        <a
+            href="units.php?subject=<?php echo urlencode($lesson["subject_code"]); ?>"
+            class="btn btn-lesson-primary w-100 fw-bold"
+        >
+
+            <i class="bi bi-arrow-left me-1"></i>
+
+            Back to Unit Resources
+
+        </a>
+
+    </div>
