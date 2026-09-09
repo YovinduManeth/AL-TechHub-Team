@@ -200,3 +200,154 @@ if (!$lesson) {
 
         </span>
 
+<!-- Day / Night Mode -->
+
+        <button
+            type="button"
+            id="themeToggle"
+            class="btn btn-link theme-toggle"
+            aria-label="Switch to night mode"
+            title="Switch to night mode"
+        >
+
+            <i
+                class="bi bi-moon"
+                id="themeIcon"
+            ></i>
+
+        </button>
+
+
+    </div>
+
+</nav>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="container py-4">
+
+
+        <div class="row g-4">
+
+
+            <!-- =================================
+                 MAIN LESSON AREA
+            ================================== -->
+
+            <div class="col-lg-8">
+
+
+                <div class="lesson-main-card">
+
+
+                    <!-- =============================
+                         DATA SAVER SWITCHER
+                    ============================== -->
+
+                    <div class="data-mode-box">
+
+
+                        <div class="d-flex align-items-center">
+
+
+                            <div class="data-mode-icon">
+
+                                <i class="bi bi-lightning-fill"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h6 class="fw-bold mb-1">
+
+                                    Data-Saver Mode
+
+                                </h6>
+
+                                <small>
+
+                                    Switch to low-bitrate audio
+                                    when your connection is weak.
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Switch -->
+
+                        <div class="form-check form-switch">
+
+                            <input
+                                class="form-check-input data-mode-switch"
+                                type="checkbox"
+                                role="switch"
+                                id="dataModeToggle"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================================
+                            VIDEO QUALITY SELECTOR
+                        ========================================= -->
+
+                        <div class="video-quality-box">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="video-quality-icon">
+
+                                    <i class="bi bi-camera-video-fill"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <h6 class="fw-bold mb-1">
+                                        Video Quality
+                                    </h6>
+
+                                    <small>
+                                        Select a quality based on your internet connection.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <select
+                                id="videoQuality"
+                                class="form-select form-select-sm video-quality-select"
+                                aria-label="Select video quality"
+                            >
+
+                                <option value="1080p"selected>
+                                    1080p
+                                </option>
+
+                                <option value="720p">
+                                    720p
+                                </option>
+
+                                <option value="480p">
+                                    480p
+                                </option>
+
+                                <option value="360p">
+                                    360p
+                                </option>
+
+                            </select>
+
+                        </div>
