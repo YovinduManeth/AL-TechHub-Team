@@ -195,3 +195,111 @@
         method="POST"
         action="php/login_process.php"
     >
+
+    
+
+            <!-- =====================================
+                 LOGIN FORM
+            ====================================== -->
+
+            <div class="login-form-card">
+
+
+                <!-- Login Error Message -->
+                        <div
+                            id="loginErrorMessage"
+                            class="alert alert-danger d-none align-items-center mb-4"
+                            role="alert"
+                        >
+                            <i class="bi bi-exclamation-circle-fill fs-4 me-3"></i>
+
+                            <div>
+                                <strong>Login Failed!</strong>
+                                <div class="small">
+                                    Incorrect username/email or password. Please try again.
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <!-- Username -->
+
+                    <div class="mb-4">
+
+                        <label
+                            for="username"
+                            class="form-label fw-semibold"
+                        >
+                            Username or Email
+                        </label>
+
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+
+
+                            <input
+                                type="text"
+                                name="username"
+                                id="username"
+                                class="form-control"
+                                placeholder="Enter username or email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="mb-3">
+
+                        <label
+                            for="password"
+                            class="form-label fw-semibold"
+                        >
+                            Password
+                        </label>
+
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-lock"></i>
+                            </span>
+
+
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                class="form-control"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="input-group-text password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
+                            >
+
+                                <i
+                                    class="bi bi-eye"
+                                    id="eyeIcon"
+                                ></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
