@@ -573,3 +573,139 @@ if ($total_lessons > 0) {
     </div>
 
         </div>
+
+        <!-- ==============================
+         LESSONS
+    =============================== -->
+
+    <div class="mt-5">
+
+        <div class="mb-3">
+
+            <p class="small dashboard-label mb-1">
+                LESSONS
+            </p>
+
+            <h5 class="fw-bold mb-1">
+                Unit Lessons
+            </h5>
+
+            <p class="text-muted small">
+                Select a lesson to begin learning.
+            </p>
+
+        </div>
+
+
+        <?php if (empty($lessons)): ?>
+
+            <div class="alert alert-info rounded-4">
+
+                <i class="bi bi-info-circle me-2"></i>
+
+                No lessons are available for this unit yet.
+
+            </div>
+
+
+        <?php else: ?>
+
+
+            <?php foreach ($lessons as $lesson): ?>
+
+                <div class="lesson-item mb-3">
+
+                    <div class="lesson-info">
+
+                        <div class="lesson-icon">
+
+                            <i class="bi bi-play-circle-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h6 class="fw-bold mb-1">
+
+                                Lesson
+                                <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
+
+                                <?php echo htmlspecialchars($lesson["title"]); ?>
+
+                            </h6>
+
+
+                            <small class="text-muted">
+
+                                <i class="bi bi-clock me-1"></i>
+
+                                <?php echo htmlspecialchars($lesson["duration_minutes"]); ?>
+                                mins
+
+                                <span class="mx-1">•</span>
+
+                                <?php echo htmlspecialchars($lesson["description"]); ?>
+
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="lesson-actions">
+
+    <?php if ($lesson["completed"] == 1): ?>
+
+        <span class="btn btn-success btn-sm disabled">
+
+            <i class="bi bi-check-circle-fill me-1"></i>
+
+            Completed
+
+        </span>
+
+    <?php else: ?>
+
+        <a
+            href="lesson.php?lesson=<?php echo $lesson["lesson_id"]; ?>"
+            class="btn btn-units-primary btn-sm"
+        >
+
+            <i class="bi bi-play-circle me-1"></i>
+
+            Start Lesson
+
+        </a>
+
+    <?php endif; ?>
+
+</div>
+                    
+
+                </div>
+
+            <?php endforeach; ?>
+
+
+        <?php endif; ?>
+
+    </div>
+
+
+</main>
+
+
+
+
+
+<!-- Bootstrap JavaScript -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+</body>
+
+</html>
