@@ -138,3 +138,153 @@
     </aside>
 
 
+<!-- =========================================
+         RIGHT SIDE - SCROLLABLE FORM
+    ========================================== -->
+
+    <main class="register-content">
+
+
+        <div class="register-form-container">
+
+            <!-- Heading -->
+            <div class="register-heading">
+
+                <span class="form-label-small">
+                    CREATE ACCOUNT
+                </span>
+
+                <h2>
+                    Student Registration
+                </h2>
+
+                <p>
+                    Enter your details and select your Technology
+                    Stream subjects.
+                </p>
+
+            </div>
+
+
+
+            <!-- Registration Form -->
+            <form
+                method="POST"
+                action="php/register_process.php"
+                id="registerForm"
+            >
+
+
+                <!-- =================================
+                     PERSONAL INFORMATION
+                ================================== -->
+
+                <div class="form-section">
+
+                    <div class="section-heading">
+
+                        <i class="bi bi-person"></i>
+
+                        <div>
+
+                            <h5>Personal Information</h5>
+
+                            <p>
+                                Tell us a little about yourself.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Full Name -->
+                    <div class="mb-3">
+
+                        <label
+                            for="fullName"
+                            class="form-label fw-semibold"
+                        >
+                            Full Name
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                name="full_name"
+                                class="form-control"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="mb-3">
+
+                        <label
+                            for="email"
+                            class="form-label fw-semibold"
+                        >
+                            Email Address
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Username -->
+                    <div class="mb-3">
+
+                        <label
+                            for="username"
+                            class="form-label fw-semibold"
+                        >
+                            Username
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-at"></i>
+                            </span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                class="form-control"
+                                placeholder="Choose a username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
