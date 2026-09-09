@@ -238,3 +238,142 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 <div class="login-wrapper">
+
+<!-- =========================================
+         LEFT SIDE
+    ========================================== -->
+
+    <div class="login-sidebar">
+
+        <div class="login-sidebar-content">
+
+
+            <!-- Logo -->
+
+            <a
+                href="index.html"
+                class="login-logo text-decoration-none"
+            >
+
+                <i class="bi bi-mortarboard-fill me-2"></i>
+
+                A/L TechHub
+
+            </a>
+
+
+            <!-- Main Content -->
+
+            <div class="login-sidebar-main">
+
+                <span class="login-sidebar-label">
+                    ACCOUNT RECOVERY
+                </span>
+
+
+                <h1>
+
+                    Reset Your
+                    <span>Password.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Recover access to your A/L TechHub
+                    student account and continue your
+                    learning journey.
+
+                </p>
+
+
+                <!-- Benefits -->
+
+                <div class="login-benefits">
+
+
+                    <div class="login-benefit">
+
+                        <div class="login-benefit-icon">
+
+                            <i class="bi bi-shield-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>Secure Recovery</strong>
+
+                            <small>
+                                Use a temporary reset link
+                                to change your password.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="login-benefit">
+
+                        <div class="login-benefit-icon">
+
+                            <i class="bi bi-clock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>Time Limited</strong>
+
+                            <small>
+                                Reset links expire after
+                                a short period.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="login-benefit">
+
+                        <div class="login-benefit-icon">
+
+                            <i class="bi bi-lock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>Protected Password</strong>
+
+                            <small>
+                                New passwords are securely
+                                hashed before storage.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+
+            <div class="login-sidebar-footer">
+
+                &copy; 2026 A/L TechHub
+
+            </div>
+
+
+        </div>
+
+    </div>
+
