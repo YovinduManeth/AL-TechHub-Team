@@ -778,3 +778,80 @@ videoQuality.addEventListener(
 
     }
 );
+
+// ==========================================
+// VIDEO ERROR CHECK
+// ==========================================
+
+videoPlayer.addEventListener(
+    "error",
+    function () {
+
+        console.log(
+            "Video error:",
+            videoPlayer.error
+        );
+
+    }
+);
+
+// ==========================================
+// MARK LESSON AS COMPLETED
+// ==========================================
+
+// ==========================================
+// MARK LESSON AS COMPLETED - TEST
+// ==========================================
+
+videoPlayer.addEventListener(
+    "ended",
+    function () {
+
+        console.log("VIDEO ENDED!");
+        console.log("Lesson ID:", currentLessonId);
+
+        fetch("php/complete_lesson.php", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+
+            body:
+                "lesson_id=" +
+                encodeURIComponent(currentLessonId)
+
+        })
+
+        .then(function (response) {
+
+            console.log("HTTP Status:", response.status);
+
+            return response.text();
+
+        })
+
+        .then(function (data) {
+
+            console.log("Server Response:", data);
+
+        })
+
+        .catch(function (error) {
+
+            console.error("FETCH ERROR:", error);
+
+        });
+
+    }
+);
+
+</script>
+
+<script src="js/script.js"></script>
+
+
+</body>
+
+</html>
