@@ -106,3 +106,97 @@ if (!$lesson) {
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        <?php echo htmlspecialchars($lesson["title"]); ?> | A/L TechHub
+    </title>
+
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="lesson-page">
+
+
+    <!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<nav class="navbar navbar-expand-lg lesson-navbar">
+
+    <div class="container">
+
+
+        <!-- Back Button -->
+
+        <a
+            href="units.php?subject=<?php echo urlencode($lesson["subject_code"]); ?>"
+            class="btn btn-lesson-back btn-sm"
+        >
+
+            <i class="bi bi-arrow-left me-1"></i>
+
+            Back to Unit
+
+        </a>
+
+
+        <!-- Lesson Information -->
+
+        <span class="lesson-navbar-title">
+
+            <i class="bi bi-book me-1"></i>
+
+            <?php echo htmlspecialchars($lesson["subject_code"]); ?>
+
+            <span class="lesson-divider">•</span>
+
+            Unit
+            <?php echo str_pad(
+                $lesson["unit_number"],
+                2,
+                "0",
+                STR_PAD_LEFT
+            ); ?>
+
+            <span class="lesson-divider">•</span>
+
+            Lesson
+            <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
+
+        </span>
+
