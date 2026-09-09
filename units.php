@@ -80,6 +80,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 $stmt->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
