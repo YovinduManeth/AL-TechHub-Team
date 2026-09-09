@@ -177,3 +177,41 @@ function setupThemeMode() {
     if (!modeButton || !modeIcon) {
         return;
     }
+}
+
+// ==========================================
+// Smooth Scrolling
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const smoothLinks = document.querySelectorAll('a[href^="#"]');
+
+    smoothLinks.forEach(function (link) {
+
+        link.addEventListener("click", function (event) {
+
+            const targetId = this.getAttribute("href");
+
+            if (targetId === "#") {
+                return;
+            }
+
+            const target = document.querySelector(targetId);
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+    });
+
+});
