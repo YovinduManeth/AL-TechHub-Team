@@ -489,3 +489,73 @@ function setupDataSaverMode() {
 // Start Data-Saver Mode
 
 setupDataSaverMode();
+
+
+// ==========================================
+// Video Quality Selector
+// ==========================================
+
+function setupVideoQuality() {
+
+    const qualitySelector =
+        document.getElementById("videoQuality");
+
+    const videoPlayer =
+        document.getElementById("videoPlayer");
+
+    const videoSource =
+        document.getElementById("videoSource");
+
+
+    // Stop if this is not the lesson page
+    if (
+        !qualitySelector ||
+        !videoPlayer ||
+        !videoSource
+    ) {
+        return;
+    }
+
+
+    qualitySelector.addEventListener("change", function () {
+
+        const selectedQuality =
+            qualitySelector.value;
+
+
+        // Remember current playback position
+        const currentTime =
+            videoPlayer.currentTime;
+
+
+        // Change video source
+        videoSource.src =
+            "uploads/videos/sample_lesson_" +
+            selectedQuality +
+            ".mp4";
+
+
+        // Reload video with new quality
+        videoPlayer.load();
+
+
+        // Restore playback position
+        videoPlayer.currentTime =
+            currentTime;
+
+
+        // Continue playing if video was playing
+        videoPlayer.play().catch(function () {
+
+            // Browser may block automatic playback.
+            // User can press play manually.
+
+        });
+
+    });
+
+}
+
+
+// Start Video Quality Selector
+setupVideoQuality();
