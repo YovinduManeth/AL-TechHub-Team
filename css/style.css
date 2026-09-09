@@ -1848,3 +1848,37 @@ main > .mb-3 p {
     border-radius: 15px;
     margin-bottom: 20px;
 }
+/* =========================================
+   DASHBOARD RESPONSIVE
+========================================= */
+
+@media (max-width: 991.98px) {
+
+    .dashboard-navbar .d-flex {
+        margin-top: 15px;
+
+        padding-bottom: 10px;
+    }
+
+    .dashboard-user {
+        margin-right: 5px;
+    }
+
+}
+
+
+@media (max-width: 575.98px) {
+
+    .welcome-card {
+        padding: 1.25rem !important;
+    }
+
+    .subject-header {
+        padding: 1.25rem;
+    }
+
+    .subject-card .card-body {
+        padding: 1.25rem !important;
+    }
+
+}
