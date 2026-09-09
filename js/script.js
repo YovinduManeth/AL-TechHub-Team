@@ -413,3 +413,79 @@ function setupDataSaverMode() {
                 }
 
             }
+
+            // ==========================================
+            // DATA-SAVER OFF
+            // ==========================================
+
+            else {
+
+                // Save audio position BEFORE stopping it
+
+                const audioTime =
+                    audioPlayer.currentTime;
+
+
+                console.log(
+                    "Switching to Normal Mode"
+                );
+
+                console.log(
+                    "Audio position:",
+                    audioTime
+                );
+
+
+                // Stop audio
+
+                audioPlayer.pause();
+
+
+                // Set video position
+
+                videoPlayer.currentTime =
+                    audioTime;
+
+
+                // Hide audio
+
+                audioContainer.style.display =
+                    "none";
+
+
+                // Show video
+
+                videoContainer.style.display =
+                    "block";
+
+
+                // Show quality selector
+
+                videoQualityBox.style.display =
+                    "flex";
+
+
+                // Continue video
+
+                videoPlayer.play().catch(
+                    function (error) {
+
+                        console.log(
+                            "Video playback error:",
+                            error
+                        );
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+// Start Data-Saver Mode
+
+setupDataSaverMode();
