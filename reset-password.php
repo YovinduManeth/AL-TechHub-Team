@@ -448,3 +448,160 @@ if (
         </div>
 
     </div>
+    
+    <!-- =========================================
+         RIGHT SIDE
+    ========================================== -->
+
+    <div class="login-content">
+
+
+        <div class="login-form-container">
+
+
+            <!-- Heading -->
+
+            <div class="login-heading">
+
+                <span class="login-label">
+                    ACCOUNT SECURITY
+                </span>
+
+                <h2>
+                    Reset Password
+                </h2>
+
+                <p>
+                    Enter your new password below.
+                </p>
+
+            </div>
+
+
+
+            <!-- Form Card -->
+
+            <div class="login-form-card">
+
+
+                <?php if (!empty($message)): ?>
+
+                    <div
+                        class="alert alert-<?php echo $message_type; ?>"
+                        role="alert"
+                    >
+
+                        <i
+                            class="bi bi-info-circle-fill me-2"
+                        ></i>
+
+                        <?php echo $message; ?>
+
+                    </div>
+
+                <?php endif; ?>
+
+
+
+                <?php if (!empty($token) && empty($message)): ?>
+
+                    <form
+                        method="POST"
+                        action="reset-password.php?token=<?php echo urlencode($token); ?>"
+                    >
+
+
+                        <!-- New Password -->
+
+                            <div class="mb-4">
+
+                                <label
+                                    for="password"
+                                    class="form-label fw-semibold"
+                                >
+                                    New Password
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        class="form-control"
+                                        placeholder="Enter new password"
+                                        minlength="8"
+                                        required
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="input-group-text password-toggle"
+                                        id="togglePassword"
+                                        aria-label="Show password"
+                                    >
+                                        <i
+                                            class="bi bi-eye"
+                                            id="eyeIcon"
+                                        ></i>
+                                    </button>
+
+                                </div>
+
+                                <div class="form-text">
+                                    Password must contain at least 8 characters.
+                                </div>
+
+                            </div>
+
+
+
+
+
+                        <!-- Confirm Password -->
+
+                  
+                            <div class="mb-4">
+
+                                <label
+                                    for="confirm_password"
+                                    class="form-label fw-semibold"
+                                >
+                                    Confirm New Password
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock-fill"></i>
+                                    </span>
+
+                                    <input
+                                        type="password"
+                                        name="confirm_password"
+                                        id="confirm_password"
+                                        class="form-control"
+                                        placeholder="Confirm new password"
+                                        minlength="8"
+                                        required
+                                    >
+
+                                    <button
+                                        type="button"
+                                        class="input-group-text password-toggle"
+                                        id="toggleConfirmPassword"
+                                        aria-label="Show password"
+                                    >
+                                        <i
+                                            class="bi bi-eye"
+                                            id="confirmEyeIcon"
+                                        ></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
