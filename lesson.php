@@ -516,3 +516,265 @@ if (!$lesson) {
         </a>
 
     </div>
+
+
+     <!-- =============================
+         LESSON INFORMATION
+    ============================== -->
+
+    <div class="lesson-side-card">
+
+        <div class="lesson-side-heading">
+
+            <div class="side-icon teal-side-icon">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+            </div>
+
+            <div>
+
+                <h6 class="fw-bold mb-0">
+                    Lesson
+                </h6>
+
+                <small>
+                    Current lesson
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="d-flex align-items-center gap-2">
+
+            <i class="bi bi-play-circle-fill text-primary"></i>
+
+            <span class="small">
+                Lesson
+                <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
+                is currently selected
+            </span>
+
+        </div>
+
+
+        <p class="small text-muted mt-3 mb-0">
+
+            Complete the lesson before moving
+            to the next lesson in this unit.
+
+        </p>
+
+    </div>
+
+
+</div>
+
+
+
+                <!-- =============================
+                     NEXT STEP
+                ============================== -->
+
+                <div class="lesson-side-card">
+
+
+                    <div class="lesson-side-heading">
+
+                        <div class="side-icon teal-side-icon">
+
+                            <i class="bi bi-question-circle-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h6 class="fw-bold mb-0">
+
+                                Next Step
+
+                            </h6>
+
+                            <small>
+                                Test your understanding
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="small text-muted mb-3">
+
+                        Complete the assessment to test
+                        your understanding of the concepts
+                        covered in this lesson.
+
+                    </p>
+
+
+                    <a
+                        href="quiz.html"
+                        class="btn btn-lesson-primary w-100 fw-bold"
+                    >
+
+                        <i class="bi bi-pencil-square me-1"></i>
+
+                        Start Lesson Assessment
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+const currentLessonId = <?php echo $lesson["lesson_id"]; ?>;
+
+const videoPlayer =
+    document.getElementById("videoPlayer");
+
+const videoQuality =
+    document.getElementById("videoQuality");
+
+const dataModeToggle =
+    document.getElementById("dataModeToggle");
+
+const audioContainer =
+    document.getElementById("audioContainer");
+
+const audioPlayer =
+    document.getElementById("audioPlayer");
+
+
+// ==========================================
+// VIDEO QUALITY PATHS
+// ==========================================
+
+const videoQualities = {
+
+    "1080p":
+        "<?php echo htmlspecialchars($lesson["video_1080p_path"] ?? ""); ?>",
+
+    "720p":
+        "<?php echo htmlspecialchars($lesson["video_720p_path"] ?? ""); ?>",
+
+    "480p":
+        "<?php echo htmlspecialchars($lesson["video_480p_path"] ?? ""); ?>",
+
+    "360p":
+        "<?php echo htmlspecialchars($lesson["video_360p_path"] ?? ""); ?>"
+
+};
+
+
+
+// ==========================================
+// CHANGE VIDEO QUALITY
+// ==========================================
+
+videoQuality.addEventListener(
+    "change",
+    function () {
+
+        const selectedQuality =
+            this.value;
+
+        const newVideoPath =
+            videoQualities[selectedQuality];
+
+
+        console.log(
+            "Selected quality:",
+            selectedQuality
+        );
+
+        console.log(
+            "Video path:",
+            newVideoPath
+        );
+
+
+        // Check whether video path exists
+
+        if (!newVideoPath) {
+
+            alert(
+                "The " +
+                selectedQuality +
+                " video is not available."
+            );
+
+            return;
+
+        }
+
+
+        // Remember current position
+
+        const currentTime =
+            videoPlayer.currentTime;
+
+
+        const wasPlaying =
+            !videoPlayer.paused;
+
+        // Change video source directly
+
+            videoPlayer.src =
+                newVideoPath;
+
+
+            // Reload video
+
+            videoPlayer.load();
+        
+
+
+        // Restore playback position
+
+        videoPlayer.addEventListener(
+            "loadedmetadata",
+            function restorePosition() {
+
+                videoPlayer.currentTime =
+                    currentTime;
+
+
+                if (wasPlaying) {
+
+                    videoPlayer.play().catch(
+                        function (error) {
+
+                            console.log(
+                                "Playback error:",
+                                error
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                videoPlayer.removeEventListener(
+                    "loadedmetadata",
+                    restorePosition
+                );
+
+            }
+        );
+
+    }
+);
