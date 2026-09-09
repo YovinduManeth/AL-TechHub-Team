@@ -377,3 +377,156 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </div>
 
+ <!-- =========================================
+         RIGHT SIDE
+    ========================================== -->
+
+    <div class="login-content">
+
+
+        <div class="login-form-container">
+
+
+            <!-- Heading -->
+
+            <div class="login-heading">
+
+                <span class="login-label">
+                    ACCOUNT RECOVERY
+                </span>
+
+                <h2>
+                    Forgot Password?
+                </h2>
+
+                <p>
+                    Enter your registered email address
+                    to reset your password.
+                </p>
+
+            </div>
+
+
+
+            <!-- Form Card -->
+
+            <div class="login-form-card">
+
+
+                <?php if (!empty($message)): ?>
+
+                    <div
+                        class="alert alert-<?php echo $message_type; ?>"
+                        role="alert"
+                        style="overflow-wrap: anywhere; word-break: break-word;"
+                    >
+
+                        <i class="bi bi-info-circle-fill me-2"></i>
+
+                        <?php echo $message; ?>
+
+                    </div>
+
+                <?php endif; ?>
+
+
+
+                <form
+                    method="POST"
+                    action="forgot-password.php"
+                >
+
+
+                    <!-- Email -->
+
+                    <div class="mb-4">
+
+                        <label
+                            for="email"
+                            class="form-label fw-semibold"
+                        >
+
+                            Email Address
+
+                        </label>
+
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+
+                                <i class="bi bi-envelope"></i>
+
+                            </span>
+
+
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                class="form-control"
+                                placeholder="Enter your registered email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-login-new w-100"
+                    >
+
+                        <i class="bi bi-key me-2"></i>
+
+                        Generate Reset Link
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- Back to Login -->
+
+                <div class="login-redirect-new">
+
+                    <span>
+                        Remember your password?
+                    </span>
+
+                    <a
+                        href="login.html"
+                        class="login-link"
+                    >
+
+                        Back to Login
+
+                        <i class="bi bi-arrow-right ms-1"></i>
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
+
