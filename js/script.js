@@ -1,15 +1,10 @@
-// ==========================================
-// Password Visibility Toggle
-// ==========================================
-
 function setupPasswordToggle(toggleId, passwordId, iconId) {
 
     const toggleButton = document.getElementById(toggleId);
     const passwordInput = document.getElementById(passwordId);
     const eyeIcon = document.getElementById(iconId);
 
-    // Stop if elements do not exist on this page
-    if (!toggleButton || !passwordInput || !eyeIcon) {
+        if (!toggleButton || !passwordInput || !eyeIcon) {
         return;
     }
 
@@ -41,4 +36,43 @@ function setupPasswordToggle(toggleId, passwordId, iconId) {
         }
 
     });
+}
+
+setupPasswordToggle(
+    "togglePassword",
+    "password",
+    "eyeIcon"
+);
+
+setupPasswordToggle(
+    "toggleConfirmPassword",
+    "confirmPassword",
+    "confirmEyeIcon"
+);
+
+
+const registerForm = document.getElementById("registerForm");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
+
+if (registerForm && password && confirmPassword) {
+
+    registerForm.addEventListener("submit", function (event) {
+
+        if (password.value !== confirmPassword.value) {
+
+            event.preventDefault();
+
+            confirmPassword.classList.add("is-invalid");
+
+            alert("Passwords do not match. Please check your password.");
+
+        } else {
+
+            confirmPassword.classList.remove("is-invalid");
+
+        }
+
+    });
+
 }
