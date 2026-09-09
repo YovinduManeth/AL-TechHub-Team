@@ -1,6 +1,3 @@
-/* =========================================
-   LOGIN PAGE
-========================================= */
 
 .login-page {
     margin: 0;
@@ -19,10 +16,6 @@
 }
 
 
-/* =========================================
-   LEFT SIDEBAR
-========================================= */
-
 .login-sidebar {
     width: 40%;
     min-width: 380px;
@@ -40,7 +33,7 @@
 }
 
 
-/* Decorative Circle */
+
 
 .login-sidebar::after {
     content: "";
@@ -59,7 +52,7 @@
 }
 
 
-/* Sidebar Content */
+
 
 .login-sidebar-content {
     height: 100%;
@@ -73,7 +66,7 @@
 }
 
 
-/* Logo */
+
 
 .login-logo {
     color: #FFFFFF;
@@ -86,7 +79,7 @@
 }
 
 
-/* Sidebar Main */
+
 
 .login-sidebar-main {
     margin-top: 100px;
@@ -131,10 +124,6 @@
     max-width: 450px;
 }
 
-
-/* =========================================
-   LOGIN BENEFITS
-========================================= */
 
 .login-benefits {
     margin-top: 45px;
@@ -184,7 +173,6 @@
 }
 
 
-/* Sidebar Footer */
 
 .login-sidebar-footer {
     margin-top: auto;
@@ -195,9 +183,6 @@
 }
 
 
-/* =========================================
-   RIGHT SIDE
-========================================= */
 
 .login-content {
     width: 60%;
@@ -209,7 +194,6 @@
 }
 
 
-/* Form Container */
 
 .login-form-container {
     max-width: 620px;
@@ -219,10 +203,6 @@
     padding: 50px;
 }
 
-
-/* =========================================
-   TOP REGISTER LINK
-========================================= */
 
 .login-top {
     display: flex;
@@ -252,10 +232,6 @@
     text-decoration: underline;
 }
 
-
-/* =========================================
-   HEADING
-========================================= */
 
 .login-heading {
     margin-bottom: 35px;
@@ -290,10 +266,6 @@
 }
 
 
-/* =========================================
-   LOGIN CARD
-========================================= */
-
 .login-form-card {
     background: #FFFFFF;
 
@@ -307,10 +279,6 @@
         0 4px 15px rgba(15, 23, 42, 0.04);
 }
 
-
-/* =========================================
-   INPUTS
-========================================= */
 
 .login-form-card .form-control {
     border-color: #CBD5E1;
@@ -336,8 +304,6 @@
 }
 
 
-/* Password */
-
 .login-form-card .password-toggle {
     cursor: pointer;
 }
@@ -349,10 +315,6 @@
     background: #EFF6FF;
 }
 
-
-/* =========================================
-   REMEMBER / FORGOT
-========================================= */
 
 .login-forgot-link {
     color: #2563EB;
@@ -369,10 +331,6 @@
     text-decoration: underline;
 }
 
-
-/* =========================================
-   LOGIN BUTTON
-========================================= */
 
 .btn-login-new {
     background: #2563EB;
@@ -398,9 +356,6 @@
 }
 
 
-/* =========================================
-   REGISTER REDIRECT
-========================================= */
 
 .login-redirect-new {
     margin-top: 25px;
@@ -438,10 +393,6 @@
     text-decoration: underline;
 }
 
-
-/* =========================================
-   ADMIN LOGIN
-========================================= */
 
 .admin-link {
     color: #64748B;
