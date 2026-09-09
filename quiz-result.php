@@ -623,3 +623,124 @@ exit();
         </div>
 
     </nav>
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="container py-5">
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+
+                <!-- =====================================
+                     RESULT HEADER
+                ====================================== -->
+
+                <div class="result-card text-center mb-4">
+
+
+                    <!-- Icon -->
+
+                    <div class="result-icon">
+
+                        <i class="bi bi-trophy-fill"></i>
+
+                    </div>
+
+
+                    <!-- Heading -->
+
+                    <span class="result-label">
+                        UNIT 01 ASSESSMENT
+                    </span>
+
+                    <h2 class="result-title">
+                        Quiz Completed!
+                    </h2>
+
+
+                    <p class="result-description">
+                        Unit 01: Fundamentals of Physics & Measurement
+                        <span class="d-block mt-1">
+                            <?php echo $correct_count; ?>
+                                out of
+                                <?php echo $total_questions; ?>
+                                questions answered correctly
+                        </span>
+                    </p>
+
+
+
+                    <!-- Score -->
+
+                    <div class="result-score-box">
+
+                        <span class="result-score-label">
+                            Your Total Score
+                        </span>
+
+
+                       <div class="result-score">
+
+                            <?php echo $score; ?>
+
+                            / 
+
+                            <?php echo $total_marks; ?>
+
+                        </div>
+
+                            <span class="result-status">
+
+                                <?php if ($passed): ?>
+
+                                    <i class="bi bi-check-circle-fill me-1"></i>
+
+                                    Passed
+
+                                <?php else: ?>
+
+                                    <i class="bi bi-x-circle-fill me-1"></i>
+
+                                    Failed
+
+                                <?php endif; ?>
+
+                            </span>
+                    </div>
+
+
+
+                    <!-- Buttons -->
+
+                    <div class="result-actions">
+
+
+                        <a
+                            href="units.php"
+                            class="btn-result-primary"
+                        >
+
+                            <i class="bi bi-arrow-left me-1"></i>
+
+                            Back to Units
+
+                        </a>
+
+
+                        <a
+                            href="quiz.php?quiz=<?php echo $quiz_id; ?>"
+                            class="btn-result-outline"
+                        >
+
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>
+
+                            Try Another Quiz
+                        </a>
+
+                    </div>
+
+                </div>
