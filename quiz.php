@@ -200,3 +200,81 @@ $_SESSION["active_quiz_id"] = $quiz_id;
         </div>
 
     </div>
+<!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+
+                <!-- Back to Units -->
+
+                <div class="quiz-back mb-4">
+
+                    <a href="unit.php?unit=<?php echo $quiz["unit_id"]; ?>">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+
+                        Back to Unit
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- Quiz Introduction -->
+
+                <div class="quiz-introduction mb-4">
+
+                    <span class="quiz-label">
+
+                            <?php echo htmlspecialchars($quiz["title"]); ?>
+
+                        </span>
+
+                        <h2>
+                            Fundamentals of Physics & Measurement
+                        </h2>
+
+                    <p>
+                        Test your understanding of the lessons covered in Unit 01.
+                        This assessment contains questions selected from the Unit 01
+                        quiz bank.
+                    </p>
+
+
+                <form action="quiz-result.php" method="POST">
+
+                    <input
+                        type="hidden"
+                        name="quiz_id"
+                        value="<?php echo $quiz_id; ?>"
+                    >
+
+
+                    <?php foreach ($questions as $index => $question): ?>
+
+    <div class="quiz-card mb-4">
+
+        <div class="quiz-card-header">
+
+            <span class="quiz-question-number">
+
+                Question
+                <?php echo str_pad($index + 1, 2, "0", STR_PAD_LEFT); ?>
+
+                of
+                <?php echo count($questions); ?>
+
+            </span>
+
+            <span class="quiz-mark">
+                10 Mark
+            </span>
+
+        </div>
