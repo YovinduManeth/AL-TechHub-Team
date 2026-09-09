@@ -574,3 +574,218 @@ body {
 
     color: #FFFFFF;
 }
+
+/* =========================================
+   MY SUBJECTS
+========================================= */
+
+main > .mb-3 h5 {
+    color: #111827;
+}
+
+main > .mb-3 p {
+    color: #64748B !important;
+}
+
+
+/* =========================================
+   SUBJECT CARDS
+========================================= */
+
+.subject-card {
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0 !important;
+
+    border-radius: 18px !important;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.subject-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #BFDBFE !important;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   SUBJECT HEADER
+========================================= */
+
+.subject-header {
+    background:
+        linear-gradient(
+            135deg,
+            #0F172A 0%,
+            #172554 55%,
+            #2563EB 100%
+        );
+
+    color: #FFFFFF;
+
+    padding: 1.5rem;
+}
+
+
+/* Subject Badge */
+
+.subject-badge {
+    background-color: rgba(45, 212, 191, 0.15);
+
+    color: #5EEAD4;
+
+    border: 1px solid rgba(45, 212, 191, 0.25);
+
+    padding: 0.4rem 0.7rem;
+
+    border-radius: 50px;
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+}
+
+
+/* Subject Title */
+
+.subject-header h5 {
+    color: #FFFFFF;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   SUBJECT CARD BODY
+========================================= */
+
+.subject-card .card-body {
+    background-color: #FFFFFF;
+
+    padding: 1.5rem !important;
+}
+
+
+/* Description */
+
+.subject-card .card-body p {
+    color: #64748B !important;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.subject-card .text-muted {
+    color: #64748B !important;
+}
+
+
+.subject-card .progress {
+    background-color: #E2E8F0;
+
+    border-radius: 50px;
+
+    overflow: hidden;
+}
+
+
+/* Progress Bar */
+
+.dashboard-progress {
+    background:
+        linear-gradient(
+            90deg,
+            #2563EB,
+            #14B8A6
+        );
+
+    border-radius: 50px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   VIEW UNITS BUTTON
+========================================= */
+
+.btn-dashboard {
+    background-color: #2563EB;
+
+    border: 1px solid #2563EB;
+
+    color: #FFFFFF;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-dashboard:hover {
+    background-color: #1D4ED8;
+
+    border-color: #1D4ED8;
+
+    color: #FFFFFF;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   OVERALL PROGRESS
+========================================= */
+
+.progress-section .card {
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0 !important;
+
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04) !important;
+}
+
+
+.progress-icon {
+    color: #14B8A6;
+
+    font-size: 1.4rem;
+}
+
+
+/* Overall Progress Bar */
+
+.progress-section .progress {
+    background-color: #E2E8F0;
+
+    border-radius: 50px;
+
+    overflow: hidden;
+}
