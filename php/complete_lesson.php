@@ -41,3 +41,46 @@ if (!is_numeric($lesson_id)) {
 }
 
 $lesson_id = (int)$lesson_id;
+
+// ==========================================
+// SAVE LESSON COMPLETION
+// ==========================================
+
+$sql = "INSERT INTO student_progress
+            (user_id, lesson_id, completed, completed_at)
+
+        VALUES
+            (?, ?, 1, NOW())
+
+        ON DUPLICATE KEY UPDATE
+
+            completed = 1,
+            completed_at = NOW()";
+
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    "ii",
+    $user_id,
+    $lesson_id
+);
+
+
+if ($stmt->execute()) {
+
+    echo "success";
+
+} else {
+
+    http_response_code(500);
+    echo "error";
+
+}
+
+
+$stmt->close();
+
+$conn->close();
+
+?>
