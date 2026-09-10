@@ -547,3 +547,260 @@ while ($row = $result->fetch_assoc()) {
                                     </div>
 
                                 </div>
+
+
+
+            <!-- Processing Information -->
+
+                                <div class="admin-process-box mb-4">
+
+                                    <div class="d-flex align-items-center">
+
+                                        <i
+                                            class="bi bi-cpu-fill admin-process-icon me-2"
+                                        ></i>
+
+                                        <div>
+
+                                            <strong>
+                                                Automatic Processing
+                                            </strong>
+
+                                            <p class="small text-muted mb-0">
+
+                                                FFmpeg will automatically
+                                                generate the data-saver audio
+                                                version after submission.
+
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- =========================================
+                                 SHORT NOTES FIELDS
+                            ========================================== -->
+
+                            <div
+                                id="shortNotesFields"
+                                style="display: none;"
+                            >
+
+
+                                <!-- Note Title -->
+
+                                <div class="mb-4">
+
+                                    <label class="form-label fw-bold">
+
+                                        <i class="bi bi-type me-1"></i>
+
+                                        Short Note Title
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="title"
+                                        id="noteTitle"
+                                        placeholder="e.g. SI Base Units - Short Notes"
+                                    >
+
+                                </div>
+
+
+
+                                <!-- PDF Upload -->
+
+                                <div class="admin-file-box mb-4">
+
+                                    <div class="d-flex align-items-center mb-2">
+
+                                        <i
+                                            class="bi bi-file-earmark-pdf-fill admin-file-icon me-2"
+                                        ></i>
+
+                                        <label class="form-label fw-bold mb-0">
+
+                                            Short Notes PDF
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <p class="small text-muted mb-3">
+
+                                        Upload the short notes as a PDF file.
+
+                                    </p>
+
+
+                                    <input
+                                        type="file"
+                                        class="form-control"
+                                        name="note_file"
+                                        id="noteFile"
+                                        accept="application/pdf"
+                                    >
+
+
+                                    <div class="admin-info mt-3">
+
+                                        <i class="bi bi-info-circle-fill"></i>
+
+                                        <span>
+
+                                            Only PDF files are accepted for
+                                            unit short notes.
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            
+                                <!-- =========================================
+                                    PAST PAPER FIELDS
+                                ========================================== -->
+
+                                                            
+                                    <div id="pastPaperFields" style="display: none;">
+
+                                        <!-- Subject -->
+                                        <div class="mb-4">
+
+                                            <label class="form-label fw-bold">
+                                                <i class="bi bi-book me-1"></i>
+                                                Subject
+                                            </label>
+
+                                            <select
+                                                class="form-select"
+                                                name="subject_id"
+                                                id="pastPaperSubject"
+                                            >
+
+                                                <option value="" selected disabled>
+                                                    -- Select Subject --
+                                                </option>
+
+                                                <?php
+                                                $subject_result = $conn->query(
+                                                    "SELECT subject_id, subject_code, subject_name
+                                                    FROM subjects
+                                                    ORDER BY subject_code"
+                                                );
+
+                                                while ($subject = $subject_result->fetch_assoc()):
+                                                ?>
+
+                                                    <option value="<?php echo $subject["subject_id"]; ?>">
+
+                                                        <?php echo htmlspecialchars($subject["subject_code"]); ?>
+                                                        -
+                                                        <?php echo htmlspecialchars($subject["subject_name"]); ?>
+
+                                                    </option>
+
+                                                <?php endwhile; ?>
+
+                                            </select>
+
+                                        </div>
+
+
+                        
+
+                                        <!-- Year -->
+
+                                        <div class="mb-4">
+
+                                            <label class="form-label fw-bold">
+
+                                                <i class="bi bi-calendar me-1"></i>
+
+                                                Year
+
+                                            </label>
+
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                name="paper_year"
+                                                placeholder="e.g. 2025"
+                                                min="2000"
+                                                max="2100"
+                                            >
+
+                                        </div>
+
+
+                                        <!-- Title -->
+
+                                        <div class="mb-4">
+
+                                            <label class="form-label fw-bold">
+
+                                                <i class="bi bi-type me-1"></i>
+
+                                                Paper Title
+
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                name="paper_title"
+                                                placeholder="e.g. 2025 A/L ICT Past Paper"
+                                            >
+
+                                        </div>
+
+
+                                        <!-- PDF -->
+
+                                        <div class="admin-file-box mb-4">
+
+                                            <div class="d-flex align-items-center mb-2">
+
+                                                <i class="bi bi-file-earmark-pdf-fill admin-file-icon me-2"></i>
+
+                                                <label class="form-label fw-bold mb-0">
+
+                                                    Past Paper PDF
+
+                                                </label>
+
+                                            </div>
+
+                                            <p class="small text-muted mb-3">
+
+                                                Upload the past paper PDF.
+
+                                            </p>
+
+                                            <input
+                                                type="file"
+                                                class="form-control"
+                                                name="paper_file"
+                                                accept="application/pdf"
+                                            >
+
+                                        </div>
+
+                                    </div>
+
+
