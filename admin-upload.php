@@ -804,3 +804,210 @@ while ($row = $result->fetch_assoc()) {
                                     </div>
 
 
+
+                            <!-- =========================================
+                                 SUBMIT BUTTON
+                            ========================================== -->
+
+                            <button
+                                type="submit"
+                                class="btn btn-admin-primary w-100 py-3 fw-bold"
+                                id="submitButton"
+                            >
+
+                                <i class="bi bi-cloud-upload me-1"></i>
+
+                                Upload Master & Generate Audio Stream
+
+                            </button>
+
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+                <!-- =========================================
+             PAST PAPER MANAGEMENT
+        ========================================== -->
+
+                <div
+            class="row justify-content-center mx-auto"
+            id="pastPaperManagement"
+            style="display: none;"
+        >
+
+            <div class="col-12 col-lg-10 col-xl-9 mx-auto">
+
+                <div class="card border-0 shadow-sm">
+
+                    <div class="card-body p-4">
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <div>
+
+                                <h4 class="fw-bold mb-1">
+                                    Past Paper Management
+                                </h4>
+
+                                <p class="text-muted mb-0">
+                                    View and manage uploaded past papers.
+                                </p>
+
+                            </div>
+
+                            <span class="badge bg-primary">
+                                <?php echo count($past_papers); ?> Papers
+                            </span>
+
+                        </div>
+
+
+                        <?php if (empty($past_papers)): ?>
+
+                            <div class="text-center py-5">
+
+                                <i class="bi bi-file-earmark-pdf fs-1 text-muted"></i>
+
+                                <p class="text-muted mt-3 mb-0">
+                                    No past papers have been uploaded yet.
+                                </p>
+
+                            </div>
+
+                        <?php else: ?>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-hover align-middle">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Subject</th>
+                                            <th>Year</th>
+                                            <th>Title</th>
+                                            <th>Uploaded</th>
+                                            <th class="text-center">Actions</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <?php foreach ($past_papers as $paper): ?>
+
+                                            <tr>
+
+                                                <td>
+
+                                                    <span class="badge bg-primary">
+
+                                                        <?php
+                                                        echo htmlspecialchars(
+                                                            $paper["subject_code"]
+                                                        );
+                                                        ?>
+
+                                                    </span>
+
+                                                </td>
+
+
+                                                <td class="fw-semibold">
+
+                                                    <?php
+                                                    echo htmlspecialchars(
+                                                        $paper["year"]
+                                                    );
+                                                    ?>
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    <?php
+                                                    echo htmlspecialchars(
+                                                        $paper["title"]
+                                                    );
+                                                    ?>
+
+                                                </td>
+
+
+                                                <td class="text-muted">
+
+                                                    <?php
+                                                    echo date(
+                                                        "d M Y, h:i A",
+                                                        strtotime(
+                                                            $paper["created_at"]
+                                                        )
+                                                    );
+                                                    ?>
+
+                                                </td>
+
+
+                                                <td>
+
+                                                    <div class="d-flex gap-2 justify-content-center">
+
+                                                        <a
+                                                            href="<?php echo htmlspecialchars($paper["file_path"]); ?>"
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            class="btn btn-sm btn-outline-primary"
+                                                        >
+
+                                                            <i class="bi bi-eye me-1"></i>
+                                                            Open
+
+                                                        </a>
+
+
+                                                        <a
+                                                            href="admin_delete_paper.php?paper_id=<?php echo $paper["paper_id"]; ?>"
+                                                            class="btn btn-sm btn-outline-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this past paper?');"
+                                                        >
+
+                                                            <i class="bi bi-trash me-1"></i>
+                                                            Delete
+
+                                                        </a>
+
+                                                    </div>
+
+                                                </td>
+
+                                            </tr>
+
+                                        <?php endforeach; ?>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        <?php endif; ?>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
