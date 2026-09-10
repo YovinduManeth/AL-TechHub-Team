@@ -75,3 +75,63 @@ if ($result->num_rows === 0) {
 $user = $result->fetch_assoc();
 
 $stmt->close();
+
+// ==========================================
+// CHECK PASSWORD
+// ==========================================
+
+if (!password_verify($password, $user["password"])) {
+
+    header("Location: ../login.html?error=invalid");
+    exit();
+
+}
+
+// ==========================================
+// REMEMBER ME
+// ==========================================
+
+if (isset($_POST["remember_me"])) {
+
+    // Generate secure random token
+
+    $remember_token =
+        bin2hex(random_bytes(32));
+
+
+    // Store token in database
+
+    $update_sql =
+        "UPDATE users
+         SET remember_token = ?
+         WHERE user_id = ?";
+
+    $update_stmt =
+        $conn->prepare($update_sql);
+
+    $update_stmt->bind_param(
+        "si",
+        $remember_token,
+        $user["user_id"]
+    );
+
+    $update_stmt->execute();
+
+    $update_stmt->close();
+
+
+    // Create cookie for 30 days
+
+    setcookie(
+        "remember_token",
+        $remember_token,
+        [
+            "expires" => time() + (30 * 24 * 60 * 60),
+            "path" => "/",
+            "secure" => false,
+            "httponly" => true,
+            "samesite" => "Lax"
+        ]
+    );
+
+}
