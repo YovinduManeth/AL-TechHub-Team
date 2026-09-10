@@ -250,3 +250,12 @@ $subject_stmt->execute();
 $subject_stmt->close();
 
 $conn->commit();
+
+// ==========================================
+// REGISTRATION SUCCESS
+// ==========================================
+
+header("Location: ../login.html?registered=success");
+exit();
+
+?>
