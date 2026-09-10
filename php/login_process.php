@@ -135,3 +135,32 @@ if (isset($_POST["remember_me"])) {
     );
 
 }
+
+// ==========================================
+// LOGIN SUCCESS
+// ==========================================
+
+$_SESSION["user_id"] = $user["user_id"];
+$_SESSION["full_name"] = $user["full_name"];
+$_SESSION["username"] = $user["username"];
+$_SESSION["email"] = $user["email"];
+$_SESSION["role"] = $user["role"];
+
+
+// ==========================================
+// REDIRECT
+// ==========================================
+
+if ($user["role"] === "admin") {
+
+    header("Location: ../admin-upload.php");
+
+} else {
+
+    header("Location: ../dashboard.php");
+
+}
+
+exit();
+
+?>
