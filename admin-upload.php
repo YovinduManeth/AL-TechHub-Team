@@ -194,4 +194,356 @@ while ($row = $result->fetch_assoc()) {
     </nav>
 
 
-    
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="container py-5">
+
+
+        <!-- Page Heading -->
+
+        <div class="admin-page-heading mb-4">
+
+            <p class="admin-label mb-1">
+                ADMINISTRATION PORTAL
+            </p>
+
+            <h1 class="fw-bold mb-2">
+                Content Management
+            </h1>
+
+            <p class="text-muted mb-0">
+                Manage lessons, short notes, past papers, and quiz questions
+                for the student learning portal.
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================================
+             UPLOAD CARD
+        ========================================== -->
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-9 col-xl-8">
+
+                <div class="admin-upload-card">
+
+
+                    <!-- Card Header -->
+
+                    <div class="admin-upload-header">
+
+                        <div class="admin-upload-icon">
+
+                            <i class="bi bi-cloud-arrow-up-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <h4 class="fw-bold mb-1">
+                                Learning Content Management
+                            </h4>
+
+                            <p class="mb-0">
+                                Add and manage learning resources for students.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Form -->
+
+                    <div class="admin-upload-body">
+
+                        <form
+                            action="admin_upload.php"
+                            method="POST"
+                            enctype="multipart/form-data"
+                        >
+
+
+                            <!-- =========================================
+                                 RESOURCE TYPE
+                            ========================================== -->
+
+                            <div class="mb-4">
+
+                                <label class="form-label fw-bold">
+
+                                    <i class="bi bi-collection me-1"></i>
+
+                                    Resource Type
+
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    name="resource_type"
+                                    id="resourceType"
+                                    required
+                                >
+
+                                    <option value="" selected disabled>
+                                        -- Select Resource Type --
+                                    </option>
+
+                                    <option value="lesson">
+                                        Video Lesson
+                                    </option>
+
+                                    <option value="short_notes">
+                                        Unit Short Notes
+                                    </option>
+
+                                    <option value="past_paper">
+                                        Past Paper
+                                    </option>
+
+                                    <option value="quiz">
+                                        Quiz Question
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- =========================================
+                                 LEARNING CONTENT LOCATION
+                            ========================================== -->
+
+                            <div class="mb-4" id="unitLocationFields">
+
+                            <label class="form-label fw-bold">
+
+                                <i class="bi bi-book me-1"></i>
+
+                                Learning Content Location
+
+                            </label>
+
+
+                                <!-- Grade -->
+
+                                <select
+                                    class="form-select mb-2"
+                                    name="grade"
+                                    id="generalGrade"
+                                    required
+                                >
+
+                                    <option value="" selected disabled>
+                                        -- Select Grade --
+                                    </option>
+
+                                    <option value="12">
+                                        Grade 12
+                                    </option>
+
+                                    <option value="13">
+                                        Grade 13
+                                    </option>
+
+                                </select>
+
+
+                                <!-- Unit -->
+
+                                <select
+                                    class="form-select"
+                                    name="unit_id"
+                                    id="unitSelect"
+                                    required
+                                >
+
+                                    <option value="" selected disabled>
+                                        -- Select Syllabus Unit --
+                                    </option>
+
+                                    <?php foreach ($units as $unit): ?>
+
+                                        <option
+                                            value="<?php echo $unit["unit_id"]; ?>"
+                                            data-grade="<?php echo htmlspecialchars($unit["grade"]); ?>"
+                                        >
+
+                                            <?php echo htmlspecialchars($unit["subject_code"]); ?>
+
+                                            -
+
+                                            Grade
+                                            <?php echo htmlspecialchars($unit["grade"]); ?>
+
+                                            -
+
+                                            Unit
+                                            <?php echo str_pad(
+                                                $unit["unit_number"],
+                                                2,
+                                                "0",
+                                                STR_PAD_LEFT
+                                            ); ?>
+
+                                            :
+
+                                            <?php echo htmlspecialchars($unit["unit_title"]); ?>
+
+                                        </option>
+
+                                    <?php endforeach; ?>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- =========================================
+                                 VIDEO LESSON FIELDS
+                            ========================================== -->
+
+                            <div id="lessonFields">
+
+
+                                <!-- Lesson Number -->
+
+                                <div class="mb-4">
+
+                                    <label class="form-label fw-bold">
+
+                                        <i class="bi bi-list-ol me-1"></i>
+
+                                        Lesson Number
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="lesson_number"
+                                        id="lessonNumber"
+                                        placeholder="e.g. 1.1"
+                                    >
+
+                                    <div class="form-text">
+
+                                        Enter the lesson number according to
+                                        the unit.
+
+                                        Example: 1.1, 1.2, 1.3
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <!-- Lesson Title -->
+
+                                <div class="mb-4">
+
+                                    <label class="form-label fw-bold">
+
+                                        <i class="bi bi-type me-1"></i>
+
+                                        Lesson Title
+
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="lesson_title"
+                                        id="lessonTitle"
+                                        placeholder="e.g. SI Units & Measurement"
+                                    >
+
+                                </div>
+
+
+
+                                <!-- Description -->
+
+                                <div class="mb-4">
+
+                                    <label class="form-label fw-bold">
+
+                                        <i class="bi bi-text-paragraph me-1"></i>
+
+                                        Lesson Description
+
+                                    </label>
+
+                                    <textarea
+                                        class="form-control"
+                                        name="description"
+                                        id="lessonDescription"
+                                        rows="4"
+                                        placeholder="Brief overview of the lesson..."
+                                    ></textarea>
+
+                                </div>
+
+
+
+                                <!-- Video Upload -->
+
+                                <div class="admin-file-box mb-4">
+
+                                    <div class="d-flex align-items-center mb-2">
+
+                                        <i
+                                            class="bi bi-file-earmark-play-fill admin-file-icon me-2"
+                                        ></i>
+
+                                        <label class="form-label fw-bold mb-0">
+
+                                            Lesson Video File
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <p class="small text-muted mb-3">
+
+                                        Upload the MP4 video for this lesson.
+
+                                    </p>
+
+
+                                    <input
+                                        type="file"
+                                        class="form-control"
+                                        name="video"
+                                        id="videoFile"
+                                        accept="video/mp4"
+                                    >
+
+
+                                    <div class="admin-info mt-3">
+
+                                        <i class="bi bi-info-circle-fill"></i>
+
+                                        <span>
+
+                                            The uploaded video will be
+                                            processed server-side using FFmpeg
+                                            to generate a 64kbps MP3
+                                            data-saver audio stream.
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
