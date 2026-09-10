@@ -58,3 +58,37 @@ $stmt->execute();
 $result =
     $stmt->get_result();
 
+
+// ==========================================
+// USER FOUND
+// ==========================================
+
+if ($result->num_rows === 1) {
+
+    $user =
+        $result->fetch_assoc();
+
+
+    // Restore session
+
+    $_SESSION["user_id"] =
+        $user["user_id"];
+
+    $_SESSION["full_name"] =
+        $user["full_name"];
+
+    $_SESSION["username"] =
+        $user["username"];
+
+    $_SESSION["email"] =
+        $user["email"];
+
+    $_SESSION["role"] =
+        $user["role"];
+
+}
+
+
+$stmt->close();
+
+?>
