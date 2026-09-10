@@ -1011,3 +1011,308 @@ while ($row = $result->fetch_assoc()) {
         </div>
 
     </main>
+
+
+
+    <!-- Bootstrap JavaScript -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <script>
+
+const resourceType =
+    document.getElementById("resourceType");
+
+const lessonFields =
+    document.getElementById("lessonFields");
+
+const shortNotesFields =
+    document.getElementById("shortNotesFields");
+
+const pastPaperFields =
+    document.getElementById("pastPaperFields");
+
+const pastPaperManagement =
+    document.getElementById("pastPaperManagement");
+
+const unitLocationFields =
+    document.getElementById("unitLocationFields");
+
+
+// General Grade and Unit
+
+const generalGrade =
+    document.getElementById("generalGrade");
+
+const unitSelect =
+    document.getElementById("unitSelect");
+
+
+// Lesson fields
+
+const lessonNumber =
+    document.getElementById("lessonNumber");
+
+const lessonTitle =
+    document.getElementById("lessonTitle");
+
+const lessonDescription =
+    document.getElementById("lessonDescription");
+
+const videoFile =
+    document.getElementById("videoFile");
+
+
+// Short note fields
+
+const noteTitle =
+    document.getElementById("noteTitle");
+
+const noteFile =
+    document.getElementById("noteFile");
+
+
+// Past paper fields
+
+const pastPaperSubject =
+    document.getElementById("pastPaperSubject");
+
+const paperYear =
+    document.querySelector('input[name="paper_year"]');
+
+const paperTitle =
+    document.querySelector('input[name="paper_title"]');
+
+const paperFile =
+    document.querySelector('input[name="paper_file"]');
+
+
+// Submit button
+
+const submitButton =
+    document.getElementById("submitButton");
+
+
+// ==========================================
+// RESOURCE TYPE CHANGE
+// ==========================================
+
+resourceType.addEventListener("change", function () {
+
+    const type = this.value;
+
+
+    // ==========================================
+    // HIDE EVERYTHING FIRST
+    // ==========================================
+
+    lessonFields.style.display = "none";
+
+    shortNotesFields.style.display = "none";
+
+    pastPaperFields.style.display = "none";
+
+    pastPaperManagement.style.display = "none";
+
+    unitLocationFields.style.display = "block";
+
+
+    // ==========================================
+    // RESET REQUIRED ATTRIBUTES
+    // ==========================================
+
+    generalGrade.required = false;
+
+    unitSelect.required = false;
+
+    lessonNumber.required = false;
+
+    lessonTitle.required = false;
+
+    videoFile.required = false;
+
+    noteTitle.required = false;
+
+    noteFile.required = false;
+
+    pastPaperSubject.required = false;
+
+    paperYear.required = false;
+
+    paperTitle.required = false;
+
+    paperFile.required = false;
+
+
+    // ==========================================
+    // VIDEO LESSON
+    // ==========================================
+
+    if (type === "lesson") {
+
+        lessonFields.style.display = "block";
+
+        unitLocationFields.style.display = "block";
+
+
+        // Grade + Unit required
+
+        generalGrade.required = true;
+
+        unitSelect.required = true;
+
+
+        // Lesson fields required
+
+        lessonNumber.required = true;
+
+        lessonTitle.required = true;
+
+        videoFile.required = true;
+
+
+        submitButton.innerHTML =
+            '<i class="bi bi-cloud-upload me-1"></i>' +
+            'Upload Master & Generate Audio Stream';
+
+    }
+
+
+    // ==========================================
+    // SHORT NOTES
+    // ==========================================
+
+    else if (type === "short_notes") {
+
+        shortNotesFields.style.display = "block";
+
+        unitLocationFields.style.display = "block";
+
+
+        // Grade + Unit required
+
+        generalGrade.required = true;
+
+        unitSelect.required = true;
+
+
+        // Short note fields required
+
+        noteTitle.required = true;
+
+        noteFile.required = true;
+
+
+        submitButton.innerHTML =
+            '<i class="bi bi-file-earmark-pdf me-1"></i>' +
+            'Upload Short Notes';
+
+    }
+
+
+    // ==========================================
+    // PAST PAPER
+    // ==========================================
+
+    else if (type === "past_paper") {
+
+        // Hide Grade + Unit
+
+        unitLocationFields.style.display = "none";
+
+
+        // Show Past Paper fields
+
+        pastPaperFields.style.display = "block";
+
+        pastPaperManagement.style.display = "block";
+
+
+        // Past Paper fields required
+
+        pastPaperSubject.required = true;
+
+        paperYear.required = true;
+
+        paperTitle.required = true;
+
+        paperFile.required = true;
+
+
+        submitButton.innerHTML =
+            '<i class="bi bi-file-earmark-pdf me-1"></i>' +
+            'Upload Past Paper';
+
+    }
+
+
+    // ==========================================
+    // OTHER
+    // ==========================================
+
+    else {
+
+        submitButton.innerHTML =
+            '<i class="bi bi-cloud-upload me-1"></i>' +
+            'Upload Content';
+
+    }
+
+});
+
+
+// ==========================================
+// GRADE → UNIT FILTER
+// ==========================================
+
+generalGrade.addEventListener("change", function () {
+
+    const selectedGrade = this.value;
+
+    const options =
+        unitSelect.querySelectorAll("option");
+
+
+    unitSelect.value = "";
+
+
+    options.forEach(function (option) {
+
+        if (option.value === "") {
+
+            option.style.display = "";
+
+            return;
+
+        }
+
+
+        const unitGrade =
+            option.getAttribute("data-grade");
+
+
+        if (unitGrade === selectedGrade) {
+
+            option.style.display = "";
+
+        }
+
+        else {
+
+            option.style.display = "none";
+
+        }
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>
+
