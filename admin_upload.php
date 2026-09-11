@@ -28,7 +28,15 @@ $unit_id = $_POST["unit_id"] ?? "";
 
 $lesson_number = trim($_POST["lesson_number"] ?? "");
 
-$title = trim($_POST["lesson_title"] ?? "");
+if ($resource_type === "short_notes") {
+
+    $title = trim($_POST["title"] ?? "");
+
+} else {
+
+    $title = trim($_POST["lesson_title"] ?? "");
+
+}
 
 $description = trim($_POST["description"] ?? "");
 
