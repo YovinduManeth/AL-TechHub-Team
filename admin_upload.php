@@ -515,5 +515,177 @@ if (
 
 }
 
+// ==========================================
+// CHECK VIDEO FILE
+// ==========================================
 
+if (
+    $_FILES["video"]["error"] !==
+    UPLOAD_ERR_OK
+) {
+
+    die("Video upload failed.");
+
+}
+
+
+$video_file = $_FILES["video"];
+
+
+// ==========================================
+// CHECK VIDEO FILE TYPE
+// ==========================================
+
+$file_extension = strtolower(
+    pathinfo(
+        $video_file["name"],
+        PATHINFO_EXTENSION
+    )
+);
+
+
+if ($file_extension !== "mp4") {
+
+    die(
+        "Only MP4 video files are allowed."
+    );
+
+}
+
+
+// ==========================================
+// CREATE UNIQUE VIDEO FILE NAME
+// ==========================================
+
+$unique_name =
+    "lesson_" .
+    time() .
+    "_" .
+    bin2hex(random_bytes(4)) .
+    ".mp4";
+
+
+// ==========================================
+// UPLOAD DIRECTORIES
+// ==========================================
+
+$video_directory =
+    "uploads/videos/";
+
+$video_quality_directory =
+    "uploads/videos/quality/";
+
+$audio_directory =
+    "uploads/audios/";
+
+// ==========================================
+// CREATE DIRECTORIES
+// ==========================================
+
+if (!is_dir($video_directory)) {
+
+    mkdir(
+        $video_directory,
+        0777,
+        true
+    );
+
+}
+
+if (!is_dir($video_quality_directory)) {
+
+    mkdir(
+        $video_quality_directory,
+        0777,
+        true
+    );
+
+}
+
+if (!is_dir($audio_directory)) {
+
+    mkdir(
+        $audio_directory,
+        0777,
+        true
+    );
+
+}
+
+
+
+
+// ==========================================
+// FILE PATHS
+// ==========================================
+
+$video_path =
+    $video_directory .
+    $unique_name;
+
+
+$audio_name =
+    pathinfo(
+        $unique_name,
+        PATHINFO_FILENAME
+    ) .
+    ".mp3";
+
+
+$audio_path =
+    $audio_directory .
+    $audio_name;
+
+
+// ==========================================
+// VIDEO QUALITY FILE PATHS
+// ==========================================
+
+$video_filename =
+    pathinfo(
+        $unique_name,
+        PATHINFO_FILENAME
+    );
+
+
+$video_1080p_path =
+    $video_quality_directory .
+    $video_filename .
+    "_1080p.mp4";
+
+
+$video_720p_path =
+    $video_quality_directory .
+    $video_filename .
+    "_720p.mp4";
+
+
+$video_480p_path =
+    $video_quality_directory .
+    $video_filename .
+    "_480p.mp4";
+
+
+$video_360p_path =
+    $video_quality_directory .
+    $video_filename .
+    "_360p.mp4";
+
+
+// ==========================================
+// MOVE UPLOADED VIDEO
+// ==========================================
+
+if (
+    !move_uploaded_file(
+        $video_file["tmp_name"],
+        $video_path
+    )
+) {
+
+    die(
+        "Failed to save uploaded video."
+    );
+
+}
 
