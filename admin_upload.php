@@ -874,3 +874,113 @@ if ($duration_seconds === false) {
 
 $duration_minutes =
     round($duration_seconds / 60, 2);
+
+
+// ==========================================
+// INSERT LESSON INTO DATABASE
+// ==========================================
+
+$sql = "INSERT INTO lessons
+        (
+            unit_id,
+            lesson_number,
+            title,
+            description,
+            video_path,
+            video_1080p_path,
+            video_720p_path,
+            video_480p_path,
+            video_360p_path,
+            audio_path,
+            duration_minutes
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+$stmt = $conn->prepare($sql);
+
+
+$stmt->bind_param(
+    "isssssssssd",
+    $unit_id,
+    $lesson_number,
+    $title,
+    $description,
+    $video_path,
+    $video_1080p_path,
+    $video_720p_path,
+    $video_480p_path,
+    $video_360p_path,
+    $audio_path,
+    $duration_minutes
+);
+
+
+if (!$stmt->execute()) {
+
+    // Remove original video
+    if (file_exists($video_path)) {
+        unlink($video_path);
+    }
+
+    // Remove audio
+    if (file_exists($audio_path)) {
+        unlink($audio_path);
+    }
+
+    // Remove 1080p video
+    if (file_exists($video_1080p_path)) {
+        unlink($video_1080p_path);
+    }
+
+    // Remove 720p video
+    if (file_exists($video_720p_path)) {
+        unlink($video_720p_path);
+    }
+
+    // Remove 480p video
+    if (file_exists($video_480p_path)) {
+        unlink($video_480p_path);
+    }
+
+    // Remove 360p video
+    if (file_exists($video_360p_path)) {
+        unlink($video_360p_path);
+    }
+
+    die(
+        "Database error: " .
+        $stmt->error
+    );
+
+}
+
+
+$stmt->close();
+
+
+// ==========================================
+// SUCCESS
+// ==========================================
+
+echo "<h2>Lesson uploaded successfully!</h2>";
+
+
+echo "<p>Video: " .
+     htmlspecialchars($video_path) .
+     "</p>";
+
+
+echo "<p>Audio: " .
+     htmlspecialchars($audio_path) .
+     "</p>";
+
+
+echo "<p>Lesson Number: " .
+     htmlspecialchars($lesson_number) .
+     "</p>";
+
+
+echo "<p>FFmpeg successfully generated the audio.</p>";
+
+?>   
