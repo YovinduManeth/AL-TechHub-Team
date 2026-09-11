@@ -2557,3 +2557,91 @@ main > .mb-3 p {
     color: #64748b;
     font-size: 0.85rem;
 }
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-content {
+    border: 1px solid #e2e8f0;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-title i {
+    color: #2563eb;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .register-wrapper {
+        display: block;
+        height: auto;
+    }
+
+    .register-sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+    }
+
+    .sidebar-content {
+        padding: 30px;
+    }
+
+    .sidebar-main {
+        margin-top: 50px;
+    }
+
+    .sidebar-main h1 {
+        font-size: 2.3rem;
+    }
+
+    .sidebar-benefits {
+        margin-top: 30px;
+    }
+
+    .sidebar-footer {
+        margin-top: 25px;
+    }
+
+    .register-content {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+
+    .register-form-container {
+        max-width: 720px;
+        padding: 35px 25px 50px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .sidebar-main h1 {
+        font-size: 2rem;
+    }
+
+    .register-form-container {
+        padding: 25px 15px 40px;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .register-top {
+        margin-bottom: 30px;
+    }
+
+}
