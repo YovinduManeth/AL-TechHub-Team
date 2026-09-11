@@ -342,7 +342,7 @@ if ($total_lessons > 0) {
                 <li class="nav-item">
                     <a
                         class="nav-link dashboard-nav-link"
-                        href="contact.php"
+                        href="contact.html"
                     >
                         <i class="bi bi-envelope me-1"></i>
                         Contact Us
