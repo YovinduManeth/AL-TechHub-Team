@@ -304,3 +304,211 @@ if ($resource_type === "past_paper") {
 
 }
 
+// ==========================================
+// CHECK UNIT
+// ==========================================
+// Video Lessons and Short Notes need a unit.
+// Past Papers do not reach this section.
+
+if (empty($unit_id)) {
+
+    die("Please select a syllabus unit.");
+
+}
+
+
+// ==========================================
+// SHORT NOTES UPLOAD
+// ==========================================
+
+if ($resource_type === "short_notes") {
+
+
+    // ==========================================
+    // CHECK REQUIRED DATA
+    // ==========================================
+
+    $note_title = trim($_POST["note_title"] ?? "");
+
+if (
+    empty($note_title) ||
+    !isset($_FILES["note_file"])
+) {
+
+        die(
+            "Please enter the note title " .
+            "and select a PDF file."
+        );
+
+    }
+
+
+    // ==========================================
+    // CHECK FILE UPLOAD
+    // ==========================================
+
+    if (
+        $_FILES["note_file"]["error"] !==
+        UPLOAD_ERR_OK
+    ) {
+
+        die("Short note upload failed.");
+
+    }
+
+
+    $note_file = $_FILES["note_file"];
+
+
+    // ==========================================
+    // CHECK FILE TYPE
+    // ==========================================
+
+    $file_extension = strtolower(
+        pathinfo(
+            $note_file["name"],
+            PATHINFO_EXTENSION
+        )
+    );
+
+
+    if ($file_extension !== "pdf") {
+
+        die(
+            "Only PDF files are allowed " .
+            "for short notes."
+        );
+
+    }
+
+
+    // ==========================================
+    // CREATE UPLOAD DIRECTORY
+    // ==========================================
+
+    $notes_directory = "uploads/notes/";
+
+
+    if (!is_dir($notes_directory)) {
+
+        mkdir(
+            $notes_directory,
+            0777,
+            true
+        );
+
+    }
+
+
+    // ==========================================
+    // CREATE UNIQUE FILE NAME
+    // ==========================================
+
+    $unique_name =
+        "note_" .
+        time() .
+        "_" .
+        bin2hex(random_bytes(4)) .
+        ".pdf";
+
+
+    $note_path =
+        $notes_directory .
+        $unique_name;
+
+
+    // ==========================================
+    // MOVE PDF FILE
+    // ==========================================
+
+    if (
+        !move_uploaded_file(
+            $note_file["tmp_name"],
+            $note_path
+        )
+    ) {
+
+        die(
+            "Failed to save the short note."
+        );
+
+    }
+
+
+    // ==========================================
+    // INSERT SHORT NOTE INTO DATABASE
+    // ==========================================
+
+    $sql = "INSERT INTO short_notes
+            (
+                unit_id,
+                title,
+                file_path
+            )
+            VALUES (?, ?, ?)";
+
+
+    $stmt = $conn->prepare($sql);
+
+
+    $stmt->bind_param(
+    "iss",
+    $unit_id,
+    $note_title,
+    $note_path
+);
+
+
+    // ==========================================
+    // DATABASE INSERT
+    // ==========================================
+
+    if (!$stmt->execute()) {
+
+
+        // Remove uploaded PDF
+        // if database insertion fails
+
+        if (file_exists($note_path)) {
+
+            unlink($note_path);
+
+        }
+
+
+        die(
+            "Database error: " .
+            $stmt->error
+        );
+
+    }
+
+
+    $stmt->close();
+
+
+    // ==========================================
+    // SUCCESS
+    // ==========================================
+
+    echo "<h2>Short note uploaded successfully!</h2>";
+
+
+    echo "<p>File: " .
+         htmlspecialchars($note_path) .
+         "</p>";
+
+
+    echo "<p>Title: " .
+         htmlspecialchars($note_title) .
+         "</p>";
+
+
+    echo "<p>The short note was saved successfully.</p>";
+
+
+    exit();
+
+}
+
+
