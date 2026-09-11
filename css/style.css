@@ -2891,3 +2891,123 @@ main > .mb-3 p {
 
     line-height: 1.7;
 }
+
+/* =========================================
+   DATA SAVER BADGE
+========================================= */
+
+.data-saver-badge {
+
+    display: inline-block;
+
+    background-color:
+        rgba(45, 212, 191, 0.15);
+
+    color: #5EEAD4;
+
+    border: 1px solid
+        rgba(45, 212, 191, 0.25);
+
+    padding: 0.6rem 0.9rem;
+
+    border-radius: 50px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   DATA SAVER CARD
+========================================= */
+
+.data-saver-card {
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius: 18px;
+
+    padding: 2rem;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15, 23, 42, 0.20);
+}
+
+
+.data-saver-card h4 {
+    color: #111827;
+}
+
+
+.home-card-text {
+    color: #64748B;
+}
+
+
+/* =========================================
+   DATA SAVER ICON
+========================================= */
+
+.data-saver-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #CCFBF1;
+
+    color: #0F766E;
+
+    font-size: 1.6rem;
+}
+
+/* =========================================
+   DATA SAVER ITEMS
+========================================= */
+
+.data-saver-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.75rem;
+
+    padding: 0.7rem 0;
+
+    color: #374151;
+
+    border-bottom:
+        1px solid #F1F5F9;
+}
+
+
+.data-saver-item i {
+    color: #2563EB;
+
+    font-size: 1.05rem;
+}
+
+
+/* Status */
+
+.data-saver-status {
+
+    color: #0F766E;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+}
