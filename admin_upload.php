@@ -689,3 +689,188 @@ if (
 
 }
 
+// ==========================================
+// GENERATE VIDEO QUALITY VERSIONS
+// ==========================================
+
+// 1080p
+$result_1080p =
+    generateVideoQuality(
+        $video_path,
+        $video_1080p_path,
+        1080
+    );
+
+if (!$result_1080p["success"]) {
+
+    die(
+        "1080p video generation failed.<br><pre>" .
+        htmlspecialchars(
+            implode(
+                "\n",
+                $result_1080p["output"] ?? []
+            )
+        ) .
+        "</pre>"
+    );
+
+}
+
+
+// 720p
+$result_720p =
+    generateVideoQuality(
+        $video_path,
+        $video_720p_path,
+        720
+    );
+
+if (!$result_720p["success"]) {
+
+    die(
+        "720p video generation failed.<br><pre>" .
+        htmlspecialchars(
+            implode(
+                "\n",
+                $result_720p["output"] ?? []
+            )
+        ) .
+        "</pre>"
+    );
+
+}
+
+
+// 480p
+$result_480p =
+    generateVideoQuality(
+        $video_path,
+        $video_480p_path,
+        480
+    );
+
+if (!$result_480p["success"]) {
+
+    die(
+        "480p video generation failed.<br><pre>" .
+        htmlspecialchars(
+            implode(
+                "\n",
+                $result_480p["output"] ?? []
+            )
+        ) .
+        "</pre>"
+    );
+
+}
+
+
+// 360p
+$result_360p =
+    generateVideoQuality(
+        $video_path,
+        $video_360p_path,
+        360
+    );
+
+if (!$result_360p["success"]) {
+
+    die(
+        "360p video generation failed.<br><pre>" .
+        htmlspecialchars(
+            implode(
+                "\n",
+                $result_360p["output"] ?? []
+            )
+        ) .
+        "</pre>"
+    );
+
+}
+
+
+// ==========================================
+// GENERATE AUDIO USING FFMPEG
+// ==========================================
+
+$audio_result =
+    generateAudioFromVideo(
+        $video_path,
+        $audio_path
+    );
+
+
+// ==========================================
+// CHECK AUDIO GENERATION
+// ==========================================
+
+if (!$audio_result["success"]) {
+
+
+    // Remove uploaded video
+    // if audio generation fails
+
+    if (file_exists($video_path)) {
+
+        unlink($video_path);
+
+    }
+
+
+    echo "<h2>Audio generation failed.</h2>";
+
+
+    echo "<pre>";
+
+    print_r($audio_result);
+
+    echo "</pre>";
+
+
+    exit();
+
+}
+
+
+// ==========================================
+// VIDEO DURATION
+// ==========================================
+
+$duration_seconds = getVideoDuration($video_path);
+
+if ($duration_seconds === false) {
+
+    // Remove generated files if duration cannot be detected
+
+    if (file_exists($video_path)) {
+        unlink($video_path);
+    }
+
+    if (file_exists($audio_path)) {
+        unlink($audio_path);
+    }
+
+    if (file_exists($video_1080p_path)) {
+        unlink($video_1080p_path);
+    }
+
+    if (file_exists($video_720p_path)) {
+        unlink($video_720p_path);
+    }
+
+    if (file_exists($video_480p_path)) {
+        unlink($video_480p_path);
+    }
+
+    if (file_exists($video_360p_path)) {
+        unlink($video_360p_path);
+    }
+
+    die("Could not determine video duration.");
+}
+
+
+// Convert seconds to minutes
+
+$duration_minutes =
+    round($duration_seconds / 60, 2);
