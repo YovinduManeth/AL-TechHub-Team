@@ -245,3 +245,134 @@ $stmt->bind_param(
 
 
     $stmt->close();
+
+
+// ==========================================
+    // SUCCESS
+    // ==========================================
+
+    echo "<h2>Past paper uploaded successfully!</h2>";
+
+
+    echo "<p>File: " .
+         htmlspecialchars($paper_path) .
+         "</p>";
+
+
+    echo "<p>Subject ID: " .
+         htmlspecialchars($subject_id) .
+         "</p>";
+
+    echo "<p>Year: " .
+         htmlspecialchars($paper_year) .
+         "</p>";
+
+
+    echo "<p>Title: " .
+         htmlspecialchars($paper_title) .
+         "</p>";
+
+
+    echo "<p>The past paper was saved successfully.</p>";
+
+
+    exit();
+
+}
+
+
+// ==========================================
+// CHECK UNIT
+// ==========================================
+// Video Lessons and Short Notes need a unit.
+// Past Papers do not reach this section.
+
+if (empty($unit_id)) {
+
+    die("Please select a syllabus unit.");
+
+}
+
+
+// ==========================================
+// SHORT NOTES UPLOAD
+// ==========================================
+
+if ($resource_type === "short_notes") {
+
+
+    // ==========================================
+    // CHECK REQUIRED DATA
+    // ==========================================
+
+    if (
+        empty($title) ||
+        !isset($_FILES["note_file"])
+    ) {
+
+        die(
+            "Please enter the note title " .
+            "and select a PDF file."
+        );
+
+    }
+
+
+    // ==========================================
+    // CHECK FILE UPLOAD
+    // ==========================================
+
+    if (
+        $_FILES["note_file"]["error"] !==
+        UPLOAD_ERR_OK
+    ) {
+
+        die("Short note upload failed.");
+
+    }
+
+
+    $note_file = $_FILES["note_file"];
+
+
+    // ==========================================
+    // CHECK FILE TYPE
+    // ==========================================
+
+    $file_extension = strtolower(
+        pathinfo(
+            $note_file["name"],
+            PATHINFO_EXTENSION
+        )
+    );
+
+
+    if ($file_extension !== "pdf") {
+
+        die(
+            "Only PDF files are allowed " .
+            "for short notes."
+        );
+
+    }
+
+
+    // ==========================================
+    // CREATE UPLOAD DIRECTORY
+    // ==========================================
+
+    $notes_directory = "uploads/notes/";
+
+
+    if (!is_dir($notes_directory)) {
+
+        mkdir(
+            $notes_directory,
+            0777,
+            true
+        );
+
+    }
+
+
+
