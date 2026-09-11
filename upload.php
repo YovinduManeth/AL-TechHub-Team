@@ -695,3 +695,118 @@ if (
 
 }
 
+// ==========================================
+// GENERATE VIDEO QUALITY VERSIONS
+// ==========================================
+
+$base_name =
+    pathinfo(
+        $unique_name,
+        PATHINFO_FILENAME
+    );
+
+
+// 1080p
+
+$video_1080p_path =
+    $video_quality_directory .
+    $base_name .
+    "_1080p.mp4";
+
+
+// 720p
+
+$video_720p_path =
+    $video_quality_directory .
+    $base_name .
+    "_720p.mp4";
+
+
+// 480p
+
+$video_480p_path =
+    $video_quality_directory .
+    $base_name .
+    "_480p.mp4";
+
+
+// 360p
+
+$video_360p_path =
+    $video_quality_directory .
+    $base_name .
+    "_360p.mp4";
+
+
+// ==========================================
+// GENERATE 1080p
+// ==========================================
+
+$result_1080p =
+    generateVideoQuality(
+        $video_path,
+        $video_1080p_path,
+        1080
+    );
+
+if (!$result_1080p["success"]) {
+
+    die("1080p video generation failed.");
+
+}
+
+
+// ==========================================
+// GENERATE 720p
+// ==========================================
+
+$result_720p =
+    generateVideoQuality(
+        $video_path,
+        $video_720p_path,
+        720
+    );
+
+if (!$result_720p["success"]) {
+
+    die("720p video generation failed.");
+
+}
+
+
+// ==========================================
+// GENERATE 480p
+// ==========================================
+
+$result_480p =
+    generateVideoQuality(
+        $video_path,
+        $video_480p_path,
+        480
+    );
+
+if (!$result_480p["success"]) {
+
+    die("480p video generation failed.");
+
+}
+
+
+// ==========================================
+// GENERATE 360p
+// ==========================================
+
+$result_360p =
+    generateVideoQuality(
+        $video_path,
+        $video_360p_path,
+        360
+    );
+
+if (!$result_360p["success"]) {
+
+    die("360p video generation failed.");
+
+}
+
+
