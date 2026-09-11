@@ -373,6 +373,147 @@ if ($resource_type === "short_notes") {
         );
 
     }
+// ==========================================
+    // CREATE UNIQUE FILE NAME
+    // ==========================================
+
+    $unique_name =
+        "note_" .
+        time() .
+        "_" .
+        bin2hex(random_bytes(4)) .
+        ".pdf";
+
+
+    $note_path =
+        $notes_directory .
+        $unique_name;
+
+
+    // ==========================================
+    // MOVE PDF FILE
+    // ==========================================
+
+    if (
+        !move_uploaded_file(
+            $note_file["tmp_name"],
+            $note_path
+        )
+    ) {
+
+        die(
+            "Failed to save the short note."
+        );
+
+    }
+
+
+    // ==========================================
+    // INSERT SHORT NOTE INTO DATABASE
+    // ==========================================
+
+    $sql = "INSERT INTO short_notes
+            (
+                unit_id,
+                title,
+                file_path
+            )
+            VALUES (?, ?, ?)";
+
+
+    $stmt = $conn->prepare($sql);
+
+
+    $stmt->bind_param(
+        "iss",
+        $unit_id,
+        $title,
+        $note_path
+    );
+
+
+    // ==========================================
+    // DATABASE INSERT
+    // ==========================================
+
+    if (!$stmt->execute()) {
+
+
+        // Remove uploaded PDF
+        // if database insertion fails
+
+        if (file_exists($note_path)) {
+
+            unlink($note_path);
+
+        }
+
+
+        die(
+            "Database error: " .
+            $stmt->error
+        );
+
+    }
+
+
+    $stmt->close();
+
+
+    // ==========================================
+    // SUCCESS
+    // ==========================================
+
+    echo "<h2>Short note uploaded successfully!</h2>";
+
+
+    echo "<p>File: " .
+         htmlspecialchars($note_path) .
+         "</p>";
+
+
+    echo "<p>Title: " .
+         htmlspecialchars($title) .
+         "</p>";
+
+
+    echo "<p>The short note was saved successfully.</p>";
+
+
+    exit();
+
+}
+
+
+// ==========================================
+// VIDEO LESSON UPLOAD
+// ==========================================
+
+if ($resource_type !== "lesson") {
+
+    die(
+        "Currently only Video Lessons, " .
+        "Short Notes, and Past Papers are supported."
+    );
+
+}
+
+
+// ==========================================
+// CHECK REQUIRED DATA
+// ==========================================
+
+if (
+    empty($lesson_number) ||
+    empty($title) ||
+    !isset($_FILES["video"])
+) {
+
+    die(
+        "Please complete all required lesson fields."
+    );
+
+}
 
 
 
