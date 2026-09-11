@@ -3011,3 +3011,361 @@ main > .mb-3 p {
 
     font-weight: 700;
 }
+
+
+
+/* =========================================
+   LIGHT SECTION
+========================================= */
+
+.home-section-light {
+    background-color: #F8FAFC;
+}
+
+
+.home-curriculum {
+    background-color: #FFFFFF;
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.section-label {
+
+    color: #14B8A6;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+}
+
+
+.home-section-title {
+
+    color: #111827;
+
+    font-weight: 800;
+}
+
+
+.home-section-text {
+
+    color: #64748B;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   FEATURE CARDS
+========================================= */
+
+.feature-card {
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 1.5rem;
+
+    box-shadow:
+        0 4px 15px
+        rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.feature-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color: #BFDBFE;
+
+    box-shadow:
+        0 10px 25px
+        rgba(37, 99, 235, 0.10);
+}
+
+
+.feature-card h5 {
+    color: #111827;
+
+    font-weight: 700;
+}
+
+
+.feature-card p {
+    color: #64748B;
+}
+
+
+/* =========================================
+   FEATURE ICONS
+========================================= */
+
+.feature-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    font-size: 1.4rem;
+}
+
+
+.blue-icon {
+
+    background-color: #DBEAFE;
+
+    color: #2563EB;
+}
+
+
+.teal-icon {
+
+    background-color: #CCFBF1;
+
+    color: #0F766E;
+}
+
+
+/* =========================================
+   CURRICULUM CARDS
+========================================= */
+
+.curriculum-card {
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 2rem;
+
+    box-shadow:
+        0 4px 15px
+        rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.curriculum-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color: #BFDBFE;
+
+    box-shadow:
+        0 10px 22px
+        rgba(37, 99, 235, 0.08);
+}
+
+
+.curriculum-card h4 {
+
+    color: #111827;
+
+    font-weight: 700;
+}
+
+
+.curriculum-card p {
+
+    color: #64748B;
+}
+
+
+/* =========================================
+   CURRICULUM BADGES
+========================================= */
+
+.curriculum-badge {
+
+    display: inline-block;
+
+    padding: 0.45rem 0.8rem;
+
+    border-radius: 50px;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+}
+
+
+.blue-badge {
+
+    background-color: #DBEAFE;
+
+    color: #1E3A8A;
+}
+
+
+.teal-badge {
+
+    background-color: #CCFBF1;
+
+    color: #0F766E;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.home-footer {
+
+    background-color: #0F172A;
+
+    color: #CBD5E1;
+
+    border-top:
+        1px solid #172554;
+}
+
+
+.home-footer a {
+
+    color: #93C5FD;
+
+    text-decoration: none;
+}
+
+
+.home-footer a:hover {
+
+    color: #5EEAD4;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 991.98px) {
+
+    .home-nav-link {
+        padding: 0.6rem 0;
+    }
+
+
+    .home-navbar .d-flex {
+        padding-bottom: 1rem;
+    }
+
+
+    .home-heading {
+        font-size: 2.5rem;
+    }
+
+}
+
+
+@media (max-width: 575.98px) {
+
+    .home-heading {
+        font-size: 2.2rem;
+    }
+
+
+    .data-saver-card {
+        padding: 1.5rem;
+    }
+
+
+    .home-hero .btn {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   CONTACT US PAGE
+========================================= */
+
+.contact-page {
+    background-color: #F8FAFC;
+    color: #111827;
+}
+
+
+/* =========================================
+   CONTACT HERO
+========================================= */
+
+.contact-hero {
+    background: linear-gradient(
+        135deg,
+        #EFF6FF 0%,
+        #FFFFFF 100%
+    );
+
+    border-bottom: 1px solid #DBEAFE;
+
+    padding: 70px 20px;
+}
+
+
+.contact-label {
+    display: inline-block;
+
+    color: #14B8A6;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 12px;
+}
+
+
+.contact-hero h1 {
+    font-size: 3rem;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+
+.contact-hero h1 span {
+    color: #2563EB;
+}
+
+
+.contact-hero p {
+    color: #64748B;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    line-height: 1.7;
+}
