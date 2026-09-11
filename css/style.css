@@ -1882,3 +1882,283 @@ main > .mb-3 p {
     }
 
 }
+
+/* =========================================
+   Home Page
+   ========================================= */
+
+
+/* Navbar */
+.home-navbar {
+    border-bottom: 1px solid #DBEAFE;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
+}
+
+.home-brand {
+    color: #2563EB !important;
+}
+
+.home-brand:hover {
+    color: #1E3A8A !important;
+}
+
+.home-nav-link {
+    color: #4B5563 !important;
+    font-weight: 500;
+}
+
+.home-nav-link:hover,
+.home-nav-link.active {
+    color: #2563EB !important;
+}
+
+
+/* Primary Button */
+.btn-home-primary {
+    background-color: #2563EB;
+    border-color: #2563EB;
+    color: #FFFFFF;
+}
+
+.btn-home-primary:hover {
+    background-color: #1E3A8A;
+    border-color: #1E3A8A;
+    color: #FFFFFF;
+}
+
+
+/* Hero */
+.home-hero {
+    background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);
+    border-bottom: 1px solid #DBEAFE;
+}
+
+.hero-highlight {
+    color: #2563EB;
+}
+
+
+/* Data Saver Badge */
+.data-saver-badge {
+    background-color: #CCFBF1;
+    color: #0F766E;
+    padding: 0.6rem 0.9rem;
+}
+
+
+/* Data Saver Card */
+.data-saver-card {
+    background-color: #FFFFFF;
+    border: 1px solid #DBEAFE;
+    border-radius: 1.25rem;
+    padding: 2rem;
+}
+
+.data-saver-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #CCFBF1;
+    color: #0F766E;
+    font-size: 1.6rem;
+}
+
+.data-saver-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    color: #374151;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.data-saver-item i {
+    color: #2563EB;
+}
+
+.data-saver-status {
+    color: #0F766E;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+/* Light Section */
+.home-section-light {
+    background-color: #F8FAFC;
+}
+
+
+/* Section Label */
+.section-label {
+    color: #2563EB;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* Feature Cards */
+.feature-card {
+    border: 1px solid #E5E7EB !important;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.10);
+}
+
+
+/* Feature Icons */
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.4rem;
+}
+
+.blue-icon {
+    background-color: #DBEAFE;
+    color: #2563EB;
+}
+
+.teal-icon {
+    background-color: #CCFBF1;
+    color: #0F766E;
+}
+
+
+/* Curriculum Cards */
+.curriculum-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.curriculum-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
+}
+
+
+/* Curriculum Badges */
+.curriculum-badge {
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.blue-badge {
+    background-color: #DBEAFE;
+    color: #1E3A8A;
+}
+
+.teal-badge {
+    background-color: #CCFBF1;
+    color: #0F766E;
+}
+
+
+/* Footer */
+.home-footer {
+    background-color: #1F2937;
+    color: #D1D5DB;
+}
+
+
+
+/* =========================================
+   HOW A/L TECHHUB WORKS
+========================================= */
+
+.home-how-it-works {
+
+    background: #FFFFFF;
+
+}
+
+
+.how-it-works-card {
+
+    position: relative;
+
+    background: #F8FAFC;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.how-it-works-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #BFDBFE;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.08);
+
+}
+
+
+.how-step-number {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    color: #94A3B8;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+}
+
+
+.how-step-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    margin: 0 auto;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.4rem;
+
+}
