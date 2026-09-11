@@ -809,4 +809,160 @@ if (!$result_360p["success"]) {
 
 }
 
+// ==========================================
+// GENERATE AUDIO USING FFMPEG
+// ==========================================
+
+$audio_result =
+    generateAudioFromVideo(
+        $video_path,
+        $audio_path
+    );
+
+
+// ==========================================
+// CHECK AUDIO GENERATION
+// ==========================================
+
+if (!$audio_result["success"]) {
+
+
+    // Remove uploaded video
+    // if audio generation fails
+
+    if (file_exists($video_path)) {
+
+        unlink($video_path);
+
+    }
+
+
+    echo "<h2>Audio generation failed.</h2>";
+
+
+    echo "<pre>";
+
+    print_r($audio_result);
+
+    echo "</pre>";
+
+
+    exit();
+
+}
+
+
+// ==========================================
+// VIDEO DURATION
+// ==========================================
+
+// For now we leave duration as NULL.
+
+$duration_minutes = null;
+
+
+// ==========================================
+// INSERT LESSON INTO DATABASE
+// ==========================================
+
+$sql = "INSERT INTO lessons
+        (
+            unit_id,
+            lesson_number,
+            title,
+            description,
+            video_path,
+            video_1080p_path,
+            video_720p_path,
+            video_480p_path,
+            video_360p_path,
+            audio_path,
+            duration_minutes
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+
+$stmt = $conn->prepare($sql);
+
+
+$stmt->bind_param(
+    "isssssssssi",
+    $unit_id,
+    $lesson_number,
+    $title,
+    $description,
+    $video_path,
+    $video_1080p_path,
+    $video_720p_path,
+    $video_480p_path,
+    $video_360p_path,
+    $audio_path,
+    $duration_minutes
+);
+
+
+if (!$stmt->execute()) {
+
+
+    if (file_exists($video_path)) {
+    unlink($video_path);
+}
+
+if (file_exists($video_1080p_path)) {
+    unlink($video_1080p_path);
+}
+
+if (file_exists($video_720p_path)) {
+    unlink($video_720p_path);
+}
+
+if (file_exists($video_480p_path)) {
+    unlink($video_480p_path);
+}
+
+if (file_exists($video_360p_path)) {
+    unlink($video_360p_path);
+}
+
+if (file_exists($audio_path)) {
+    unlink($audio_path);
+}
+
+
+    die(
+        "Database error: " .
+        $stmt->error
+    );
+
+}
+
+
+$stmt->close();
+
+
+// ==========================================
+// SUCCESS
+// ==========================================
+
+echo "<h2>Lesson uploaded successfully!</h2>";
+
+
+echo "<p>Video: " .
+     htmlspecialchars($video_path) .
+     "</p>";
+
+
+echo "<p>Audio: " .
+     htmlspecialchars($audio_path) .
+     "</p>";
+
+
+echo "<p>Lesson Number: " .
+     htmlspecialchars($lesson_number) .
+     "</p>";
+
+
+echo "<p>FFmpeg successfully generated the audio.</p>";
+
+?>
 
