@@ -88,6 +88,25 @@ if (!password_verify($password, $user["password"])) {
 }
 
 // ==========================================
+// REGENERATE SESSION ID
+// ==========================================
+
+session_regenerate_id(true);
+
+
+// ==========================================
+// CHECK ADMIN ROLE
+// ==========================================
+
+if ($user["role"] !== "admin") {
+
+    header("Location: ../admin-login.html?error=unauthorized");
+    exit();
+
+}
+
+
+// ==========================================
 // REMEMBER ME
 // ==========================================
 
