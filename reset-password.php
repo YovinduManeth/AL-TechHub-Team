@@ -35,7 +35,8 @@ if (!empty($token)) {
                 password_resets.id,
                 password_resets.user_id,
                 password_resets.expires_at,
-                users.email
+                users.email,
+                users.role
             FROM password_resets
             INNER JOIN users
                 ON password_resets.user_id = users.user_id
@@ -229,16 +230,19 @@ if (
             // SUCCESS
             // ==========================================
 
+            $login_page =
+                ($reset["role"] === "admin")
+                    ? "admin-login.html"
+                    : "login.html";
+
             $message =
                 "Your password has been reset successfully." .
                 "<br><br>" .
-                "<a href=\"login.html\" " .
+                "<a href=\"" . $login_page . "\" " .
                 "class=\"btn btn-login-new\">" .
                 "<i class=\"bi bi-box-arrow-in-right me-2\"></i>" .
                 "Go to Login" .
                 "</a>";
-
-            $message_type = "success";
 
 
             // Prevent form from being displayed
