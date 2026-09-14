@@ -163,7 +163,34 @@ if ($total_lessons > 0) {
         );
 
 }
+
+// ==========================================
+// GET QUIZ FOR THIS UNIT
+// ==========================================
+
+$sql = "SELECT
+            quiz_id,
+            title,
+            time_limit
+        FROM quizzes
+        WHERE unit_id = ?
+        LIMIT 1";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param("i", $unit_id);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+$unit_quiz = $result->fetch_assoc();
+
+$stmt->close();
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -552,16 +579,34 @@ if ($total_lessons > 0) {
                     </p>
 
 
-                    <a
-                        href="#"
-                        class="btn btn-dashboard fw-bold"
-                    >
+                    <?php if ($unit_quiz): ?>
 
-                        <i class="bi bi-pencil-square me-1"></i>
+    <a
+        href="quiz.php?quiz=<?php echo $unit_quiz["quiz_id"]; ?>"
+        class="btn btn-dashboard fw-bold"
+    >
 
-                        Take Quiz
+        <i class="bi bi-pencil-square me-1"></i>
 
-                    </a>
+        Take Quiz
+
+    </a>
+
+<?php else: ?>
+
+    <button
+        type="button"
+        class="btn btn-secondary fw-bold"
+        disabled
+    >
+
+        <i class="bi bi-hourglass-split me-1"></i>
+
+        Quiz Not Available
+
+    </button>
+
+<?php endif; ?>
 
                 </div>
 
