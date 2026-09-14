@@ -53,19 +53,53 @@ $subject_id = $subject["subject_id"];
 $subject_name = $subject["subject_name"];
 
 
+// ==========================================
+// GET UNITS + LESSON PROGRESS
+// ==========================================
+
 $sql = "SELECT
-            unit_id,
-            grade,
-            unit_number,
-            unit_title
+            units.unit_id,
+            units.grade,
+            units.unit_number,
+            units.unit_title,
+
+            COUNT(lessons.lesson_id) AS total_lessons,
+
+            COUNT(
+                CASE
+                    WHEN student_progress.completed = 1
+                    THEN lessons.lesson_id
+                END
+            ) AS completed_lessons
+
         FROM units
-        WHERE subject_id = ?
-        AND grade = ?
-        ORDER BY unit_number";
+
+        LEFT JOIN lessons
+            ON units.unit_id = lessons.unit_id
+
+        LEFT JOIN student_progress
+            ON lessons.lesson_id = student_progress.lesson_id
+            AND student_progress.user_id = ?
+
+        WHERE units.subject_id = ?
+        AND units.grade = ?
+
+        GROUP BY
+            units.unit_id,
+            units.grade,
+            units.unit_number,
+            units.unit_title
+
+        ORDER BY units.unit_number";
 
 $stmt = $conn->prepare($sql);
 
-$stmt->bind_param("is", $subject_id, $grade);
+$stmt->bind_param(
+    "iis",
+    $_SESSION["user_id"],
+    $subject_id,
+    $grade
+);
 
 $stmt->execute();
 
@@ -74,6 +108,24 @@ $result = $stmt->get_result();
 $units = [];
 
 while ($row = $result->fetch_assoc()) {
+
+    $total_lessons = (int) $row["total_lessons"];
+
+    $completed_lessons = (int) $row["completed_lessons"];
+
+    if ($total_lessons > 0) {
+
+        $progress_percentage = round(
+            ($completed_lessons / $total_lessons) * 100
+        );
+
+    } else {
+
+        $progress_percentage = 0;
+
+    }
+
+    $row["progress_percentage"] = $progress_percentage;
 
     $units[] = $row;
 
@@ -390,6 +442,50 @@ $stmt->close();
                             learning content for this unit.
 
                         </p>
+
+                        <!-- Unit Progress -->
+
+<div class="mb-3">
+
+    <div class="d-flex justify-content-between align-items-center mb-1">
+
+        <small class="text-muted">
+
+            <?php echo $unit["completed_lessons"]; ?>
+            /
+            <?php echo $unit["total_lessons"]; ?>
+
+            lessons completed
+
+        </small>
+
+
+        <small class="fw-bold">
+
+            <?php echo $unit["progress_percentage"]; ?>%
+
+        </small>
+
+    </div>
+
+
+    <div
+        class="progress"
+        role="progressbar"
+        aria-valuenow="<?php echo $unit["progress_percentage"]; ?>"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 8px;"
+    >
+
+        <div
+            class="progress-bar"
+            style="width: <?php echo $unit["progress_percentage"]; ?>%;"
+        ></div>
+
+    </div>
+
+</div>
 
 
                         <a
