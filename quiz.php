@@ -38,12 +38,21 @@ $quiz_id = (int)$quiz_id;
 // ==========================================
 
 $sql = "SELECT
-            quiz_id,
-            unit_id,
-            title,
-            time_limit
+            quizzes.quiz_id,
+            quizzes.unit_id,
+            quizzes.title,
+            quizzes.time_limit,
+            units.grade,
+            units.unit_number,
+            units.unit_title,
+            subjects.subject_code,
+            subjects.subject_name
         FROM quizzes
-        WHERE quiz_id = ?";
+        INNER JOIN units
+            ON quizzes.unit_id = units.unit_id
+        INNER JOIN subjects
+            ON units.subject_id = subjects.subject_id
+        WHERE quizzes.quiz_id = ?";
 
 $stmt = $conn->prepare($sql);
 
@@ -176,7 +185,13 @@ $_SESSION["active_quiz_id"] = $quiz_id;
 
                     <small class="quiz-header-subtitle">
 
-                        Science for Technology (SFT)
+                        <?php echo htmlspecialchars(
+                            $quiz["subject_name"]
+                        ); ?>
+
+                        (<?php echo htmlspecialchars(
+                            $quiz["subject_code"]
+                        ); ?>)
 
                     </small>
 
@@ -238,13 +253,25 @@ $_SESSION["active_quiz_id"] = $quiz_id;
                         </span>
 
                         <h2>
-                            Fundamentals of Physics & Measurement
+
+                            <?php echo htmlspecialchars(
+                                $quiz["unit_title"]
+                            ); ?>
+
                         </h2>
 
                     <p>
-                        Test your understanding of the lessons covered in Unit 01.
-                        This assessment contains questions selected from the Unit 01
-                        quiz bank.
+
+                        Test your understanding of the lessons covered in
+                        Unit <?php echo htmlspecialchars(
+                            $quiz["unit_number"]
+                        ); ?>.
+
+                        This assessment contains questions selected from the
+                        Unit <?php echo htmlspecialchars(
+                            $quiz["unit_number"]
+                        ); ?> quiz bank.
+
                     </p>
 
 
