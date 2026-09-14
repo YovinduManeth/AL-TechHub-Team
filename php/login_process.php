@@ -112,21 +112,18 @@ if ($user["role"] !== "admin") {
 
 if (isset($_POST["remember_me"])) {
 
-    // Generate secure random token
-
-    $remember_token =
-        bin2hex(random_bytes(32));
-
-
-    // Store token in database
+    $remember_token = bin2hex(random_bytes(32));
 
     $update_sql =
         "UPDATE users
          SET remember_token = ?
          WHERE user_id = ?";
 
-    $update_stmt =
-        $conn->prepare($update_sql);
+    $update_stmt = $conn->prepare($update_sql);
+
+    if (!$update_stmt) {
+        die("Remember Me database error: " . $conn->error);
+    }
 
     $update_stmt->bind_param(
         "si",
@@ -134,12 +131,11 @@ if (isset($_POST["remember_me"])) {
         $user["user_id"]
     );
 
-    $update_stmt->execute();
+    if (!$update_stmt->execute()) {
+        die("Remember Me update error: " . $update_stmt->error);
+    }
 
     $update_stmt->close();
-
-
-    // Create cookie for 30 days
 
     setcookie(
         "remember_token",
@@ -152,7 +148,6 @@ if (isset($_POST["remember_me"])) {
             "samesite" => "Lax"
         ]
     );
-
 }
 
 // ==========================================
