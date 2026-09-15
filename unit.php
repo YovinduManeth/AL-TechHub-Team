@@ -700,30 +700,24 @@ $stmt->close();
 
                     <div class="lesson-actions">
 
+    <a
+    href="lesson.php?lesson=<?php echo $lesson["lesson_id"]; ?>"
+    class="btn btn-units-primary btn-sm"
+>
+
+    <i class="bi bi-play-circle me-1"></i>
+
     <?php if ($lesson["completed"] == 1): ?>
 
-        <span class="btn btn-success btn-sm disabled">
-
-            <i class="bi bi-check-circle-fill me-1"></i>
-
-            Completed
-
-        </span>
+        Watch Again
 
     <?php else: ?>
 
-        <a
-            href="lesson.php?lesson=<?php echo $lesson["lesson_id"]; ?>"
-            class="btn btn-units-primary btn-sm"
-        >
-
-            <i class="bi bi-play-circle me-1"></i>
-
-            Start Lesson
-
-        </a>
+        Start Lesson
 
     <?php endif; ?>
+
+</a>
 
 </div>
                     
