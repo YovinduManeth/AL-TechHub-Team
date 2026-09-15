@@ -22,6 +22,7 @@ if (!isset($_SESSION["user_id"])) {
 // ==========================================
 
 $full_name = $_SESSION["full_name"];
+$user_id = (int)$_SESSION["user_id"];
 
 
 // ==========================================
@@ -84,12 +85,40 @@ if (!$unit) {
 
 }
 
+// Check whether the logged-in student is enrolled in this unit's subject
+$sql = "SELECT student_subject_id
+        FROM student_subjects
+        WHERE user_id = ?
+        AND subject_id = ?";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    "ii",
+    $user_id,
+    $unit["subject_id"]
+);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+
+    $stmt->close();
+
+    die("You are not enrolled in this subject.");
+
+}
+
+$stmt->close();
+
 
 // ==========================================
 // GET LESSONS FOR THIS UNIT
 // ==========================================
 
-$user_id = (int)$_SESSION["user_id"];
+
 
 $sql = "SELECT
             lessons.lesson_id,
