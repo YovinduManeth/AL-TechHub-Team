@@ -52,6 +52,29 @@ if (!$subject) {
 $subject_id = $subject["subject_id"];
 $subject_name = $subject["subject_name"];
 
+// Check whether the logged-in student is enrolled in this subject
+$sql = "SELECT student_subject_id
+        FROM student_subjects
+        WHERE user_id = ?
+        AND subject_id = ?";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param(
+    "ii",
+    $_SESSION["user_id"],
+    $subject_id
+);
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    $stmt->close();
+    die("You are not enrolled in this subject.");
+}
+
+$stmt->close();
+
 
 // ==========================================
 // GET UNITS + LESSON PROGRESS
