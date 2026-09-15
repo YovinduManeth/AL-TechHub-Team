@@ -66,11 +66,19 @@ $sql = "SELECT
             COUNT(lessons.lesson_id) AS total_lessons,
 
             COUNT(
-                CASE
-                    WHEN student_progress.completed = 1
-                    THEN lessons.lesson_id
-                END
-            ) AS completed_lessons
+    CASE
+        WHEN student_progress.completed = 1
+        THEN lessons.lesson_id
+    END
+) AS completed_lessons,
+
+MIN(
+    CASE
+        WHEN student_progress.completed IS NULL
+        OR student_progress.completed = 0
+        THEN lessons.lesson_id
+    END
+) AS first_incomplete_lesson_id
 
         FROM units
 
@@ -488,16 +496,47 @@ $stmt->close();
 </div>
 
 
-                        <a
-                            href="unit.php?unit=<?php echo $unit["unit_id"]; ?>"
-                            class="btn btn-dashboard fw-bold"
-                        >
+                        <?php if ($unit["total_lessons"] == 0): ?>
 
-                            <i class="bi bi-book me-1"></i>
+    <a
+        href="unit.php?unit=<?php echo $unit["unit_id"]; ?>"
+        class="btn btn-dashboard fw-bold"
+    >
+        <i class="bi bi-book me-1"></i>
+        Open Unit
+    </a>
 
-                            Open Unit
+<?php elseif ($unit["progress_percentage"] == 100): ?>
 
-                        </a>
+    <a
+        href="unit.php?unit=<?php echo $unit["unit_id"]; ?>"
+        class="btn btn-dashboard fw-bold"
+    >
+        <i class="bi bi-arrow-repeat me-1"></i>
+        Review Unit
+    </a>
+
+<?php elseif ($unit["progress_percentage"] > 0): ?>
+
+    <a
+        href="lesson.php?lesson=<?php echo $unit["first_incomplete_lesson_id"]; ?>"
+        class="btn btn-dashboard fw-bold"
+    >
+        <i class="bi bi-play-circle me-1"></i>
+        Continue Learning
+    </a>
+
+<?php else: ?>
+
+    <a
+        href="lesson.php?lesson=<?php echo $unit["first_incomplete_lesson_id"]; ?>"
+        class="btn btn-dashboard fw-bold"
+    >
+        <i class="bi bi-play-circle me-1"></i>
+        Start Learning
+    </a>
+
+<?php endif; ?>
 
                     </div>
 
