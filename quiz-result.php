@@ -174,12 +174,15 @@ if ($attempt_id === "") {
 // ==========================================
 
 $sql = "SELECT
-            quiz_id,
-            unit_id,
-            title,
-            time_limit
+            quizzes.quiz_id,
+            quizzes.unit_id,
+            quizzes.title,
+            quizzes.time_limit,
+            units.subject_id
         FROM quizzes
-        WHERE quiz_id = ?";
+        INNER JOIN units
+            ON quizzes.unit_id = units.unit_id
+        WHERE quizzes.quiz_id = ?";
 
 $stmt = $conn->prepare($sql);
 
@@ -200,6 +203,39 @@ if (!$quiz) {
     exit();
 
 }
+
+// ==========================================
+// CHECK STUDENT SUBJECT ENROLLMENT
+// ==========================================
+
+$sql = "SELECT
+            student_subject_id
+        FROM student_subjects
+        WHERE user_id = ?
+        AND subject_id = ?";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    "ii",
+    $user_id,
+    $quiz["subject_id"]
+);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+
+    $stmt->close();
+
+    header("Location: dashboard.php");
+    exit();
+
+}
+
+$stmt->close();
 
 
 // ==========================================
