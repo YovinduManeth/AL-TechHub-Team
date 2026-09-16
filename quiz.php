@@ -31,6 +31,7 @@ if (!is_numeric($quiz_id)) {
 }
 
 $quiz_id = (int)$quiz_id;
+$user_id = (int)$_SESSION["user_id"];
 
 
 // ==========================================
@@ -43,6 +44,7 @@ $sql = "SELECT
             quizzes.title,
             quizzes.time_limit,
             units.grade,
+            units.subject_id,
             units.unit_number,
             units.unit_title,
             subjects.subject_code,
@@ -77,6 +79,38 @@ if (!$quiz) {
     exit();
 
 }
+
+// ==========================================
+// CHECK STUDENT SUBJECT ENROLLMENT
+// ==========================================
+
+$sql = "SELECT
+            student_subject_id
+        FROM student_subjects
+        WHERE user_id = ?
+        AND subject_id = ?";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    "ii",
+    $user_id,
+    $quiz["subject_id"]
+);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+
+    $stmt->close();
+
+    die("You are not enrolled in this subject.");
+
+}
+
+$stmt->close();
 
 // ==========================================
 // GET QUIZ QUESTIONS
