@@ -412,3 +412,76 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
 
 
+                        </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- BACK TO DASHBOARD -->
+
+            <div class="text-center mt-4">
+
+                <a
+                    href="dashboard.php"
+                    class="text-decoration-none"
+                >
+
+                    <i class="bi bi-arrow-left me-1"></i>
+
+                    Back to Dashboard
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function togglePassword(fieldId, button) {
+
+    const field = document.getElementById(fieldId);
+    const icon = button.querySelector("i");
+
+    if (field.type === "password") {
+
+        field.type = "text";
+
+        icon.classList.remove("bi-eye");
+        icon.classList.add("bi-eye-slash");
+
+        button.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
+    } else {
+
+        field.type = "password";
+
+        icon.classList.remove("bi-eye-slash");
+        icon.classList.add("bi-eye");
+
+        button.setAttribute(
+            "aria-label",
+            "Show password"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+
