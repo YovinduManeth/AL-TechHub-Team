@@ -346,3 +346,115 @@
                             Login to Administration
 
                         </button>
+
+                        </form>
+
+
+                    <!-- Security Message -->
+
+                    <div class="admin-security-message">
+
+                        <i class="bi bi-shield-check"></i>
+
+                        <span>
+                            This area is restricted to authorized
+                            administrators.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Student Login -->
+
+                <div class="admin-bottom">
+
+                    <span>
+                        Are you a student?
+                    </span>
+
+                    <a href="login.html">
+                        Return to Student Login
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+function togglePassword() {
+
+    const passwordInput = document.getElementById("adminPassword");
+    const passwordIcon = document.getElementById("passwordIcon");
+
+    if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+
+        passwordIcon.classList.remove("bi-eye");
+        passwordIcon.classList.add("bi-eye-slash");
+
+    } else {
+
+        passwordInput.type = "password";
+
+        passwordIcon.classList.remove("bi-eye-slash");
+        passwordIcon.classList.add("bi-eye");
+
+    }
+}
+
+// ==========================================
+// DISPLAY LOGIN ERROR MESSAGE
+// ==========================================
+
+const urlParams = new URLSearchParams(
+    window.location.search
+);
+
+const error = urlParams.get("error");
+
+const loginError =
+    document.getElementById("loginError");
+
+
+if (error === "empty") {
+
+    loginError.textContent =
+        "Please enter your username and password.";
+
+    loginError.classList.remove("d-none");
+
+}
+
+
+if (error === "invalid") {
+
+    loginError.textContent =
+        "Invalid administrator username or password.";
+
+    loginError.classList.remove("d-none");
+
+}
+
+
+if (error === "unauthorized") {
+
+    loginError.textContent =
+        "You are not authorized to access the administration portal.";
+
+    loginError.classList.remove("d-none");
+
+}
+</script>
+
+</body>
+
+</html>
