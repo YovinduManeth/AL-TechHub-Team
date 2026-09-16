@@ -263,3 +263,164 @@ $username = $_SESSION["username"];
                         </div>
 
                     </div>
+
+                    <!-- Support -->
+                    <div class="contact-support-box">
+
+                        <i class="bi bi-headset"></i>
+
+                        <div>
+                            <strong>Student Support</strong>
+
+                            <p>
+                                We aim to provide a better learning
+                                experience for every Technology Stream student.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 Contact Form
+            ================================== -->
+
+            <div class="col-lg-7">
+
+                <div class="contact-form-card">
+
+                    <div class="mb-4">
+
+                        <span class="contact-section-label">
+                            SEND A MESSAGE
+                        </span>
+
+                        <h3>
+                            How can we help?
+                        </h3>
+
+                        <p class="text-muted">
+                            Fill out the form below and send us your message.
+                        </p>
+
+                    </div>
+
+
+                    <form>
+
+
+                        <!-- Name -->
+                        <div class="mb-3">
+
+                            <label
+                                for="name"
+                                class="form-label fw-semibold"
+                            >
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="mb-3">
+
+                            <label
+                                for="email"
+                                class="form-label fw-semibold"
+                            >
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="Enter your email address"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Subject -->
+                        <div class="mb-3">
+
+                            <label
+                                for="subject"
+                                class="form-label fw-semibold"
+                            >
+                                Subject
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="subject"
+                                required
+                            >
+
+                                <option value="" selected disabled>
+                                    Select a subject
+                                </option>
+
+                                <option>
+                                    Technical Support
+                                </option>
+
+                                <option>
+                                    Account Problem
+                                </option>
+
+                                <option>
+                                    Learning Resources
+                                </option>
+
+                                <option>
+                                    Data Saver Mode
+                                </option>
+
+                                <option>
+                                    General Inquiry
+                                </option>
+
+                                <option>
+                                    Feedback
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Message -->
+                        <div class="mb-4">
+
+                            <label
+                                for="message"
+                                class="form-label fw-semibold"
+                            >
+                                Message
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                id="message"
+                                rows="5"
+                                placeholder="Write your message here..."
+                                required
+                            ></textarea>
+
+                        </div>
