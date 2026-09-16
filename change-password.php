@@ -306,4 +306,109 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
 
 
-                        
+                        <!-- NEW PASSWORD -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="new_password"
+                                class="form-label fw-semibold"
+                            >
+                                New Password
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="password"
+                                    id="new_password"
+                                    name="new_password"
+                                    class="form-control"
+                                    minlength="8"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword('new_password', this)"
+                                    aria-label="Show new password"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+
+                            </div>
+
+                            <div class="form-text">
+                                Password must contain at least 8 characters.
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="confirm_password"
+                                class="form-label fw-semibold"
+                            >
+                                Confirm New Password
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="password"
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    class="form-control"
+                                    minlength="8"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword('confirm_password', this)"
+                                    aria-label="Show confirm password"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BUTTONS -->
+
+                        <div class="d-flex gap-2 flex-wrap">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+
+                                <i class="bi bi-shield-check me-1"></i>
+
+                                Change Password
+
+                            </button>
+
+
+                            <a
+                                href="profile.php"
+                                class="btn btn-outline-secondary"
+                            >
+
+                                <i class="bi bi-x-lg me-1"></i>
+
+                                Cancel
+
+                            </a>
+
+                        </div>
+
+
