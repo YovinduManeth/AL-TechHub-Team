@@ -86,3 +86,131 @@ $subject_stmt->close();
     <link rel="stylesheet" href="css/style.css">
 
 </head>
+
+<body class="bg-light">
+
+
+<!-- ==============================
+     Navigation Bar
+================================ -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar">
+
+    <div class="container">
+
+        <!-- Brand -->
+        <a
+            class="navbar-brand fw-bold dashboard-brand"
+            href="dashboard.php"
+        >
+
+            <i class="bi bi-mortarboard-fill me-1"></i>
+            A/L TechHub
+
+        </a>
+
+
+        <!-- Mobile Toggle -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#profileNavbar"
+            aria-controls="profileNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- Navbar Content -->
+        <div
+            class="collapse navbar-collapse"
+            id="profileNavbar"
+        >
+
+            <!-- Left Navigation -->
+            <ul class="navbar-nav me-auto ms-lg-4">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link dashboard-nav-link"
+                        href="index.php"
+                    >
+
+                        <i class="bi bi-house me-1"></i>
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link dashboard-nav-link"
+                        href="dashboard.php"
+                    >
+
+                        <i class="bi bi-grid-1x2-fill me-1"></i>
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link dashboard-nav-link"
+                        href="contact.php"
+                    >
+
+                        <i class="bi bi-envelope me-1"></i>
+                        Contact Us
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <!-- User Account -->
+            <div class="d-flex align-items-center gap-3">
+
+                <a
+                    href="profile.php"
+                    class="dashboard-user text-decoration-none"
+                >
+
+                    <i class="bi bi-person-circle me-1"></i>
+                    User Account
+
+                </a>
+
+
+              <a
+                        href="php/logout.php"
+                        class="btn btn-outline-primary btn-sm px-3"
+                    >
+
+                    <i class="bi bi-box-arrow-right me-1"></i>
+                    Logout
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
