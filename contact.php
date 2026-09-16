@@ -424,3 +424,51 @@ $username = $_SESSION["username"];
                             ></textarea>
 
                         </div>
+
+                        <!-- Button -->
+                        <button
+                            type="submit"
+                            class="btn btn-contact w-100"
+                        >
+                            <i class="bi bi-send-fill me-2"></i>
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =================================
+         Footer
+    ================================== -->
+
+    <footer class="home-footer py-4">
+
+        <div class="container text-center">
+
+            <p class="mb-0 small">
+                © 2026 A/L TechHub. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
