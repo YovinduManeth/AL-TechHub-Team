@@ -419,3 +419,122 @@ $stmt->close();
         </p>
 
     </div>
+
+    <!-- =========================================
+         SHORT NOTES
+    ========================================== -->
+
+    <?php if (empty($notes)): ?>
+
+
+        <!-- No Notes -->
+
+        <div class="alert alert-info rounded-4">
+
+            <i class="bi bi-info-circle me-2"></i>
+
+            No short notes are available for this unit yet.
+
+        </div>
+
+
+    <?php else: ?>
+
+
+        <div class="row g-4">
+
+
+            <?php foreach ($notes as $note): ?>
+
+
+                <div class="col-md-6 col-lg-4">
+
+
+                    <div class="card subject-card h-100 rounded-4">
+
+
+                        <div class="card-body p-4">
+
+
+                            <!-- PDF Icon -->
+
+                            <div class="mb-3">
+
+                                <i
+                                    class="bi bi-file-earmark-pdf-fill fs-1 text-danger"
+                                ></i>
+
+                            </div>
+
+
+                            <!-- Title -->
+
+                            <h5 class="fw-bold mb-2">
+
+                                <?php
+                                echo htmlspecialchars(
+                                    $note["title"]
+                                );
+                                ?>
+
+                            </h5>
+
+
+                            <!-- File Information -->
+
+                            <p class="text-muted small mb-4">
+
+                                <i class="bi bi-file-earmark-pdf me-1"></i>
+
+                                PDF Document
+
+                            </p>
+
+
+                            <!-- Open PDF -->
+
+                            <a
+                                href="<?php echo htmlspecialchars($note["file_path"]); ?>"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn btn-dashboard fw-bold w-100"
+                            >
+
+                                <i class="bi bi-file-earmark-pdf me-1"></i>
+
+                                Open PDF
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            <?php endforeach; ?>
+
+
+        </div>
+
+
+    <?php endif; ?>
+
+
+</main>
+
+
+
+<!-- =========================================
+     BOOTSTRAP JAVASCRIPT
+========================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+</body>
+
+</html>
