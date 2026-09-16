@@ -178,3 +178,209 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 ?>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Edit Profile - A/L TechHub</title>
+
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Project CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7 col-md-9">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="text-center mb-4">
+
+                <div class="profile-avatar mb-3">
+
+                    <i class="bi bi-person"></i>
+
+                </div>
+
+                <h2 class="fw-bold">
+                    Edit Profile
+                </h2>
+
+                <p class="text-muted">
+                    Update your personal account information
+                </p>
+
+            </div>
+
+
+            <!-- PROFILE FORM -->
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body p-4 p-md-5">
+
+
+                    <?php if (isset($error)): ?>
+
+                        <div
+                            class="alert alert-danger"
+                            role="alert"
+                        >
+
+                            <i class="bi bi-exclamation-circle me-2"></i>
+
+                            <?php echo htmlspecialchars($error); ?>
+
+                        </div>
+
+                    <?php endif; ?>
+
+
+                    <form
+                        method="POST"
+                        action="edit-profile.php"
+                    >
+
+
+                        <!-- FULL NAME -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="full_name"
+                                class="form-label fw-semibold"
+                            >
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="full_name"
+                                name="full_name"
+                                class="form-control"
+                                value="<?php echo htmlspecialchars($user["full_name"]); ?>"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- USERNAME -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="username"
+                                class="form-label fw-semibold"
+                            >
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                class="form-control"
+                                value="<?php echo htmlspecialchars($user["username"]); ?>"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="email"
+                                class="form-label fw-semibold"
+                            >
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-control"
+                                value="<?php echo htmlspecialchars($user["email"]); ?>"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- BUTTONS -->
+
+                        <div class="d-flex gap-2 flex-wrap">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+
+                                <i class="bi bi-check-lg me-1"></i>
+
+                                Save Changes
+
+                            </button>
+
+
+                            <a
+                                href="profile.php"
+                                class="btn btn-outline-secondary"
+                            >
+
+                                <i class="bi bi-x-lg me-1"></i>
+
+                                Cancel
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
