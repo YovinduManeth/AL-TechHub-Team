@@ -547,3 +547,348 @@ $stmt->close();
                                             ?>
 
                                         </td>
+
+
+                                        <!-- Subject -->
+
+                                        <td>
+
+                                            <span
+                                                class="fw-semibold"
+                                            >
+
+                                                <?php
+                                                echo htmlspecialchars(
+                                                    $attempt["subject_code"]
+                                                );
+                                                ?>
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <!-- Unit -->
+
+                                        <td>
+
+                                            <div>
+
+                                                Unit
+                                                <?php
+                                                echo htmlspecialchars(
+                                                    $attempt["unit_number"]
+                                                );
+                                                ?>
+
+                                            </div>
+
+                                            <small
+                                                class="text-muted"
+                                            >
+
+                                                <?php
+                                                echo htmlspecialchars(
+                                                    $attempt["unit_title"]
+                                                );
+                                                ?>
+
+                                            </small>
+
+                                        </td>
+
+
+                                        <!-- Score -->
+
+                                        <td>
+
+                                            <?php
+                                            echo (int)$attempt["score"];
+                                            ?>
+
+                                            /
+
+                                            <?php
+                                            echo (int)$attempt["total_marks"];
+                                            ?>
+
+                                        </td>
+
+
+                                        <!-- Correct Answers -->
+
+                                        <td>
+
+                                            <?php
+                                            echo (int)$attempt["correct_count"];
+                                            ?>
+
+                                        </td>
+
+
+                                        <!-- Percentage -->
+
+                                        <td>
+
+                                            <?php
+                                            echo number_format(
+                                                (float)$attempt["percentage"],
+                                                0
+                                            );
+                                            ?>%
+
+                                        </td>
+
+
+                                        <!-- Status -->
+
+                                        <td>
+
+                                            <?php
+                                            if (
+                                                (float)$attempt["percentage"]
+                                                >= 50
+                                            ):
+                                            ?>
+
+                                                <span
+                                                    class="badge bg-success"
+                                                >
+
+                                                    Passed
+
+                                                </span>
+
+                                            <?php else: ?>
+
+                                                <span
+                                                    class="badge bg-danger"
+                                                >
+
+                                                    Failed
+
+                                                </span>
+
+                                            <?php endif; ?>
+
+                                        </td>
+
+
+                                        <!-- Date -->
+
+                                        <td
+                                            class="text-muted small"
+                                        >
+
+                                            <?php
+                                            echo date(
+                                                "d M Y, h:i A",
+                                                strtotime(
+                                                    $attempt["attempted_at"]
+                                                )
+                                            );
+                                            ?>
+
+                                        </td>
+
+                                        <!-- Action -->
+
+                                        <td>
+
+                                            <a
+                                                href="quiz-result.php?attempt=<?php echo (int)$attempt["attempt_id"]; ?>"
+                                                class="btn btn-sm btn-dashboard fw-bold"
+                                            >
+
+                                                <i
+                                                    class="bi bi-eye me-1"
+                                                ></i>
+
+                                                View Result
+
+                                            </a>
+
+                                        </td>
+
+
+                                    </tr>
+
+
+                                <?php endforeach; ?>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                <?php else: ?>
+
+
+                    <!-- Empty State -->
+
+                    <div
+                        class="text-center py-5"
+                    >
+
+                        <i
+                            class="bi bi-clipboard2-x fs-1 text-muted"
+                        ></i>
+
+
+                        <h5 class="mt-3 fw-bold">
+
+                            No Quiz Attempts Yet
+
+                        </h5>
+
+
+                        <p
+                            class="text-muted small mb-4"
+                        >
+
+                            Complete a quiz to see your results
+                            and progress here.
+
+                        </p>
+
+
+                        <a
+                            href="dashboard.php"
+                            class="btn btn-dashboard fw-bold px-4"
+                        >
+
+                            <i
+                                class="bi bi-grid-1x2-fill me-1"
+                            ></i>
+
+                            Back to Dashboard
+
+                        </a>
+
+                    </div>
+
+
+                <?php endif; ?>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- Back to Dashboard -->
+
+        <?php if (count($quiz_history) > 0): ?>
+
+            <div class="text-end">
+
+                <a
+                    href="dashboard.php"
+                    class="btn btn-outline-primary fw-bold px-4"
+                >
+
+                    <i
+                        class="bi bi-arrow-left me-1"
+                    ></i>
+
+                    Back to Dashboard
+
+                </a>
+
+            </div>
+
+        <?php endif; ?>
+
+
+    </main>
+
+
+    <!-- Bootstrap JavaScript -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+
+    <!-- Theme Toggle -->
+
+    <script>
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+        const themeIcon =
+            document.getElementById("themeIcon");
+
+
+        if (themeToggle && themeIcon) {
+
+            themeToggle.addEventListener(
+                "click",
+                function () {
+
+                    document.body.classList.toggle(
+                        "dark-mode"
+                    );
+
+
+                    if (
+                        document.body.classList.contains(
+                            "dark-mode"
+                        )
+                    ) {
+
+                        themeIcon.classList.remove(
+                            "bi-moon"
+                        );
+
+                        themeIcon.classList.add(
+                            "bi-sun"
+                        );
+
+                        themeToggle.setAttribute(
+                            "aria-label",
+                            "Switch to day mode"
+                        );
+
+                        themeToggle.setAttribute(
+                            "title",
+                            "Switch to day mode"
+                        );
+
+                    } else {
+
+                        themeIcon.classList.remove(
+                            "bi-sun"
+                        );
+
+                        themeIcon.classList.add(
+                            "bi-moon"
+                        );
+
+                        themeToggle.setAttribute(
+                            "aria-label",
+                            "Switch to night mode"
+                        );
+
+                        themeToggle.setAttribute(
+                            "title",
+                            "Switch to night mode"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
