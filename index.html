@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A/L TechHub | Data-Saver Learning Platform</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+
+<body class="home-page">
+
+
+<!-- =========================================
+     NAVIGATION BAR
+========================================= -->
+
+<nav class="navbar navbar-expand-lg home-navbar sticky-top">
+
+    <div class="container">
+
+        <!-- Logo -->
+        <a
+            class="navbar-brand home-brand fw-bold"
+            href="index.php"
+        >
+            <i class="bi bi-mortarboard-fill me-1"></i>
+            A/L TechHub
+        </a>
+
+
+        <!-- Mobile Button -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <!-- Navigation -->
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar"
+        >
+
+            <!-- Left Links -->
+            <ul class="navbar-nav me-auto ms-lg-4">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link home-nav-link active"
+                        href="index.html"
+                    >
+                        <i class="bi bi-house me-1"></i>
+                        Home
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link home-nav-link"
+                        href="dashboard.php"
+                    >
+                        <i class="bi bi-grid-1x2-fill me-1"></i>
+                        Dashboard
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link home-nav-link"
+                        href="contact.php"
+                    >
+                        <i class="bi bi-envelope me-1"></i>
+                        Contact Us
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <!-- Right Side -->
+
+<div class="d-flex align-items-center gap-3">
+
+   
+
+
+    <!-- Day / Night Mode -->
+
+    <button
+        type="button"
+        id="themeToggle"
+        class="btn btn-link theme-toggle"
+        aria-label="Switch to night mode"
+        title="Switch to night mode"
+    >
+
+        <i
+            class="bi bi-moon"
+            id="themeIcon"
+        ></i>
+
+    </button>
+
+
+    <a
+        href="php/logout.php"
+        class="btn btn-outline-primary btn-sm px-3"
+    >
+
+        <i class="bi bi-box-arrow-right me-1"></i>
+
+        Logout
+
+    </a>
+
+</div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================
+     HERO SECTION
+========================================= -->
+
+<header class="home-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center py-5">
+
+
+            <!-- LEFT SIDE -->
+
+            <div class="col-lg-7 py-4">
+
+
+                <!-- Badge -->
+
+                <span class="badge data-saver-badge mb-3">
+
+                    <i class="bi bi-reception-4 me-1"></i>
+
+                    Designed for Low-Bandwidth Learning
+
+                </span>
+
+
+                <!-- Heading -->
+
+                <h1 class="home-heading fw-bold mb-3">
+
+                    Learn More.
+                    <span class="hero-highlight">
+                        Use Less Data.
+                    </span>
+
+                </h1>
+
+
+                <!-- Description -->
+
+                <p class="home-description lead mb-4">
+
+                    A web-based learning platform designed for
+                    G.C.E. A/L Technology Stream students, providing
+                    lessons, notes, quizzes, and data-saving learning
+                    resources in one place.
+
+                </p>
+
+
+                <!-- Buttons -->
+
+                <div class="d-flex flex-wrap gap-3">
+
+                    <a
+                        href="#how-it-works"
+                        class="btn btn-home-primary btn-lg px-4 fw-bold"
+                    >
+
+                        <i class="bi bi-person-plus me-1"></i>
+
+                        Get Started
+
+                    </a>
+
+
+                    <a
+                        href="#features"
+                        class="btn btn-home-outline btn-lg px-4 fw-bold"
+                    >
+
+                        <i class="bi bi-arrow-down-circle me-1"></i>
+
+                        Explore Features
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="col-lg-5 py-4">
+
+
+                <div class="data-saver-card">
+
+
+                    <!-- Icon -->
+
+                    <div class="data-saver-icon">
+
+                        <i class="bi bi-reception-4"></i>
+
+                    </div>
+
+
+                    <!-- Title -->
+
+                    <h4 class="fw-bold mt-3">
+
+                        Data-Saver Learning
+
+                    </h4>
+
+
+                    <!-- Description -->
+
+                    <p class="home-card-text mb-4">
+
+                        Continue learning even when your
+                        internet connection is limited.
+
+                    </p>
+
+
+                    <!-- Feature -->
+
+                    <div class="data-saver-item">
+
+                        <i class="bi bi-camera-video-fill"></i>
+
+                        <span>
+                            Normal video learning
+                        </span>
+
+                    </div>
+
+
+                    <!-- Feature -->
+
+                    <div class="data-saver-item">
+
+                        <i class="bi bi-headphones"></i>
+
+                        <span>
+                            Low-data audio lessons
+                        </span>
+
+                    </div>
+
+                    <!-- Status -->
+
+                    <div class="data-saver-status mt-3">
+
+                        <i class="bi bi-check-circle-fill me-1"></i>
+
+                        Designed to reduce data usage
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     FEATURES SECTION
+========================================= -->
+
+<section
+    id="features"
+    class="home-section-light py-5"
+>
+
+    <div class="container">
+
+
+        <!-- Heading -->
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                PLATFORM FEATURES
+            </span>
+
+            <h2 class="home-section-title fw-bold mt-2">
+                Everything You Need to Learn
+            </h2>
+
+            <p class="home-section-text">
+                Simple learning tools designed with data usage in mind.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- Feature 1 -->
+
+            <div class="col-md-4">
+
+                <div class="feature-card h-100">
+
+                    <div class="feature-icon blue-icon">
+
+                        <i class="bi bi-soundwave"></i>
+
+                    </div>
+
+
+                    <h5 class="fw-bold mt-3">
+                        Data-Saver Audio
+                    </h5>
+
+
+                    <p class="home-card-text small mb-0">
+
+                        Video lessons can be converted into
+                        low-data audio resources so students
+                        can continue learning with less
+                        bandwidth.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Feature 2 -->
+
+            <div class="col-md-4">
+
+                <div class="feature-card h-100">
+
+                    <div class="feature-icon teal-icon">
+
+                        <i class="bi bi-diagram-3"></i>
+
+                    </div>
+
+
+                    <h5 class="fw-bold mt-3">
+                        Personalized Subjects
+                    </h5>
+
+
+                    <p class="home-card-text small mb-0">
+
+                        Students receive learning resources
+                        according to their selected
+                        Technology Stream subject combination.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Feature 3 -->
+
+            <div class="col-md-4">
+
+                <div class="feature-card h-100">
+
+                    <div class="feature-icon blue-icon">
+
+                        <i class="bi bi-journal-check"></i>
+
+                    </div>
+
+
+                    <h5 class="fw-bold mt-3">
+                        Interactive Quizzes
+                    </h5>
+
+
+                    <p class="home-card-text small mb-0">
+
+                        Test your understanding with
+                        unit-based quizzes and track your
+                        learning progress.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     HOW A/L TECHHUB WORKS
+========================================= -->
+
+<section
+    id="how-it-works"
+    class="home-how-it-works py-5"
+>
+
+    <div class="container">
+
+        <!-- Heading -->
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                HOW IT WORKS
+            </span>
+
+            <h2 class="home-section-title fw-bold mt-2">
+                How A/L TechHub Works
+            </h2>
+
+            <p class="home-section-text">
+                Start learning in a few simple steps.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- Step 01 -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="how-it-works-card h-100">
+
+                    <div class="how-step-number">
+                        01
+                    </div>
+
+                    <div class="how-step-icon blue-icon">
+
+                        <i class="bi bi-person-plus-fill"></i>
+
+                    </div>
+
+                    <h5 class="fw-bold mt-3">
+                        Create Your Account
+                    </h5>
+
+                    <p class="home-card-text small mb-0">
+
+                        Register on A/L TechHub and
+                        create your student account
+                        to begin your learning journey.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Step 02 -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="how-it-works-card h-100">
+
+                    <div class="how-step-number">
+                        02
+                    </div>
+
+                    <div class="how-step-icon teal-icon">
+
+                        <i class="bi bi-book-fill"></i>
+
+                    </div>
+
+                    <h5 class="fw-bold mt-3">
+                        Select Your Subjects
+                    </h5>
+
+                    <p class="home-card-text small mb-0">
+
+                        Choose your Technology Stream
+                        subject combination during
+                        registration.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Step 03 -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="how-it-works-card h-100">
+
+                    <div class="how-step-number">
+                        03
+                    </div>
+
+                    <div class="how-step-icon blue-icon">
+
+                        <i class="bi bi-play-circle-fill"></i>
+
+                    </div>
+
+                    <h5 class="fw-bold mt-3">
+                        Access Learning Resources
+                    </h5>
+
+                    <p class="home-card-text small mb-0">
+
+                        Access lessons, videos, audio
+                        resources, notes, and quizzes
+                        from your dashboard.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Step 04 -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="how-it-works-card h-100">
+
+                    <div class="how-step-number">
+                        04
+                    </div>
+
+                    <div class="how-step-icon teal-icon">
+
+                        <i class="bi bi-reception-4"></i>
+
+                    </div>
+
+                    <h5 class="fw-bold mt-3">
+                        Save Data & Keep Learning
+                    </h5>
+
+                    <p class="home-card-text small mb-0">
+
+                        Switch to Data-Saver Mode when
+                        your internet connection is
+                        limited and continue learning.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     CURRICULUM SECTION
+========================================= -->
+
+<section
+    id="curriculum"
+    class="home-curriculum py-5"
+>
+
+    <div class="container">
+
+
+        <!-- Heading -->
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                CURRICULUM
+            </span>
+
+            <h2 class="home-section-title fw-bold mt-2">
+                Technology Stream Subjects
+            </h2>
+
+            <p class="home-section-text">
+                Learning resources for Grade 12 and Grade 13 students.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4 text-center">
+
+
+            <!-- SFT -->
+
+            <div class="col-md-4">
+
+                <div class="curriculum-card h-100">
+
+                    <span class="curriculum-badge blue-badge">
+                        Compulsory
+                    </span>
+
+                    <h4 class="fw-bold mt-3">
+                        Science for Tech
+                    </h4>
+
+                    <p class="home-card-text small mb-0">
+
+                        Physics, Chemistry, Mathematics,
+                        and IT fundamentals for Technology
+                        Stream students.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ET / BST -->
+
+            <div class="col-md-4">
+
+                <div class="curriculum-card h-100">
+
+                    <span class="curriculum-badge teal-badge">
+                        Basket 02
+                    </span>
+
+                    <h4 class="fw-bold mt-3">
+                        ET / BST
+                    </h4>
+
+                    <p class="home-card-text small mb-0">
+
+                        Engineering Technology or
+                        Bio Systems Technology
+                        specializations.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ICT / Agriculture -->
+
+            <div class="col-md-4">
+
+                <div class="curriculum-card h-100">
+
+                    <span class="curriculum-badge blue-badge">
+                        Basket 03
+                    </span>
+
+                    <h4 class="fw-bold mt-3">
+                        ICT / Agriculture
+                    </h4>
+
+                    <p class="home-card-text small mb-0">
+
+                        Information and Communication
+                        Technology or Agricultural
+                        Science resources.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="home-footer py-4">
+
+    <div class="container text-center">
+
+        <p class="mb-0 small">
+
+            &copy; 2026 A/L TechHub.
+            Web-Based Data-Saver Learning Platform.
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- Bootstrap JavaScript -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+
+</body>
+
+</html>
