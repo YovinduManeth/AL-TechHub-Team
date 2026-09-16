@@ -180,3 +180,169 @@
             </div>
 
         </div>
+
+        <!-- =========================================
+             RIGHT SIDE
+        ========================================== -->
+
+        <div class="admin-login-content">
+
+
+            <div class="admin-login-form-container">
+
+            
+
+                <!-- Heading -->
+
+                <div class="admin-login-heading">
+
+                    <span class="admin-login-label">
+                        SECURE ACCESS
+                    </span>
+
+
+                    <h2>
+                        Administration Login
+                    </h2>
+
+
+                    <p>
+                        Sign in to manage A/L TechHub.
+                    </p>
+
+                </div>
+
+                <!-- =========================================
+                        LOGIN ERROR MESSAGE
+                    ========================================== -->
+
+                    <div
+                        id="loginError"
+                        class="alert alert-danger d-none"
+                        role="alert"
+                    >
+                    </div>
+
+
+
+                <!-- =========================================
+                     LOGIN CARD
+                ========================================== -->
+
+                <div class="admin-login-card">
+
+
+                    <form
+                        action="php/admin_login_process.php"
+                        method="POST"
+                    >
+
+
+                        <!-- Admin Username -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="adminUsername"
+                                class="form-label fw-semibold"
+                            >
+                                Administrator Username
+                            </label>
+
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+
+                                    <i class="bi bi-person-badge"></i>
+
+                                </span>
+
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="adminUsername"
+                                    name="username"
+                                    placeholder="Enter administrator username"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label for="adminPassword" class="form-label fw-bold">
+                                Password
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="adminPassword"
+                                    name="password"
+                                    placeholder="Enter administrator password"
+                                    required
+                                >
+
+                                <span
+                                    class="input-group-text password-toggle"
+                                    onclick="togglePassword()"
+                                    style="cursor: pointer;"
+                                >
+                                    <i class="bi bi-eye" id="passwordIcon"></i>
+                                </span>
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- Remember -->
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <div class="form-check">
+
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="rememberAdmin"
+                                    name="remember_me"
+                                >
+
+                                <label
+                                    class="form-check-label small"
+                                    for="rememberAdmin"
+                                >
+                                    Remember me
+                                </label>
+
+                            </div>
+
+
+                            <a href="forgot-admin-password.php" class="admin-forgot-link">
+                                Forgot Password?
+                            </a>
+
+                        </div>
+
+
+
+                        <!-- Login Button -->
+
+                        <button
+                            type="submit"
+                            class="btn btn-admin-login w-100"
+                        >
+
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+
+                            Login to Administration
+
+                        </button>
