@@ -404,3 +404,146 @@ $stmt->close();
                                             </div>
 
                                         </td>
+
+
+                                        <!-- Subject -->
+
+                                        <td>
+
+                                            <span
+                                                class="fw-semibold"
+                                            >
+
+                                                <?php
+                                                echo htmlspecialchars(
+                                                    $attempt["subject_code"]
+                                                );
+                                                ?>
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <!-- Unit -->
+
+                                        <td>
+
+                                            <div>
+
+                                                Unit
+                                                <?php
+                                                echo htmlspecialchars(
+                                                    $attempt["unit_number"]
+                                                );
+                                                ?>
+
+                                            </div>
+
+                                            <small
+                                                class="text-muted"
+                                            >
+
+                                                <?php
+                                                echo htmlspecialchars(
+                                                    $attempt["unit_title"]
+                                                );
+                                                ?>
+
+                                            </small>
+
+                                        </td>
+
+
+                                        <!-- Score -->
+
+                                        <td>
+
+                                            <?php
+                                            echo (int)$attempt["score"];
+                                            ?>
+
+                                            /
+
+                                            <?php
+                                            echo (int)$attempt["total_marks"];
+                                            ?>
+
+                                        </td>
+
+
+                                        <!-- Correct Answers -->
+
+                                        <td>
+
+                                            <?php
+                                            echo (int)$attempt["correct_count"];
+                                            ?>
+
+                                        </td>
+
+
+                                        <!-- Percentage -->
+
+                                        <td>
+
+                                            <?php
+                                            echo number_format(
+                                                (float)$attempt["percentage"],
+                                                0
+                                            );
+                                            ?>%
+
+                                        </td>
+
+
+                                        <!-- Status -->
+
+                                        <td>
+
+                                            <?php
+                                            if (
+                                                (float)$attempt["percentage"]
+                                                >= 50
+                                            ):
+                                            ?>
+
+                                                <span
+                                                    class="badge bg-success"
+                                                >
+
+                                                    Passed
+
+                                                </span>
+
+                                            <?php else: ?>
+
+                                                <span
+                                                    class="badge bg-danger"
+                                                >
+
+                                                    Failed
+
+                                                </span>
+
+                                            <?php endif; ?>
+
+                                        </td>
+
+
+                                        <!-- Date -->
+
+                                        <td
+                                            class="text-muted small"
+                                        >
+
+                                            <?php
+                                            echo date(
+                                                "d M Y, h:i A",
+                                                strtotime(
+                                                    $attempt["attempted_at"]
+                                                )
+                                            );
+                                            ?>
+
+                                        </td>
