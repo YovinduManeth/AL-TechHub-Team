@@ -214,3 +214,125 @@ $subject_stmt->close();
     </div>
 
 </nav>
+
+<!-- ==============================
+     Profile Content
+================================ -->
+
+<main class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9">
+
+
+            <!-- Page Heading -->
+
+            <div class="mb-4">
+
+                <p class="small dashboard-label mb-1">
+                    STUDENT ACCOUNT
+                </p>
+
+                <h2 class="fw-bold mb-1">
+                    My Profile
+                </h2>
+
+                <p class="text-muted mb-0">
+                    View and manage your A/L TechHub student account.
+                </p>
+
+            </div>
+
+
+
+            <!-- Profile Card -->
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                <div class="card-body p-4">
+
+                    <div class="row align-items-center">
+
+                        <!-- Profile Icon -->
+
+                        <div class="col-md-3 text-center mb-4 mb-md-0">
+
+                            <div class="profile-avatar">
+
+                                <i class="bi bi-person-fill"></i>
+
+                            </div>
+
+                            <h5 class="fw-bold mt-3 mb-1">
+                                Student
+                            </h5>
+
+                            <span class="badge profile-status">
+                                Active Student
+                            </span>
+
+                        </div>
+
+
+                        <!-- Student Information -->
+
+                        <div class="col-md-9">
+
+                            <h5 class="fw-bold mb-3">
+                                Personal Information
+                            </h5>
+
+
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+
+                                    <label class="profile-label">
+                                        Full Name
+                                    </label>
+
+                                 <p class="profile-value">
+                                    <?php echo htmlspecialchars($user["full_name"]); ?>
+                                </p>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="profile-label">
+                                        Username
+                                    </label>
+
+                                     <p class="profile-value">
+                                        <?php echo htmlspecialchars($user["username"]); ?>
+                                    </p>
+
+                                </div>
+
+
+                                <div class="col-md-6">
+
+                                    <label class="profile-label">
+                                        Email Address
+                                    </label>
+
+                                    <p class="profile-value">
+                                        <?php echo htmlspecialchars($user["email"]); ?>
+                                    </p>
+
+                                </div>
+
+
+                                
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
