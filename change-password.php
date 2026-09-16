@@ -151,3 +151,159 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 ?>
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Change Password - A/L TechHub</title>
+
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Project CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7 col-md-9">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="text-center mb-4">
+
+                <div class="profile-avatar mb-3">
+
+                    <i class="bi bi-key"></i>
+
+                </div>
+
+                <h2 class="fw-bold">
+                    Change Password
+                </h2>
+
+                <p class="text-muted">
+                    Update your account password securely
+                </p>
+
+            </div>
+
+
+            <!-- PASSWORD FORM -->
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body p-4 p-md-5">
+
+
+                    <?php if (isset($error)): ?>
+
+                        <div
+                            class="alert alert-danger"
+                            role="alert"
+                        >
+
+                            <i class="bi bi-exclamation-circle me-2"></i>
+
+                            <?php echo htmlspecialchars($error); ?>
+
+                        </div>
+
+                    <?php endif; ?>
+
+
+                    <?php if (isset($success)): ?>
+
+                        <div
+                            class="alert alert-success"
+                            role="alert"
+                        >
+
+                            <i class="bi bi-check-circle me-2"></i>
+
+                            <?php echo htmlspecialchars($success); ?>
+
+                        </div>
+
+                    <?php endif; ?>
+
+
+                    <form
+                        method="POST"
+                        action="change-password.php"
+                    >
+
+
+                        <!-- CURRENT PASSWORD -->
+
+                        <div class="mb-4">
+
+                            <label
+                                for="current_password"
+                                class="form-label fw-semibold"
+                            >
+                                Current Password
+                            </label>
+
+                            <div class="input-group">
+
+                                <input
+                                    type="password"
+                                    id="current_password"
+                                    name="current_password"
+                                    class="form-control"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword('current_password', this)"
+                                    aria-label="Show current password"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        
