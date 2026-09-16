@@ -336,3 +336,159 @@ $subject_stmt->close();
                 </div>
 
             </div>
+
+            <!-- Academic Information -->
+
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-4">
+
+                        <div class="profile-section-icon me-3">
+
+                            <i class="bi bi-mortarboard-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h5 class="fw-bold mb-0">
+                                Academic Information
+                            </h5>
+
+                            <p class="text-muted small mb-0">
+                                Your selected Technology Stream subjects.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row g-3">
+
+
+                        <!-- SFT -->
+
+                        <div class="col-md-4">
+
+                            <div class="profile-subject-card">
+
+                                <i class="bi bi-flask-fill"></i>
+
+                                <h6 class="fw-bold mt-2 mb-1">
+                                <?php echo htmlspecialchars($student_subjects[0]); ?>
+                            </h6>
+
+                                <small class="text-muted">
+                                    Compulsory Core
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ET -->
+
+                        <div class="col-md-4">
+
+                            <div class="profile-subject-card">
+
+                                <i class="bi bi-gear-fill"></i>
+
+                                <h6 class="fw-bold mt-2 mb-1">
+                                <?php echo htmlspecialchars($student_subjects[1]); ?>
+                            </h6>
+
+                                <small class="text-muted">
+                                    Basket 02 Elective
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ICT -->
+
+                        <div class="col-md-4">
+
+                            <div class="profile-subject-card">
+
+                                <i class="bi bi-pc-display"></i>
+
+                                <h6 class="fw-bold mt-2 mb-1">
+                                <?php echo htmlspecialchars($student_subjects[2]); ?>
+                            </h6>
+
+                                <small class="text-muted">
+                                    Basket 03 Elective
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Account Actions -->
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold mb-3">
+                        Account Settings
+                    </h5>
+
+
+                    <div class="d-flex flex-column flex-md-row gap-2">
+
+                        <a
+                            href="edit-profile.php"
+                            class="btn btn-dashboard"
+                        >
+                            <i class="bi bi-pencil-square me-1"></i>
+                            Edit Profile
+                        </a>
+
+
+                        <a
+                            href="change-password.php"
+                            class="btn btn-outline-primary"
+                        >
+                            <i class="bi bi-key me-1"></i>
+                            Change Password
+                        </a>
+
+
+                        <a
+                            href="dashboard.php"
+                            class="btn btn-outline-secondary"
+                        >
+
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Back to Dashboard
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
