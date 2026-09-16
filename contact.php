@@ -156,3 +156,110 @@ $username = $_SESSION["username"];
         </div>
 
     </nav>
+
+    <!-- =================================
+         Contact Hero
+    ================================== -->
+
+    <section class="contact-hero">
+
+        <div class="container">
+
+            <div class="text-center">
+
+                <span class="contact-label">
+                    GET IN TOUCH
+                </span>
+
+                <h1>
+                    Contact <span>Us</span>
+                </h1>
+
+                <p>
+                    Have a question about A/L TechHub?
+                    We are here to help you with your learning journey.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         Contact Section
+    ================================== -->
+
+    <main class="container py-5">
+
+        <div class="row g-4">
+
+
+            <!-- =================================
+                 Contact Information
+            ================================== -->
+
+            <div class="col-lg-5">
+
+                <div class="contact-info-card h-100">
+
+                    <span class="contact-section-label">
+                        CONTACT INFORMATION
+                    </span>
+
+                    <h3>
+                        We are here to help.
+                    </h3>
+
+                    <p class="contact-info-text">
+                        If you have questions, suggestions, or need
+                        assistance with the A/L TechHub learning platform,
+                        feel free to contact us.
+                    </p>
+
+
+                    <!-- Email -->
+                    <div class="contact-info-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+
+                        <div>
+                            <small>Email</small>
+                            <strong>support@altechhub.com</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Phone -->
+                    <div class="contact-info-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+
+                        <div>
+                            <small>Phone</small>
+                            <strong>+94 11 234 5678</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Location -->
+                    <div class="contact-info-item">
+
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+
+                        <div>
+                            <small>Location</small>
+                            <strong>Sri Lanka</strong>
+                        </div>
+
+                    </div>
