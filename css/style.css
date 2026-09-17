@@ -7508,3 +7508,1430 @@ main > .mb-3 p {
 
     transform: translateY(-1px);
 }
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .quiz-header {
+        padding: 10px 0;
+    }
+
+
+    .quiz-header-title {
+        font-size: 0.85rem;
+    }
+
+
+    .quiz-header-subtitle {
+        font-size: 0.7rem;
+    }
+
+
+    .quiz-timer {
+        padding: 7px 10px;
+
+        min-width: 75px;
+
+        font-size: 0.8rem;
+    }
+
+
+    .quiz-introduction {
+        padding: 20px;
+    }
+
+
+    .quiz-introduction h2 {
+        font-size: 1.5rem;
+    }
+
+
+    .quiz-card {
+        padding: 20px;
+    }
+
+
+    .quiz-question {
+        font-size: 1rem;
+    }
+
+
+    .quiz-option {
+        padding: 12px;
+    }
+
+}
+
+
+/* =========================================
+   QUIZ RESULTS PAGE
+========================================= */
+
+.quiz-result-page {
+    margin: 0;
+    background-color: #F8FAFC;
+    color: #111827;
+}
+
+
+/* =========================================
+   RESULT CARD
+========================================= */
+
+.result-card {
+    background: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 20px;
+
+    padding: 40px 35px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================
+   RESULT ICON
+========================================= */
+
+.result-icon {
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #DBEAFE;
+
+    color: #2563EB;
+
+    font-size: 2rem;
+}
+
+
+/* =========================================
+   RESULT HEADING
+========================================= */
+
+.result-label {
+    color: #14B8A6;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.result-title {
+    font-size: 2rem;
+
+    font-weight: 800;
+
+    margin-top: 8px;
+
+    margin-bottom: 8px;
+}
+
+
+.result-description {
+    color: #64748B;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   SCORE BOX
+========================================= */
+
+.result-score-box {
+    background: linear-gradient(
+        135deg,
+        #EFF6FF 0%,
+        #FFFFFF 100%
+    );
+
+    border: 1px solid #DBEAFE;
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    margin: 25px 0;
+}
+
+
+.result-score-label {
+    display: block;
+
+    color: #64748B;
+
+    font-size: 0.8rem;
+
+    margin-bottom: 5px;
+}
+
+
+.result-score {
+    color: #2563EB;
+
+    font-size: 3.5rem;
+
+    font-weight: 800;
+
+    line-height: 1.1;
+}
+
+
+.result-status {
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding: 6px 12px;
+
+    background-color: #CCFBF1;
+
+    color: #0F766E;
+
+    border-radius: 50px;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   RESULT BUTTONS
+========================================= */
+
+.result-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+.btn-result-primary {
+    display: inline-block;
+
+    background-color: #2563EB;
+
+    border: 1px solid #2563EB;
+
+    color: #FFFFFF;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.btn-result-primary:hover {
+    background-color: #1E3A8A;
+
+    border-color: #1E3A8A;
+
+    color: #FFFFFF;
+
+    transform: translateY(-1px);
+}
+
+
+.btn-result-outline {
+    display: inline-block;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #2563EB;
+
+    color: #2563EB;
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.btn-result-outline:hover {
+    background-color: #EFF6FF;
+
+    color: #1E3A8A;
+
+    border-color: #1E3A8A;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   ANSWER CARD
+========================================= */
+
+.answer-card {
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================
+   ANSWER HEADING
+========================================= */
+
+.answer-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid #E2E8F0;
+}
+
+
+.answer-heading-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 10px;
+
+    background-color: #EFF6FF;
+
+    color: #2563EB;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.1rem;
+}
+
+
+.answer-heading h5 {
+    margin: 0;
+
+    font-weight: 700;
+}
+
+
+.answer-heading p {
+    color: #64748B;
+
+    font-size: 0.78rem;
+
+    margin: 3px 0 0;
+}
+
+
+/* =========================================
+   ANSWER ITEM
+========================================= */
+
+.answer-item {
+    padding: 18px;
+
+    border-radius: 12px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid;
+}
+
+
+.answer-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.correct-answer {
+    background-color: #F0FDFA;
+
+    border-color: #99F6E4;
+}
+
+
+/* =========================================
+   ANSWER ITEM HEADER
+========================================= */
+
+.answer-item-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+
+.answer-question-number {
+    color: #374151;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+}
+
+
+.answer-correct {
+    color: #0F766E;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   ANSWER QUESTION
+========================================= */
+
+.answer-question {
+    color: #111827;
+
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   CORRECT CHOICE
+========================================= */
+
+.answer-choice {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #CCFBF1;
+
+    border-radius: 8px;
+
+    padding: 9px 12px;
+
+    color: #0F766E;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+
+.answer-choice i {
+    font-size: 1rem;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .result-card {
+        padding: 30px 20px;
+    }
+
+
+    .result-title {
+        font-size: 1.6rem;
+    }
+
+
+    .result-score {
+        font-size: 3rem;
+    }
+
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+
+    .btn-result-primary,
+    .btn-result-outline {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .answer-card {
+        padding: 20px;
+    }
+
+
+    .answer-item {
+        padding: 15px;
+    }
+
+}
+
+
+/* =========================================
+   PROFILE PAGE
+========================================= */
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+
+    margin: 0 auto;
+
+    border-radius: 50%;
+
+    background: #DBEAFE;
+    color: #2563EB;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 3rem;
+}
+
+
+.profile-status {
+    background-color: #CCFBF1;
+    color: #0F766E;
+
+    padding: 0.45rem 0.75rem;
+}
+
+
+.profile-label {
+    display: block;
+
+    color: #64748B;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+
+.profile-value {
+    color: #111827;
+
+    font-weight: 600;
+
+    margin-bottom: 0;
+}
+
+
+.profile-section-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 12px;
+
+    background-color: #DBEAFE;
+    color: #2563EB;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.2rem;
+}
+
+
+.profile-subject-card {
+    height: 100%;
+
+    padding: 20px;
+
+    background-color: #F8FAFC;
+
+    border: 1px solid #E5E7EB;
+
+    border-radius: 14px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.profile-subject-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.08);
+}
+
+
+.profile-subject-card > i {
+    color: #2563EB;
+
+    font-size: 1.5rem;
+}
+
+
+.profile-subject-card h6 {
+    color: #111827;
+}
+
+
+/* =========================================
+   VIDEO QUALITY SELECTOR
+========================================= */
+
+.video-quality-box {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 14px 15px;
+
+    margin-bottom: 18px;
+
+    background: #EFF6FF;
+
+    border: 1px solid #DBEAFE;
+
+    border-radius: 12px;
+}
+
+
+.video-quality-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    background: #DBEAFE;
+
+    color: #2563EB;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-right: 12px;
+}
+
+
+.video-quality-box h6 {
+
+    color: #1E3A8A;
+
+}
+
+
+.video-quality-box small {
+
+    color: #64748B;
+
+    font-size: 0.78rem;
+}
+
+
+.video-quality-select {
+
+    width: 100px;
+
+    border-color: #BFDBFE;
+
+    color: #1E3A8A;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.video-quality-select:focus {
+
+    border-color: #2563EB;
+
+    box-shadow:
+        0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================
+   REGISTRATION SUCCESS MESSAGE
+========================================= */
+
+.registration-success {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 16px;
+    margin-bottom: 20px;
+
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 12px;
+
+    color: #065f46;
+}
+
+.registration-success-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #10b981;
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.registration-success-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.registration-success-text strong {
+    font-size: 14px;
+}
+
+.registration-success-text span {
+    font-size: 12px;
+    color: #047857;
+}
+
+
+
+/* =========================================
+   GLOBAL DAY / NIGHT MODE
+========================================= */
+
+/* -----------------------------------------
+   NIGHT MODE - GLOBAL
+----------------------------------------- */
+
+body.dark-mode {
+    background-color: #0F172A !important;
+    color: #E2E8F0 !important;
+}
+
+
+/* -----------------------------------------
+   NAVBARS
+----------------------------------------- */
+
+body.dark-mode .home-navbar,
+body.dark-mode .dashboard-navbar,
+body.dark-mode .admin-navbar,
+body.dark-mode .lesson-navbar,
+body.dark-mode .units-navbar,
+body.dark-mode .quiz-header {
+    background-color: #111827 !important;
+    border-color: #1E293B !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+
+/* Navbar text */
+
+body.dark-mode .home-nav-link,
+body.dark-mode .dashboard-nav-link,
+body.dark-mode .admin-nav-link,
+body.dark-mode .lesson-navbar-title,
+body.dark-mode .units-nav-link,
+body.dark-mode .quiz-header-subtitle,
+body.dark-mode .admin-user {
+    color: #CBD5E1 !important;
+}
+
+
+body.dark-mode .home-nav-link:hover,
+body.dark-mode .dashboard-nav-link:hover,
+body.dark-mode .dashboard-nav-link.active,
+body.dark-mode .admin-nav-link:hover,
+body.dark-mode .admin-nav-link.active,
+body.dark-mode .units-nav-link:hover,
+body.dark-mode .units-nav-link.active {
+    color: #60A5FA !important;
+}
+
+
+/* -----------------------------------------
+   GENERAL TEXT
+----------------------------------------- */
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #F8FAFC;
+}
+
+
+body.dark-mode p {
+    color: #CBD5E1;
+}
+
+
+/* -----------------------------------------
+   COMMON CARDS
+----------------------------------------- */
+
+body.dark-mode .login-form-card,
+body.dark-mode .register-form-container,
+body.dark-mode .contact-form-card,
+body.dark-mode .admin-login-card,
+body.dark-mode .admin-upload-card,
+body.dark-mode .lesson-main-card,
+body.dark-mode .lesson-side-card,
+body.dark-mode .quiz-card,
+body.dark-mode .result-card,
+body.dark-mode .answer-card,
+body.dark-mode .units-accordion-item,
+body.dark-mode .profile-subject-card {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+
+/* -----------------------------------------
+   LOGIN / REGISTER / ADMIN CONTENT
+----------------------------------------- */
+
+body.dark-mode .login-page,
+body.dark-mode .register-page,
+body.dark-mode .admin-login-page,
+body.dark-mode .admin-login-content {
+    background-color: #0F172A !important;
+    color: #E2E8F0 !important;
+}
+
+
+body.dark-mode .login-content,
+body.dark-mode .register-content {
+    background-color: #0F172A !important;
+}
+
+
+body.dark-mode .login-form-card,
+body.dark-mode .register-form-container {
+    background-color: #1E293B !important;
+}
+
+
+body.dark-mode .login-form-card .form-control,
+body.dark-mode .register-form-container .form-control,
+body.dark-mode .register-form-container .form-select,
+body.dark-mode .admin-login-card .form-control,
+body.dark-mode .admin-upload-body .form-control,
+body.dark-mode .admin-upload-body .form-select {
+    background-color: #0F172A !important;
+    border-color: #475569 !important;
+    color: #F8FAFC !important;
+}
+
+
+body.dark-mode .login-form-card .form-control::placeholder,
+body.dark-mode .register-form-container .form-control::placeholder,
+body.dark-mode .admin-login-card .form-control::placeholder {
+    color: #94A3B8;
+}
+
+
+body.dark-mode .login-form-card .input-group-text,
+body.dark-mode .admin-login-card .input-group-text {
+    background-color: #0F172A !important;
+    border-color: #475569 !important;
+    color: #94A3B8 !important;
+}
+
+
+/* -----------------------------------------
+   HOME PAGE
+----------------------------------------- */
+
+body.dark-mode .home-section-light,
+body.dark-mode .home-curriculum {
+    background-color: #0F172A !important;
+}
+
+
+body.dark-mode .feature-card,
+body.dark-mode .curriculum-card {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+    color: #E2E8F0;
+}
+
+
+body.dark-mode .feature-card h5,
+body.dark-mode .curriculum-card h4 {
+    color: #F8FAFC;
+}
+
+
+body.dark-mode .feature-card p,
+body.dark-mode .curriculum-card p {
+    color: #CBD5E1;
+}
+
+
+/* Home hero stays dark already */
+
+body.dark-mode .home-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #0F172A 55%,
+            #1E3A8A 100%
+        ) !important;
+}
+
+
+/* Data saver card */
+
+body.dark-mode .data-saver-card {
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: #475569 !important;
+}
+
+
+/* -----------------------------------------
+   DASHBOARD
+----------------------------------------- */
+
+body.dark-mode .welcome-card {
+    background:
+        linear-gradient(
+            135deg,
+            #172554 0%,
+            #1E293B 100%
+        ) !important;
+
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .subject-card,
+body.dark-mode .dashboard-card {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .subject-card .card-body {
+    background-color: #1E293B !important;
+}
+
+
+body.dark-mode .overall-progress,
+body.dark-mode .progress-card {
+    background-color: #1E293B !important;
+}
+
+
+/* -----------------------------------------
+   UNITS PAGE
+----------------------------------------- */
+
+body.dark-mode .units-page {
+    background-color: #0F172A !important;
+}
+
+
+body.dark-mode .units-header {
+    background:
+        linear-gradient(
+            135deg,
+            #172554 0%,
+            #1E293B 100%
+        ) !important;
+
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .units-progress-box {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .units-accordion-item {
+    background-color: #1E293B !important;
+}
+
+
+body.dark-mode .units-accordion-item .accordion-button {
+    background-color: #1E293B !important;
+    color: #F8FAFC !important;
+}
+
+
+body.dark-mode .units-accordion-item .accordion-button:not(.collapsed) {
+    background-color: #172554 !important;
+    color: #F8FAFC !important;
+}
+
+
+body.dark-mode .units-accordion-item .accordion-body {
+    background-color: #1E293B !important;
+}
+
+
+body.dark-mode .lesson-item {
+    border-color: #334155;
+}
+
+
+body.dark-mode .lesson-material {
+    background-color: #0F172A !important;
+    border-color: #334155 !important;
+    color: #CBD5E1 !important;
+}
+
+
+body.dark-mode .lesson-material:hover {
+    background-color: #172554 !important;
+    border-color: #3B82F6 !important;
+    color: #93C5FD !important;
+}
+
+
+body.dark-mode .quiz-item {
+    background-color: #042F2E !important;
+    border-color: #115E59 !important;
+}
+
+
+body.dark-mode .coming-soon {
+    background-color: #1E293B !important;
+}
+
+
+/* -----------------------------------------
+   LESSON PAGE
+----------------------------------------- */
+
+body.dark-mode .lesson-page {
+    background-color: #0F172A !important;
+}
+
+
+body.dark-mode .data-mode-box {
+    background-color: #042F2E !important;
+    border-color: #115E59 !important;
+}
+
+
+body.dark-mode .data-mode-box small,
+body.dark-mode .lesson-description {
+    color: #CBD5E1 !important;
+}
+
+
+body.dark-mode .video-quality-box {
+    background-color: #172554 !important;
+    border-color: #1E40AF !important;
+}
+
+
+body.dark-mode .video-quality-box small {
+    color: #CBD5E1 !important;
+}
+
+
+body.dark-mode .video-quality-select {
+    background-color: #0F172A !important;
+    border-color: #3B82F6 !important;
+    color: #BFDBFE !important;
+}
+
+
+body.dark-mode .lesson-side-heading {
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .lesson-material {
+    background-color: #0F172A !important;
+    border-color: #334155 !important;
+}
+
+
+/* -----------------------------------------
+   QUIZ PAGE
+----------------------------------------- */
+
+body.dark-mode .quiz-page,
+body.dark-mode .quiz-result-page {
+    background-color: #0F172A !important;
+}
+
+
+body.dark-mode .quiz-introduction {
+    background:
+        linear-gradient(
+            135deg,
+            #172554 0%,
+            #1E293B 100%
+        ) !important;
+
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .quiz-option {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+    color: #E2E8F0 !important;
+}
+
+
+body.dark-mode .quiz-option:hover {
+    background-color: #172554 !important;
+    border-color: #3B82F6 !important;
+}
+
+
+body.dark-mode .quiz-option:has(input:checked) {
+    background-color: #172554 !important;
+    border-color: #3B82F6 !important;
+    color: #BFDBFE !important;
+}
+
+
+body.dark-mode .quiz-mark {
+    color: #94A3B8 !important;
+}
+
+
+/* -----------------------------------------
+   QUIZ RESULTS
+----------------------------------------- */
+
+body.dark-mode .result-score-box {
+    background:
+        linear-gradient(
+            135deg,
+            #172554 0%,
+            #1E293B 100%
+        ) !important;
+
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .answer-heading {
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .answer-question {
+    color: #F8FAFC !important;
+}
+
+
+body.dark-mode .answer-choice {
+    background-color: #0F172A !important;
+    border-color: #115E59 !important;
+    color: #5EEAD4 !important;
+}
+
+
+/* -----------------------------------------
+   PROFILE
+----------------------------------------- */
+
+body.dark-mode .profile-value {
+    color: #F8FAFC !important;
+}
+
+
+body.dark-mode .profile-subject-card {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .profile-subject-card h6 {
+    color: #F8FAFC !important;
+}
+
+
+/* -----------------------------------------
+   CONTACT PAGE
+----------------------------------------- */
+
+body.dark-mode .contact-page {
+    background-color: #0F172A !important;
+}
+
+
+body.dark-mode .contact-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #172554 0%,
+            #1E293B 100%
+        ) !important;
+
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .contact-form-card {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .contact-form-card .form-control,
+body.dark-mode .contact-form-card textarea {
+    background-color: #0F172A !important;
+    border-color: #475569 !important;
+    color: #F8FAFC !important;
+}
+
+
+/* -----------------------------------------
+   ADMIN UPLOAD
+----------------------------------------- */
+
+body.dark-mode .admin-upload-header {
+    background:
+        linear-gradient(
+            135deg,
+            #172554 0%,
+            #1E293B 100%
+        ) !important;
+
+    border-color: #334155 !important;
+}
+
+
+body.dark-mode .admin-file-box {
+    background-color: #0F172A !important;
+    border-color: #475569 !important;
+}
+
+
+body.dark-mode .admin-info {
+    background-color: #172554 !important;
+    border-color: #1E40AF !important;
+    color: #BFDBFE !important;
+}
+
+
+body.dark-mode .admin-process-box {
+    background-color: #042F2E !important;
+    border-color: #115E59 !important;
+}
+
+
+/* -----------------------------------------
+   BUTTONS
+----------------------------------------- */
+
+body.dark-mode .btn-units-outline,
+body.dark-mode .btn-result-outline,
+body.dark-mode .btn-admin-logout,
+body.dark-mode .btn-lesson-back {
+    background-color: #1E293B !important;
+    border-color: #3B82F6 !important;
+    color: #60A5FA !important;
+}
+
+
+body.dark-mode .btn-units-outline:hover,
+body.dark-mode .btn-result-outline:hover,
+body.dark-mode .btn-admin-logout:hover,
+body.dark-mode .btn-lesson-back:hover {
+    background-color: #2563EB !important;
+    color: #FFFFFF !important;
+}
+
+
+/* -----------------------------------------
+   SECURITY / INFO BOXES
+----------------------------------------- */
+
+body.dark-mode .admin-security-message {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+    color: #94A3B8 !important;
+}
+
+
+/* -----------------------------------------
+   REGISTRATION SUCCESS
+----------------------------------------- */
+
+body.dark-mode .registration-success {
+    background-color: #042F2E !important;
+    border-color: #115E59 !important;
+    color: #A7F3D0 !important;
+}
+
+
+/* -----------------------------------------
+   FOOTER
+----------------------------------------- */
+
+body.dark-mode .home-footer {
+    background-color: #020617 !important;
+}
+
+
+/* -----------------------------------------
+   GLOBAL FORM ELEMENTS
+----------------------------------------- */
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    color-scheme: dark;
+}
+
+
+/* -----------------------------------------
+   THEME TRANSITION
+----------------------------------------- */
+
+body {
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+
+/* ==========================================
+   Unit Progress
+========================================== */
+
+.unit-progress-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+}
+
+.unit-progress-title {
+    color: #111827;
+}
+
+.unit-progress-count {
+    color: #2563eb;
+    font-size: 0.95rem;
+}
+
+.unit-progress-bar {
+    height: 12px;
+    background-color: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.unit-progress-fill {
+    background-color: #2563eb;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+
+/* ==========================================
+   Overall Learning Progress
+========================================== */
+
+.overall-progress-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+}
+
+.overall-progress-title {
+    color: #111827;
+}
+
+.overall-progress-count {
+    color: #2563eb;
+    font-size: 0.95rem;
+}
+
+.overall-progress-bar {
+    height: 12px;
+    background-color: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.overall-progress-fill {
+    background-color: #2563eb;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
