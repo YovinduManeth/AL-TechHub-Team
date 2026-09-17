@@ -293,7 +293,7 @@ if ($total_lessons > 0) {
     <div class="container">
 
         <!-- Brand -->
-        <a class="navbar-brand fw-bold dashboard-brand" href="index.html">
+        <a class="navbar-brand fw-bold dashboard-brand" href="/AL-TechHub-Team/index.html">
             <i class="bi bi-mortarboard-fill me-1"></i>
             A/L TechHub
         </a>
@@ -320,10 +320,10 @@ if ($total_lessons > 0) {
             <ul class="navbar-nav me-auto ms-lg-4">
 
                 <li class="nav-item">
-                    <a
-                        class="nav-link dashboard-nav-link"
-                        href="index.html"
-                    >
+                   <a
+    class="nav-link dashboard-nav-link"
+    href="/AL-TechHub-Team/index.html"
+> 
                         <i class="bi bi-house me-1"></i>
                         Home
                     </a>
@@ -871,6 +871,23 @@ if ($total_lessons > 0) {
         <?php endif; ?>
 
     </div>
+
+</div>
+
+
+<!-- ==============================
+     FULL QUIZ HISTORY
+=============================== -->
+
+<div class="text-end mb-5">
+
+    <a
+        href="quiz-history.php"
+        class="btn btn-outline-primary fw-bold"
+    >
+        <i class="bi bi-clock-history me-1"></i>
+        View Full Quiz History
+    </a>
 
 </div>
 

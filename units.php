@@ -518,48 +518,36 @@ $stmt->close();
 
 </div>
 
+<a
+    href="unit.php?unit=<?php echo $unit["unit_id"]; ?>"
+    class="btn btn-dashboard fw-bold"
+>
+    <?php if ($unit["total_lessons"] > 0): ?>
 
-                        <?php if ($unit["total_lessons"] == 0): ?>
+        <i class="bi bi-play-circle me-1"></i>
 
-    <a
-        href="unit.php?unit=<?php echo $unit["unit_id"]; ?>"
-        class="btn btn-dashboard fw-bold"
-    >
+        <?php if ($unit["progress_percentage"] == 100): ?>
+
+            Review Unit
+
+        <?php elseif ($unit["progress_percentage"] > 0): ?>
+
+            Continue Learning
+
+        <?php else: ?>
+
+            Start Learning
+
+        <?php endif; ?>
+
+    <?php else: ?>
+
         <i class="bi bi-book me-1"></i>
         Open Unit
-    </a>
 
-<?php elseif ($unit["progress_percentage"] == 100): ?>
+    <?php endif; ?>
+</a>
 
-    <a
-        href="unit.php?unit=<?php echo $unit["unit_id"]; ?>"
-        class="btn btn-dashboard fw-bold"
-    >
-        <i class="bi bi-arrow-repeat me-1"></i>
-        Review Unit
-    </a>
-
-<?php elseif ($unit["progress_percentage"] > 0): ?>
-
-    <a
-        href="lesson.php?lesson=<?php echo $unit["first_incomplete_lesson_id"]; ?>"
-        class="btn btn-dashboard fw-bold"
-    >
-        <i class="bi bi-play-circle me-1"></i>
-        Continue Learning
-    </a>
-
-<?php else: ?>
-
-    <a
-        href="lesson.php?lesson=<?php echo $unit["first_incomplete_lesson_id"]; ?>"
-        class="btn btn-dashboard fw-bold"
-    >
-        <i class="bi bi-play-circle me-1"></i>
-        Start Learning
-    </a>
-
-<?php endif; ?>
 
                     </div>
 

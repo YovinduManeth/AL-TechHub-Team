@@ -84,7 +84,6 @@ if (!$subject) {
 
 $sql = "SELECT
             paper_id,
-            grade,
             year,
             title,
             file_path,
