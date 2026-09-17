@@ -5459,3 +5459,940 @@ main > .mb-3 p {
 
     text-decoration: underline;
 }
+
+/* =========================================
+   HEADING
+========================================= */
+
+.admin-login-heading {
+    margin-bottom: 35px;
+}
+
+
+.admin-login-label {
+    color: #14B8A6;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.admin-login-heading h2 {
+    font-size: 2.2rem;
+
+    font-weight: 800;
+
+    margin-top: 8px;
+
+    margin-bottom: 8px;
+}
+
+
+.admin-login-heading p {
+    color: #64748B;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   ADMIN LOGIN CARD
+========================================= */
+
+.admin-login-card {
+    background: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.admin-login-card .form-control {
+    border-color: #CBD5E1;
+
+    padding: 11px 12px;
+}
+
+
+.admin-login-card .input-group-text {
+    background: #FFFFFF;
+
+    border-color: #CBD5E1;
+
+    color: #64748B;
+}
+
+
+.admin-login-card .form-control:focus {
+    border-color: #2563EB;
+
+    box-shadow:
+        0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================
+   PASSWORD TOGGLE
+========================================= */
+
+.admin-password-toggle {
+    cursor: pointer;
+}
+
+
+.admin-password-toggle:hover {
+    color: #2563EB;
+
+    background: #EFF6FF;
+}
+
+
+/* =========================================
+   FORGOT PASSWORD
+========================================= */
+
+.admin-forgot-link {
+    color: #2563EB;
+
+    font-size: 0.85rem;
+
+    text-decoration: none;
+}
+
+
+.admin-forgot-link:hover {
+    color: #1D4ED8;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   ADMIN LOGIN BUTTON
+========================================= */
+
+.btn-admin-login {
+    background: #2563EB;
+
+    border: 1px solid #2563EB;
+
+    color: #FFFFFF;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-admin-login:hover {
+    background: #1E3A8A;
+
+    border-color: #1E3A8A;
+
+    color: #FFFFFF;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   SECURITY MESSAGE
+========================================= */
+
+.admin-security-message {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    background: #F8FAFC;
+
+    border: 1px solid #DBEAFE;
+
+    border-radius: 10px;
+
+    color: #64748B;
+
+    font-size: 0.75rem;
+
+    text-align: center;
+}
+
+
+.admin-security-message i {
+    color: #0F766E;
+
+    font-size: 1rem;
+}
+
+
+/* =========================================
+   BOTTOM LINK
+========================================= */
+
+.admin-bottom {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #64748B;
+
+    font-size: 0.85rem;
+}
+
+
+.admin-bottom a {
+    color: #2563EB;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    margin-left: 5px;
+}
+
+
+.admin-bottom a:hover {
+    color: #1E3A8A;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .admin-login-wrapper {
+        display: block;
+
+        height: auto;
+    }
+
+
+    .admin-login-sidebar {
+        width: 100%;
+
+        min-width: 0;
+
+        min-height: auto;
+    }
+
+
+    .admin-sidebar-content {
+        padding: 30px;
+    }
+
+
+    .admin-sidebar-main {
+        margin-top: 50px;
+    }
+
+
+    .admin-sidebar-main h1 {
+        font-size: 2.3rem;
+    }
+
+
+    .admin-benefits {
+        margin-top: 30px;
+    }
+
+
+    .admin-sidebar-footer {
+        margin-top: 25px;
+    }
+
+
+    .admin-login-content {
+        width: 100%;
+
+        height: auto;
+
+        overflow: visible;
+    }
+
+
+    .admin-login-form-container {
+        max-width: 620px;
+
+        padding: 35px 25px 50px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .admin-sidebar-main h1 {
+        font-size: 2rem;
+    }
+
+
+    .admin-login-form-container {
+        padding: 25px 15px 40px;
+    }
+
+
+    .admin-login-card {
+        padding: 20px;
+    }
+
+
+    .admin-login-top {
+        margin-bottom: 40px;
+    }
+
+}
+
+
+/* =========================================
+   ADMIN UPLOAD PAGE
+========================================= */
+
+.admin-page {
+    margin: 0;
+    background: #F8FAFC;
+    color: #111827;
+}
+
+
+/* =========================================
+   ADMIN NAVBAR
+========================================= */
+
+.admin-navbar {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #DBEAFE;
+
+    box-shadow:
+        0 2px 8px rgba(37, 99, 235, 0.06);
+}
+
+
+.admin-brand {
+    color: #2563EB !important;
+}
+
+
+.admin-brand:hover {
+    color: #1E3A8A !important;
+}
+
+
+.admin-brand i {
+    color: #14B8A6;
+}
+
+
+.admin-brand-label {
+    color: #64748B;
+    font-size: 0.7rem;
+    margin-left: 5px;
+    font-weight: 600;
+}
+
+
+.admin-nav-link {
+    color: #4B5563 !important;
+    font-weight: 500;
+}
+
+
+.admin-nav-link:hover,
+.admin-nav-link.active {
+    color: #2563EB !important;
+}
+
+
+.admin-user {
+    color: #4B5563;
+    font-size: 0.85rem;
+}
+
+
+.admin-user i {
+    color: #2563EB;
+}
+
+
+.btn-admin-logout {
+    border: 1px solid #2563EB;
+    color: #2563EB;
+    background: #FFFFFF;
+}
+
+
+.btn-admin-logout:hover {
+    background: #2563EB;
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   PAGE HEADING
+========================================= */
+
+.admin-page-heading {
+    max-width: 750px;
+}
+
+
+.admin-label {
+    color: #14B8A6;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.admin-page-heading h1 {
+    font-size: 2.2rem;
+}
+
+
+/* =========================================
+   UPLOAD CARD
+========================================= */
+
+.admin-upload-card {
+    background: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================
+   UPLOAD HEADER
+========================================= */
+
+.admin-upload-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #EFF6FF 0%,
+            #FFFFFF 100%
+        );
+
+    border-bottom: 1px solid #DBEAFE;
+}
+
+
+.admin-upload-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 12px;
+
+    background: #DBEAFE;
+
+    color: #2563EB;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.4rem;
+}
+
+
+.admin-upload-header h4 {
+    color: #111827;
+}
+
+
+.admin-upload-header p {
+    color: #64748B;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================
+   UPLOAD BODY
+========================================= */
+
+.admin-upload-body {
+    padding: 30px;
+}
+
+
+/* =========================================
+   FORM CONTROLS
+========================================= */
+
+.admin-upload-body .form-control,
+.admin-upload-body .form-select {
+    border-color: #CBD5E1;
+
+    padding: 11px 12px;
+}
+
+
+.admin-upload-body .form-control:focus,
+.admin-upload-body .form-select:focus {
+
+    border-color: #2563EB;
+
+    box-shadow:
+        0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+}
+
+
+.admin-upload-body .form-label {
+    color: #374151;
+
+    font-size: 0.9rem;
+}
+
+
+.admin-upload-body .form-label i {
+    color: #2563EB;
+}
+
+
+/* =========================================
+   FILE UPLOAD BOX
+========================================= */
+
+.admin-file-box {
+    background: #F8FAFC;
+
+    border: 1px dashed #CBD5E1;
+
+    border-radius: 14px;
+
+    padding: 20px;
+}
+
+
+.admin-file-icon {
+    color: #2563EB;
+
+    font-size: 1.2rem;
+}
+
+
+.admin-info {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    background: #EFF6FF;
+
+    border: 1px solid #DBEAFE;
+
+    border-radius: 10px;
+
+    color: #1E3A8A;
+
+    font-size: 0.78rem;
+}
+
+
+.admin-info i {
+    color: #2563EB;
+}
+
+
+/* =========================================
+   PROCESS BOX
+========================================= */
+
+.admin-process-box {
+
+    padding: 15px;
+
+    background: #F0FDFA;
+
+    border: 1px solid #CCFBF1;
+
+    border-radius: 12px;
+}
+
+
+.admin-process-icon {
+    color: #0F766E;
+
+    font-size: 1.2rem;
+}
+
+
+.admin-process-box strong {
+    color: #0F766E;
+
+    font-size: 0.9rem;
+}
+
+
+/* =========================================
+   ADMIN BUTTON
+========================================= */
+
+.btn-admin-primary {
+    background: #2563EB;
+
+    border: 1px solid #2563EB;
+
+    color: #FFFFFF;
+
+    border-radius: 10px;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-admin-primary:hover {
+    background: #1E3A8A;
+
+    border-color: #1E3A8A;
+
+    color: #FFFFFF;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .admin-page-heading h1 {
+        font-size: 1.8rem;
+    }
+
+
+    .admin-upload-header {
+        padding: 20px;
+    }
+
+
+    .admin-upload-body {
+        padding: 20px;
+    }
+
+
+    .admin-user {
+        margin-top: 15px;
+    }
+
+}
+
+/* =========================================
+   LESSON PAGE
+========================================= */
+
+.lesson-page {
+    margin: 0;
+    background: #F8FAFC;
+    color: #111827;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.lesson-navbar {
+    background-color: #FFFFFF;
+
+    border-bottom: 1px solid #DBEAFE;
+
+    box-shadow:
+        0 2px 8px rgba(37, 99, 235, 0.06);
+}
+
+
+.btn-lesson-back {
+    border: 1px solid #2563EB;
+
+    color: #2563EB;
+
+    background: #FFFFFF;
+}
+
+
+.btn-lesson-back:hover {
+    background: #2563EB;
+
+    border-color: #2563EB;
+
+    color: #FFFFFF;
+}
+
+
+.lesson-navbar-title {
+    color: #4B5563;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+
+.lesson-divider {
+    color: #94A3B8;
+
+    margin: 0 5px;
+}
+
+
+/* =========================================
+   MAIN LESSON CARD
+========================================= */
+
+.lesson-main-card {
+
+    background: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04);
+
+}
+
+
+/* =========================================
+   DATA SAVER MODE
+========================================= */
+
+.data-mode-box {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    margin-bottom: 18px;
+
+    background: #F0FDFA;
+
+    border: 1px solid #CCFBF1;
+
+    border-radius: 12px;
+}
+
+
+.data-mode-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    background: #CCFBF1;
+
+    color: #0F766E;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-right: 12px;
+}
+
+
+.data-mode-box h6 {
+    color: #0F766E;
+}
+
+
+.data-mode-box small {
+    color: #64748B;
+
+    font-size: 0.78rem;
+}
+
+
+.data-mode-switch {
+    cursor: pointer;
+}
+
+
+.data-mode-switch:checked {
+    background-color: #14B8A6;
+
+    border-color: #14B8A6;
+}
+
+
+.data-mode-switch:focus {
+    box-shadow:
+        0 0 0 0.2rem rgba(20, 184, 166, 0.15);
+}
+
+
+/* =========================================
+   VIDEO PLAYER
+========================================= */
+
+.lesson-video-container {
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    background: #0F172A;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    margin-bottom: 20px;
+}
+
+
+.lesson-video-container video {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================
+   AUDIO PLAYER
+========================================= */
+
+.lesson-audio-container {
+
+    background:
+        linear-gradient(
+            145deg,
+            #0F172A 0%,
+            #172554 100%
+        );
+
+    color: #FFFFFF;
+
+    border-radius: 14px;
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+
+.audio-icon {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: rgba(45, 212, 191, 0.12);
+
+    color: #2DD4BF;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 2rem;
+}
+
+
+.audio-description {
+
+    color: #94A3B8;
+
+    font-size: 0.8rem;
+
+    margin-bottom: 20px;
+}
+
+
+.audio-description span {
+
+    margin: 0 6px;
+
+    color: #2DD4BF;
+}
+
+
+.lesson-audio-container audio {
+
+    height: 40px;
+}
