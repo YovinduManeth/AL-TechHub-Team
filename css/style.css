@@ -8935,3 +8935,37 @@ body {
     border-radius: 20px;
     transition: width 0.4s ease;
 }
+
+
+/* ==========================================
+   QUIZ RESULT - ANSWER COLORS
+========================================== */
+
+.quiz-result-page .answer-choice {
+    padding: 12px 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
+}
+
+/* Your incorrect answer - RED */
+.quiz-result-page .your-answer {
+    color: #dc3545;
+    background-color: #fff5f5;
+    border-left-color: #dc3545;
+}
+
+.quiz-result-page .your-answer i {
+    color: #dc3545;
+}
+
+/* Correct answer - GREEN */
+.quiz-result-page .correct-answer {
+    color: #198754;
+    background-color: #f1fff7;
+    border-left-color: #198754;
+}
+
+.quiz-result-page .correct-answer i {
+    color: #198754;
+}
