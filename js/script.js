@@ -559,3 +559,180 @@ function setupVideoQuality() {
 
 // Start Video Quality Selector
 setupVideoQuality();
+
+
+// ==========================================
+// REGISTRATION SUCCESS MESSAGE
+// ==========================================
+
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.get("registered") === "success") {
+
+    const registrationMessage =
+        document.getElementById("registrationMessage");
+
+    if (registrationMessage) {
+
+        registrationMessage.classList.remove("d-none");
+        registrationMessage.classList.add("d-flex");
+
+    }
+
+}
+
+
+
+// ==========================================
+// LOGIN ERROR MESSAGE
+// ==========================================
+
+const loginUrlParams = new URLSearchParams(window.location.search);
+
+if (loginUrlParams.get("error") === "invalid") {
+
+    const loginErrorMessage =
+        document.getElementById("loginErrorMessage");
+
+    if (loginErrorMessage) {
+
+        loginErrorMessage.classList.remove("d-none");
+        loginErrorMessage.classList.add("d-flex");
+
+    }
+
+    window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+    );
+
+}
+
+
+// ==========================================
+// Global Day / Night Mode
+// ==========================================
+
+function setupThemeMode() {
+
+    const modeButton =
+        document.getElementById("themeToggle");
+
+    const modeIcon =
+        document.getElementById("themeIcon");
+
+
+    // Stop if theme button does not exist
+    if (!modeButton || !modeIcon) {
+        return;
+    }
+
+
+    // ==========================================
+    // Load Saved Theme
+    // ==========================================
+
+    const savedTheme =
+        localStorage.getItem("theme");
+
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark-mode");
+
+        modeIcon.classList.remove("bi-moon");
+        modeIcon.classList.add("bi-sun");
+
+        modeButton.setAttribute(
+            "aria-label",
+            "Switch to day mode"
+        );
+
+        modeButton.setAttribute(
+            "title",
+            "Switch to day mode"
+        );
+
+    }
+
+
+    // ==========================================
+    // Toggle Theme
+    // ==========================================
+
+    modeButton.addEventListener("click", function () {
+
+        document.body.classList.toggle("dark-mode");
+
+
+        const isDarkMode =
+            document.body.classList.contains("dark-mode");
+
+
+        if (isDarkMode) {
+
+            localStorage.setItem(
+                "theme",
+                "dark"
+            );
+
+
+            modeIcon.classList.remove(
+                "bi-moon"
+            );
+
+            modeIcon.classList.add(
+                "bi-sun"
+            );
+
+
+            modeButton.setAttribute(
+                "aria-label",
+                "Switch to day mode"
+            );
+
+            modeButton.setAttribute(
+                "title",
+                "Switch to day mode"
+            );
+
+        } else {
+
+            localStorage.setItem(
+                "theme",
+                "light"
+            );
+
+
+            modeIcon.classList.remove(
+                "bi-sun"
+            );
+
+            modeIcon.classList.add(
+                "bi-moon"
+            );
+
+
+            modeButton.setAttribute(
+                "aria-label",
+                "Switch to night mode"
+            );
+
+            modeButton.setAttribute(
+                "title",
+                "Switch to night mode"
+            );
+
+        }
+
+    });
+
+}
+
+
+// Start Theme Mode
+document.addEventListener(
+    "DOMContentLoaded",
+    setupThemeMode
+);
