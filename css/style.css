@@ -4185,3 +4185,1277 @@ main > .mb-3 p {
 
     color: #111827;
 }
+
+
+/* =========================================
+   NAVIGATION BAR
+========================================= */
+
+.home-navbar {
+    background-color: #FFFFFF !important;
+
+    border-bottom: 1px solid #E2E8F0;
+
+    box-shadow:
+        0 2px 10px rgba(15, 23, 42, 0.05);
+}
+
+
+.home-brand {
+    color: #2563EB !important;
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+    transition: color 0.2s ease;
+}
+
+
+.home-brand i {
+    color: #14B8A6;
+}
+
+
+.home-brand:hover {
+    color: #1E3A8A !important;
+}
+
+
+.home-nav-link {
+    color: #4B5563 !important;
+
+    font-weight: 500;
+
+    transition: color 0.2s ease;
+}
+
+
+.home-nav-link:hover {
+    color: #2563EB !important;
+}
+
+
+.home-nav-link.active {
+    color: #2563EB !important;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   HOME BUTTONS
+========================================= */
+
+.btn-home-primary {
+    background-color: #2563EB;
+
+    border: 1px solid #2563EB;
+
+    color: #FFFFFF;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-home-primary:hover {
+    background-color: #1D4ED8;
+
+    border-color: #1D4ED8;
+
+    color: #FFFFFF;
+
+    transform: translateY(-1px);
+}
+
+
+.btn-home-outline {
+    background-color: #FFFFFF;
+
+    border: 1px solid #2563EB;
+
+    color: #2563EB;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-home-outline:hover {
+    background-color: #2563EB;
+
+    border-color: #2563EB;
+
+    color: #FFFFFF;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.home-hero {
+
+    background:
+        linear-gradient(
+            145deg,
+            #0F172A 0%,
+            #172554 55%,
+            #2563EB 100%
+        );
+
+    color: #FFFFFF;
+
+    border-bottom: none;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Decorative background */
+
+.home-hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(45, 212, 191, 0.10);
+
+    right: -150px;
+
+    bottom: -150px;
+
+    pointer-events: none;
+}
+
+
+/* Hero Heading */
+
+.home-heading {
+    color: #FFFFFF;
+
+    font-size: clamp(
+        2.5rem,
+        5vw,
+        4rem
+    );
+
+    font-weight: 800;
+
+    line-height: 1.15;
+}
+
+
+.hero-highlight {
+    color: #60A5FA;
+}
+
+
+/* Hero Description */
+
+.home-description {
+    color: #CBD5E1;
+
+    max-width: 650px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   DATA SAVER BADGE
+========================================= */
+
+.data-saver-badge {
+
+    display: inline-block;
+
+    background-color:
+        rgba(45, 212, 191, 0.15);
+
+    color: #5EEAD4;
+
+    border: 1px solid
+        rgba(45, 212, 191, 0.25);
+
+    padding: 0.6rem 0.9rem;
+
+    border-radius: 50px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   DATA SAVER CARD
+========================================= */
+
+.data-saver-card {
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius: 18px;
+
+    padding: 2rem;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15, 23, 42, 0.20);
+}
+
+
+.data-saver-card h4 {
+    color: #111827;
+}
+
+
+.home-card-text {
+    color: #64748B;
+}
+
+
+/* =========================================
+   DATA SAVER ICON
+========================================= */
+
+.data-saver-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #CCFBF1;
+
+    color: #0F766E;
+
+    font-size: 1.6rem;
+}
+
+/* =========================================
+   DATA SAVER ITEMS
+========================================= */
+
+.data-saver-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.75rem;
+
+    padding: 0.7rem 0;
+
+    color: #374151;
+
+    border-bottom:
+        1px solid #F1F5F9;
+}
+
+
+.data-saver-item i {
+    color: #2563EB;
+
+    font-size: 1.05rem;
+}
+
+
+/* Status */
+
+.data-saver-status {
+
+    color: #0F766E;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   LIGHT SECTION
+========================================= */
+
+.home-section-light {
+    background-color: #F8FAFC;
+}
+
+
+.home-curriculum {
+    background-color: #FFFFFF;
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
+.section-label {
+
+    color: #14B8A6;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+}
+
+
+.home-section-title {
+
+    color: #111827;
+
+    font-weight: 800;
+}
+
+
+.home-section-text {
+
+    color: #64748B;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   FEATURE CARDS
+========================================= */
+
+.feature-card {
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 1.5rem;
+
+    box-shadow:
+        0 4px 15px
+        rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.feature-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color: #BFDBFE;
+
+    box-shadow:
+        0 10px 25px
+        rgba(37, 99, 235, 0.10);
+}
+
+
+.feature-card h5 {
+    color: #111827;
+
+    font-weight: 700;
+}
+
+
+.feature-card p {
+    color: #64748B;
+}
+
+
+/* =========================================
+   FEATURE ICONS
+========================================= */
+
+.feature-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    font-size: 1.4rem;
+}
+
+
+.blue-icon {
+
+    background-color: #DBEAFE;
+
+    color: #2563EB;
+}
+
+
+.teal-icon {
+
+    background-color: #CCFBF1;
+
+    color: #0F766E;
+}
+
+
+/* =========================================
+   CURRICULUM CARDS
+========================================= */
+
+.curriculum-card {
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 2rem;
+
+    box-shadow:
+        0 4px 15px
+        rgba(15, 23, 42, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.curriculum-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color: #BFDBFE;
+
+    box-shadow:
+        0 10px 22px
+        rgba(37, 99, 235, 0.08);
+}
+
+
+.curriculum-card h4 {
+
+    color: #111827;
+
+    font-weight: 700;
+}
+
+
+.curriculum-card p {
+
+    color: #64748B;
+}
+
+
+/* =========================================
+   CURRICULUM BADGES
+========================================= */
+
+.curriculum-badge {
+
+    display: inline-block;
+
+    padding: 0.45rem 0.8rem;
+
+    border-radius: 50px;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+}
+
+
+.blue-badge {
+
+    background-color: #DBEAFE;
+
+    color: #1E3A8A;
+}
+
+
+.teal-badge {
+
+    background-color: #CCFBF1;
+
+    color: #0F766E;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.home-footer {
+
+    background-color: #0F172A;
+
+    color: #CBD5E1;
+
+    border-top:
+        1px solid #172554;
+}
+
+
+.home-footer a {
+
+    color: #93C5FD;
+
+    text-decoration: none;
+}
+
+
+.home-footer a:hover {
+
+    color: #5EEAD4;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 991.98px) {
+
+    .home-nav-link {
+        padding: 0.6rem 0;
+    }
+
+
+    .home-navbar .d-flex {
+        padding-bottom: 1rem;
+    }
+
+
+    .home-heading {
+        font-size: 2.5rem;
+    }
+
+}
+
+
+@media (max-width: 575.98px) {
+
+    .home-heading {
+        font-size: 2.2rem;
+    }
+
+
+    .data-saver-card {
+        padding: 1.5rem;
+    }
+
+
+    .home-hero .btn {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   CONTACT US PAGE
+========================================= */
+
+.contact-page {
+    background-color: #F8FAFC;
+    color: #111827;
+}
+
+
+/* =========================================
+   CONTACT HERO
+========================================= */
+
+.contact-hero {
+    background: linear-gradient(
+        135deg,
+        #EFF6FF 0%,
+        #FFFFFF 100%
+    );
+
+    border-bottom: 1px solid #DBEAFE;
+
+    padding: 70px 20px;
+}
+
+
+.contact-label {
+    display: inline-block;
+
+    color: #14B8A6;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 12px;
+}
+
+
+.contact-hero h1 {
+    font-size: 3rem;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+
+.contact-hero h1 span {
+    color: #2563EB;
+}
+
+
+.contact-hero p {
+    color: #64748B;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   CONTACT INFORMATION CARD
+========================================= */
+
+.contact-info-card {
+    background: linear-gradient(
+        145deg,
+        #0F172A 0%,
+        #172554 55%,
+        #1D4ED8 100%
+    );
+
+    color: #FFFFFF;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Decorative Circle */
+
+.contact-info-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background: rgba(45, 212, 191, 0.10);
+
+    right: -120px;
+    bottom: -100px;
+}
+
+
+.contact-section-label {
+    color: #2DD4BF;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.contact-info-card h3 {
+    font-size: 1.8rem;
+
+    font-weight: 800;
+
+    margin-top: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.contact-info-text {
+    color: #CBD5E1;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   CONTACT INFORMATION ITEMS
+========================================= */
+
+.contact-info-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    color: #2DD4BF;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.1rem;
+}
+
+
+.contact-info-item small {
+    display: block;
+
+    color: #94A3B8;
+
+    font-size: 0.75rem;
+
+    margin-bottom: 3px;
+}
+
+
+.contact-info-item strong {
+    display: block;
+
+    color: #FFFFFF;
+
+    font-size: 0.9rem;
+}
+
+
+/* =========================================
+   SUPPORT BOX
+========================================= */
+
+.contact-support-box {
+    display: flex;
+
+    gap: 15px;
+
+    align-items: flex-start;
+
+    margin-top: 35px;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.contact-support-box > i {
+    color: #2DD4BF;
+
+    font-size: 1.4rem;
+}
+
+
+.contact-support-box strong {
+    font-size: 0.9rem;
+}
+
+
+.contact-support-box p {
+    color: #CBD5E1;
+
+    font-size: 0.8rem;
+
+    line-height: 1.6;
+
+    margin: 5px 0 0;
+}
+
+
+/* =========================================
+   CONTACT FORM CARD
+========================================= */
+
+.contact-form-card {
+    background-color: #FFFFFF;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+
+.contact-form-card h3 {
+    font-size: 1.8rem;
+
+    font-weight: 800;
+
+    margin-top: 10px;
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================================
+   CONTACT FORM INPUTS
+========================================= */
+
+.contact-form-card .form-control,
+.contact-form-card .form-select {
+    border-color: #CBD5E1;
+
+    padding: 11px 12px;
+
+    border-radius: 9px;
+}
+
+
+.contact-form-card .form-control:focus,
+.contact-form-card .form-select:focus {
+    border-color: #2563EB;
+
+    box-shadow:
+        0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+}
+
+
+.contact-form-card textarea {
+    resize: vertical;
+}
+
+
+/* =========================================
+   CONTACT BUTTON
+========================================= */
+
+.btn-contact {
+    background-color: #2563EB;
+
+    border: 1px solid #2563EB;
+
+    color: #FFFFFF;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-contact:hover {
+    background-color: #1E3A8A;
+
+    border-color: #1E3A8A;
+
+    color: #FFFFFF;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767.98px) {
+
+    .contact-hero {
+        padding: 50px 20px;
+    }
+
+
+    .contact-hero h1 {
+        font-size: 2.3rem;
+    }
+
+
+    .contact-info-card,
+    .contact-form-card {
+        padding: 25px;
+    }
+
+}
+
+
+/* =========================================
+   ADMINISTRATION LOGIN PAGE
+========================================= */
+
+.admin-login-page {
+    margin: 0;
+
+    background: #F8FAFC;
+
+    color: #111827;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   MAIN WRAPPER
+========================================= */
+
+.admin-login-wrapper {
+    display: flex;
+
+    width: 100%;
+
+    height: 100vh;
+}
+
+
+/* =========================================
+   LEFT SIDEBAR
+========================================= */
+
+.admin-login-sidebar {
+    width: 40%;
+
+    min-width: 380px;
+
+    background: linear-gradient(
+        145deg,
+        #0F172A 0%,
+        #172554 55%,
+        #1D4ED8 100%
+    );
+
+    color: #FFFFFF;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Decorative Circle */
+
+.admin-login-sidebar::after {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: rgba(45, 212, 191, 0.12);
+
+    right: -150px;
+
+    bottom: -120px;
+}
+
+
+/* Sidebar Content */
+
+.admin-sidebar-content {
+    height: 100%;
+
+    padding: 45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   ADMIN LOGO
+========================================= */
+
+.admin-logo {
+    color: #FFFFFF;
+
+    font-size: 1.35rem;
+
+    font-weight: 700;
+}
+
+
+.admin-logo i {
+    color: #2DD4BF;
+}
+
+
+/* =========================================
+   SIDEBAR MAIN
+========================================= */
+
+.admin-sidebar-main {
+    margin-top: 100px;
+
+    max-width: 500px;
+}
+
+
+.admin-sidebar-label {
+    display: inline-block;
+
+    color: #2DD4BF;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 15px;
+}
+
+
+.admin-sidebar-main h1 {
+    font-size: 3rem;
+
+    font-weight: 800;
+
+    line-height: 1.15;
+
+    margin-bottom: 20px;
+}
+
+
+.admin-sidebar-main h1 span {
+    color: #60A5FA;
+}
+
+
+.admin-sidebar-main p {
+    color: #CBD5E1;
+
+    line-height: 1.7;
+
+    max-width: 450px;
+}
+
+
+
+
+
+/* =========================================
+   ADMIN BENEFITS
+========================================= */
+
+.admin-benefits {
+    margin-top: 45px;
+}
+
+
+.admin-benefit {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.admin-benefit-icon {
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #2DD4BF;
+
+    font-size: 1.1rem;
+
+    flex-shrink: 0;
+}
+
+
+.admin-benefit strong {
+    display: block;
+
+    font-size: 0.9rem;
+}
+
+
+.admin-benefit small {
+    display: block;
+
+    color: #94A3B8;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   SIDEBAR FOOTER
+========================================= */
+
+.admin-sidebar-footer {
+    margin-top: auto;
+
+    color: #94A3B8;
+
+    font-size: 0.8rem;
+}
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.admin-login-content {
+    width: 60%;
+
+    height: 100vh;
+
+    overflow-y: auto;
+
+    background: #F8FAFC;
+}
+
+
+/* =========================================
+   FORM CONTAINER
+========================================= */
+
+.admin-login-form-container {
+    max-width: 620px;
+
+    margin: 0 auto;
+
+    padding: 50px;
+}
+
+
+/* =========================================
+   TOP LINK
+========================================= */
+
+.admin-login-top {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 6px;
+
+    margin-bottom: 70px;
+
+    color: #64748B;
+
+    font-size: 0.85rem;
+}
+
+
+.admin-student-link {
+    color: #2563EB;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.admin-student-link:hover {
+    color: #1D4ED8;
+
+    text-decoration: underline;
+}
