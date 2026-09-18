@@ -2,8 +2,3 @@
 php/db.php
 
 
-# Generated lesson audio
-uploads/audios/*.mp3
-
-# Large lesson videos
-uploads/videos/*.mp4
