@@ -4,6 +4,7 @@ require_once "php/db.php";
 
 $message = "";
 $message_type = "";
+$reset_generated = false;
 
 // ==========================================
 // RECOVERY TYPE
@@ -150,6 +151,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
             if ($insert_stmt->execute()) {
+
+                $reset_generated = true;
 
              // ==========================================
                 // DEVELOPMENT RESET LINK
@@ -401,17 +404,81 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </div>
 
- <!-- =========================================
-         RIGHT SIDE
-    ========================================== -->
+    <!-- =========================================
+     RIGHT SIDE
+========================================== -->
 
-    <div class="login-content">
+<div class="login-content">
+
+    <div class="login-form-container">
+
+        <?php if ($reset_generated): ?>
+
+            <!-- =========================================
+                 SUCCESS STATE
+            ========================================== -->
+
+            <div class="login-heading">
+
+                <span class="login-label">
+                    ACCOUNT RECOVERY
+                </span>
+
+                <h2>
+                    Reset Link Ready
+                </h2>
+
+                <p>
+                    Your password reset link has been generated.
+                </p>
+
+            </div>
 
 
-        <div class="login-form-container">
+            <div class="login-form-card">
+
+                <div
+                    class="alert alert-success"
+                    role="alert"
+                    style="overflow-wrap: anywhere; word-break: break-word;"
+                >
+
+                    <i class="bi bi-check-circle-fill me-2"></i>
+
+                    <?php echo $message; ?>
+
+                </div>
 
 
-            <!-- Heading -->
+                <!-- Back to Login -->
+
+                <div class="login-redirect-new">
+
+                    <span>
+                        Remember your password?
+                    </span>
+
+                    <a
+                        href="login.html"
+                        class="login-link"
+                    >
+
+                        Back to Login
+
+                        <i class="bi bi-arrow-right ms-1"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        <?php else: ?>
+
+            <!-- =========================================
+                 NORMAL FORGOT PASSWORD STATE
+            ========================================== -->
 
             <div class="login-heading">
 
@@ -431,18 +498,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 
 
-
-            <!-- Form Card -->
-
             <div class="login-form-card">
-
 
                 <?php if (!empty($message)): ?>
 
                     <div
                         class="alert alert-<?php echo $message_type; ?>"
                         role="alert"
-                        style="overflow-wrap: anywhere; word-break: break-word;"
                     >
 
                         <i class="bi bi-info-circle-fill me-2"></i>
@@ -454,11 +516,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php endif; ?>
 
 
-
                 <form
                     method="POST"
                     action="forgot-password.php"
                 >
+
                     <input
                         type="hidden"
                         name="type"
@@ -474,9 +536,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             for="email"
                             class="form-label fw-semibold"
                         >
-
                             Email Address
-
                         </label>
 
 
@@ -503,7 +563,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
 
 
-
                     <!-- Submit -->
 
                     <button
@@ -517,9 +576,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     </button>
 
-
                 </form>
-
 
 
                 <!-- Back to Login -->
@@ -543,14 +600,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 </div>
 
-
             </div>
 
-
-        </div>
+        <?php endif; ?>
 
     </div>
-
 
 </div>
 
