@@ -9361,3 +9361,77 @@ body.dark-mode .password-card .input-group .btn-outline-secondary:hover {
     color: #F8FAFC !important;
     background-color: #1E293B !important;
 }
+
+
+/* Quiz History - Dark Mode */
+
+body.dark-mode .quiz-history-card {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .quiz-history-card .card-body {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+
+/* Quiz History Table */
+
+body.dark-mode .quiz-history-card .table {
+    --bs-table-bg: #1E293B !important;
+    --bs-table-color: #E2E8F0 !important;
+    --bs-table-border-color: #334155 !important;
+
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .quiz-history-card .table thead th {
+    background-color: #1E293B !important;
+    color: #F8FAFC !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .quiz-history-card .table tbody td {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+
+/* Quiz title and subject */
+
+body.dark-mode .quiz-history-card .fw-semibold {
+    color: #F8FAFC !important;
+}
+
+
+/* Muted text */
+
+body.dark-mode .quiz-history-card .text-muted {
+    color: #CBD5E1 !important;
+}
+
+
+/* View Result button */
+
+body.dark-mode .quiz-history-card .btn-dashboard {
+    color: #FFFFFF !important;
+}
+
+
+/* Empty State */
+
+body.dark-mode .quiz-history-card h5 {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .quiz-history-card p {
+    color: #CBD5E1 !important;
+}
+
+body.dark-mode .quiz-history-card .text-muted i {
+    color: #94A3B8 !important;
+}

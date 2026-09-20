@@ -338,8 +338,8 @@ $stmt->close();
         =============================== -->
 
         <div
-            class="card rounded-4 shadow-sm border-0 mb-4"
-        >
+    class="card rounded-4 shadow-sm border-0 mb-4 quiz-history-card"
+>
 
             <div class="card-body p-4">
 
@@ -812,81 +812,7 @@ $stmt->close();
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     ></script>
 
-
-    <!-- Theme Toggle -->
-
-    <script>
-
-        const themeToggle =
-            document.getElementById("themeToggle");
-
-        const themeIcon =
-            document.getElementById("themeIcon");
-
-
-        if (themeToggle && themeIcon) {
-
-            themeToggle.addEventListener(
-                "click",
-                function () {
-
-                    document.body.classList.toggle(
-                        "dark-mode"
-                    );
-
-
-                    if (
-                        document.body.classList.contains(
-                            "dark-mode"
-                        )
-                    ) {
-
-                        themeIcon.classList.remove(
-                            "bi-moon"
-                        );
-
-                        themeIcon.classList.add(
-                            "bi-sun"
-                        );
-
-                        themeToggle.setAttribute(
-                            "aria-label",
-                            "Switch to day mode"
-                        );
-
-                        themeToggle.setAttribute(
-                            "title",
-                            "Switch to day mode"
-                        );
-
-                    } else {
-
-                        themeIcon.classList.remove(
-                            "bi-sun"
-                        );
-
-                        themeIcon.classList.add(
-                            "bi-moon"
-                        );
-
-                        themeToggle.setAttribute(
-                            "aria-label",
-                            "Switch to night mode"
-                        );
-
-                        themeToggle.setAttribute(
-                            "title",
-                            "Switch to night mode"
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-    </script>
+        <script src="./js/script.js"></script>
 
 
 </body>
