@@ -9258,3 +9258,106 @@ body.dark-mode .profile-subject-card .text-muted {
 body.dark-mode .profile-subject-card i {
     color: #60A5FA !important;
 }
+
+
+/* =================================
+   Contact Form Placeholders - Dark Mode
+================================= */
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #94A3B8 !important;
+    opacity: 1 !important;
+}
+
+
+/* =================================
+   Edit Profile - Dark Mode
+================================= */
+
+body.dark-mode .profile-edit-card {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .profile-edit-card .card-body {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .profile-edit-card .form-label {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .profile-edit-card input {
+    background-color: #0F172A !important;
+    color: #E2E8F0 !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .profile-edit-card input:focus {
+    background-color: #0F172A !important;
+    color: #F8FAFC !important;
+    border-color: #60A5FA !important;
+}
+
+body.dark-mode .profile-edit-card input::placeholder {
+    color: #94A3B8 !important;
+    opacity: 1 !important;
+}
+
+
+/* =================================
+   Change Password - Dark Mode
+================================= */
+
+body.dark-mode .password-card {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .password-card .card-body {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .password-card .form-label {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .password-card input {
+    background-color: #0F172A !important;
+    color: #E2E8F0 !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .password-card input:focus {
+    background-color: #0F172A !important;
+    color: #F8FAFC !important;
+    border-color: #60A5FA !important;
+}
+
+body.dark-mode .password-card input::placeholder {
+    color: #94A3B8 !important;
+    opacity: 1 !important;
+}
+
+body.dark-mode .password-card .form-text {
+    color: #CBD5E1 !important;
+}
+
+
+/* Password visibility buttons */
+
+body.dark-mode .password-card .input-group .btn-outline-secondary {
+    color: #CBD5E1 !important;
+    border-color: #475569 !important;
+    background-color: #0F172A !important;
+}
+
+body.dark-mode .password-card .input-group .btn-outline-secondary:hover {
+    color: #F8FAFC !important;
+    background-color: #1E293B !important;
+}

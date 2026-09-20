@@ -223,6 +223,68 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
+<!-- ==============================
+     Top Navigation
+================================ -->
+
+<nav class="navbar navbar-light bg-white sticky-top dashboard-navbar">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand fw-bold dashboard-brand"
+            href="dashboard.php"
+        >
+            <i class="bi bi-mortarboard-fill me-1"></i>
+            A/L TechHub
+        </a>
+
+
+        <div class="d-flex align-items-center gap-3">
+
+            <a
+                href="profile.php"
+                class="dashboard-user text-decoration-none"
+            >
+                <i class="bi bi-person-circle me-1"></i>
+                Profile
+            </a>
+
+
+            <!-- Day / Night Mode -->
+
+            <button
+                type="button"
+                id="themeToggle"
+                class="btn btn-link theme-toggle"
+                aria-label="Switch to night mode"
+                title="Switch to night mode"
+            >
+
+                <i
+                    class="bi bi-moon"
+                    id="themeIcon"
+                ></i>
+
+            </button>
+
+
+            <a
+                href="php/logout.php"
+                class="btn btn-outline-primary btn-sm px-3"
+            >
+
+                <i class="bi bi-box-arrow-right me-1"></i>
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
 
 <div class="container py-5">
 
@@ -254,7 +316,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <!-- PROFILE FORM -->
 
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm profile-edit-card">
 
                 <div class="card-body p-4 p-md-5">
 
@@ -408,6 +470,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 
 </div>
+
+
+<script src="./js/script.js"></script>
 
 
 </body>
