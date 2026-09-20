@@ -232,22 +232,14 @@ document.addEventListener(
     }
 );
 
-
 // =========================================================
 // DAY / NIGHT MODE
 // =========================================================
 
 function setupThemeMode() {
 
-    const modeButton =
-        document.getElementById(
-            "themeToggle"
-        );
-
-    const modeIcon =
-        document.getElementById(
-            "themeIcon"
-        );
+    const modeButton = document.getElementById("themeToggle");
+    const modeIcon = document.getElementById("themeIcon");
 
     if (!modeButton || !modeIcon) {
         return;
@@ -255,120 +247,98 @@ function setupThemeMode() {
 
 
     // -----------------------------------------------------
-    // Load Saved Theme
+    // APPLY THEME
     // -----------------------------------------------------
 
-    const savedTheme =
-        localStorage.getItem("theme");
+    function applyTheme(isDarkMode) {
 
-    if (savedTheme === "dark") {
+        if (isDarkMode) {
 
-        document.body.classList.add(
-            "dark-mode"
-        );
+            document.body.classList.add("dark-mode");
 
-        modeIcon.classList.remove(
-            "bi-moon"
-        );
+            modeIcon.classList.remove("bi-moon");
+            modeIcon.classList.add("bi-sun");
 
-        modeIcon.classList.add(
-            "bi-sun"
-        );
+            modeButton.setAttribute(
+                "aria-label",
+                "Switch to day mode"
+            );
 
-        modeButton.setAttribute(
-            "aria-label",
-            "Switch to day mode"
-        );
+            modeButton.setAttribute(
+                "title",
+                "Switch to day mode"
+            );
 
-        modeButton.setAttribute(
-            "title",
-            "Switch to day mode"
-        );
+        } else {
+
+            document.body.classList.remove("dark-mode");
+
+            modeIcon.classList.remove("bi-sun");
+            modeIcon.classList.add("bi-moon");
+
+            modeButton.setAttribute(
+                "aria-label",
+                "Switch to night mode"
+            );
+
+            modeButton.setAttribute(
+                "title",
+                "Switch to night mode"
+            );
+
+        }
 
     }
 
 
     // -----------------------------------------------------
-    // Toggle Theme
+    // LOAD SAVED THEME
     // -----------------------------------------------------
 
-    modeButton.addEventListener(
-        "click",
-        function () {
+    const savedTheme = localStorage.getItem("theme");
 
-            document.body.classList.toggle(
-                "dark-mode"
-            );
-
-            const isDarkMode =
-                document.body.classList.contains(
-                    "dark-mode"
-                );
+    applyTheme(savedTheme === "dark");
 
 
-            if (isDarkMode) {
+    // -----------------------------------------------------
+    // TOGGLE THEME
+    // -----------------------------------------------------
 
-                localStorage.setItem(
-                    "theme",
-                    "dark"
-                );
+    modeButton.onclick = function () {
 
-                modeIcon.classList.remove(
-                    "bi-moon"
-                );
+        const darkMode =
+            document.body.classList.contains("dark-mode");
 
-                modeIcon.classList.add(
-                    "bi-sun"
-                );
+        const newDarkMode = !darkMode;
 
-                modeButton.setAttribute(
-                    "aria-label",
-                    "Switch to day mode"
-                );
+        applyTheme(newDarkMode);
 
-                modeButton.setAttribute(
-                    "title",
-                    "Switch to day mode"
-                );
+        localStorage.setItem(
+            "theme",
+            newDarkMode ? "dark" : "light"
+        );
 
-            } else {
-
-                localStorage.setItem(
-                    "theme",
-                    "light"
-                );
-
-                modeIcon.classList.remove(
-                    "bi-sun"
-                );
-
-                modeIcon.classList.add(
-                    "bi-moon"
-                );
-
-                modeButton.setAttribute(
-                    "aria-label",
-                    "Switch to night mode"
-                );
-
-                modeButton.setAttribute(
-                    "title",
-                    "Switch to night mode"
-                );
-
-            }
-
-        }
-    );
+    };
 
 }
 
 
-// Start Theme Mode
-document.addEventListener(
-    "DOMContentLoaded",
-    setupThemeMode
-);
+// ---------------------------------------------------------
+// START THEME MODE
+// ---------------------------------------------------------
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        setupThemeMode
+    );
+
+} else {
+
+    setupThemeMode();
+
+}
 
 
 // =========================================================

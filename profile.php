@@ -87,7 +87,7 @@ $subject_stmt->close();
 
 </head>
 
-<body class="bg-light">
+<body>
 
 
 <!-- ==============================
@@ -182,32 +182,53 @@ $subject_stmt->close();
 
             </ul>
 
+                <!-- User Account -->
 
-            <!-- User Account -->
-            <div class="d-flex align-items-center gap-3">
+<div class="d-flex align-items-center gap-3">
 
-                <a
-                    href="profile.php"
-                    class="dashboard-user text-decoration-none"
-                >
+    <a
+        href="profile.php"
+        class="dashboard-user text-decoration-none"
+    >
 
-                    <i class="bi bi-person-circle me-1"></i>
-                    User Account
+        <i class="bi bi-person-circle me-1"></i>
+        User Account
 
-                </a>
+    </a>
 
 
-              <a
-                        href="php/logout.php"
-                        class="btn btn-outline-primary btn-sm px-3"
-                    >
+    <!-- Day / Night Mode -->
 
-                    <i class="bi bi-box-arrow-right me-1"></i>
-                    Logout
+    <button
+        type="button"
+        id="themeToggle"
+        class="btn btn-link theme-toggle"
+        aria-label="Switch to night mode"
+        title="Switch to night mode"
+    >
 
-                </a>
+        <i
+            class="bi bi-moon"
+            id="themeIcon"
+        ></i>
 
-            </div>
+    </button>
+
+
+    <!-- Logout -->
+
+    <a
+        href="php/logout.php"
+        class="btn btn-outline-primary btn-sm px-3"
+    >
+
+        <i class="bi bi-box-arrow-right me-1"></i>
+        Logout
+
+    </a>
+
+</div>
+            
 
         </div>
 
@@ -248,7 +269,7 @@ $subject_stmt->close();
 
             <!-- Profile Card -->
 
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card border-0 shadow-sm rounded-4 mb-4 profile-card">
 
                 <div class="card-body p-4">
 
@@ -339,7 +360,7 @@ $subject_stmt->close();
 
             <!-- Academic Information -->
 
-            <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card border-0 shadow-sm rounded-4 mb-4 profile-card">
 
                 <div class="card-body p-4">
 
@@ -441,7 +462,7 @@ $subject_stmt->close();
 
             <!-- Account Actions -->
 
-            <div class="card border-0 shadow-sm rounded-4">
+            <div class="card border-0 shadow-sm rounded-4 profile-card">
 
                 <div class="card-body p-4">
 
@@ -499,6 +520,8 @@ $subject_stmt->close();
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 ></script>
+
+<script src="./js/script.js"></script>
 
 
 </body>

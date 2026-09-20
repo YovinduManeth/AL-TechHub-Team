@@ -259,7 +259,7 @@ $stmt->close();
 
                     <a
                         class="nav-link dashboard-nav-link"
-                        href="index.php"
+                        href="index.html"
                     >
 
                         <i class="bi bi-house me-1"></i>
@@ -573,6 +573,8 @@ $stmt->close();
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 ></script>
+
+<script src="./js/script.js"></script>
 
 
 </body>

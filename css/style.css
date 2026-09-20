@@ -8969,3 +8969,292 @@ body {
 .quiz-result-page .correct-answer i {
     color: #198754;
 }
+
+
+/* =========================================
+   HOME PAGE - DARK MODE FIX
+========================================= */
+
+/* Main home page */
+body.dark-mode.home-page {
+    background-color: #0F172A !important;
+    color: #E2E8F0 !important;
+}
+
+
+/* Hero section */
+body.dark-mode.home-page .home-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #0F172A 55%,
+            #1E3A8A 100%
+        ) !important;
+}
+
+
+/* Light sections */
+body.dark-mode.home-page .home-section-light,
+body.dark-mode.home-page .home-curriculum,
+body.dark-mode.home-page .home-how-it-works {
+    background-color: #0F172A !important;
+    color: #E2E8F0 !important;
+}
+
+
+/* Feature cards */
+body.dark-mode.home-page .feature-card,
+body.dark-mode.home-page .how-it-works-card,
+body.dark-mode.home-page .curriculum-card {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+    color: #E2E8F0 !important;
+}
+
+
+/* Card headings */
+body.dark-mode.home-page .feature-card h5,
+body.dark-mode.home-page .how-it-works-card h5,
+body.dark-mode.home-page .how-it-works-card h4,
+body.dark-mode.home-page .curriculum-card h4 {
+    color: #F8FAFC !important;
+}
+
+
+/* Card paragraphs */
+body.dark-mode.home-page .feature-card p,
+body.dark-mode.home-page .how-it-works-card p,
+body.dark-mode.home-page .curriculum-card p {
+    color: #CBD5E1 !important;
+}
+
+
+/* Data saver section/card */
+body.dark-mode.home-page .data-saver-card {
+    background-color: #1E293B !important;
+    border-color: #475569 !important;
+    color: #E2E8F0 !important;
+}
+
+
+/* Footer */
+body.dark-mode.home-page .home-footer {
+    background-color: #020617 !important;
+    color: #CBD5E1 !important;
+}
+
+
+/* Footer text */
+body.dark-mode.home-page .home-footer p,
+body.dark-mode.home-page .home-footer span {
+    color: #94A3B8 !important;
+}
+
+
+/* General text inside home page */
+body.dark-mode.home-page p {
+    color: #CBD5E1;
+}
+
+
+/* Section headings */
+body.dark-mode.home-page h1,
+body.dark-mode.home-page h2,
+body.dark-mode.home-page h3,
+body.dark-mode.home-page h4,
+body.dark-mode.home-page h5,
+body.dark-mode.home-page h6 {
+    color: #F8FAFC;
+}
+
+
+/* =========================================================
+   DASHBOARD PROGRESS CARDS - DARK MODE
+========================================================= */
+
+/* Overall Learning Progress */
+body.dark-mode .overall-progress-card {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .overall-progress-card .overall-progress-title {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .overall-progress-card .overall-progress-count {
+    color: #CBD5E1 !important;
+}
+
+body.dark-mode .overall-progress-card .text-muted {
+    color: #94A3B8 !important;
+}
+
+
+/* Quiz Progress */
+body.dark-mode .quiz-progress-card {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .quiz-progress-card .table {
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .quiz-progress-card .table th {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .quiz-progress-card .table td {
+    color: #CBD5E1 !important;
+}
+
+body.dark-mode .quiz-progress-card .text-muted {
+    color: #94A3B8 !important;
+}
+
+
+/* =========================================================
+   QUIZ PROGRESS BOX - DARK MODE
+========================================================= */
+
+body.dark-mode .quiz-progress-card {
+    background-color: #1E293B !important;
+    border-color: #334155 !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .quiz-progress-card .card-body {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+/* Quiz table */
+body.dark-mode .quiz-progress-card .table {
+    --bs-table-bg: #1E293B;
+    --bs-table-color: #E2E8F0;
+    --bs-table-border-color: #334155;
+
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .quiz-progress-card .table thead th {
+    background-color: #1E293B !important;
+    color: #F8FAFC !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .quiz-progress-card .table tbody td {
+    background-color: #1E293B !important;
+    color: #CBD5E1 !important;
+    border-color: #334155 !important;
+}
+
+/* Muted text inside the box */
+body.dark-mode .quiz-progress-card .text-muted {
+    color: #94A3B8 !important;
+}
+
+
+/* =========================================================
+   MUTED TEXT - DARK MODE
+========================================================= */
+
+body.dark-mode .text-muted {
+    color: #CBD5E1 !important;
+}
+
+
+/* Unit Progress Card - Dark Mode */
+
+body.dark-mode .unit-progress-card {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .unit-progress-card .card-body {
+    background-color: #1E293B !important;
+}
+
+body.dark-mode .unit-progress-card h5,
+body.dark-mode .unit-progress-card h4,
+body.dark-mode .unit-progress-card h3 {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .unit-progress-card p {
+    color: #CBD5E1 !important;
+}
+
+body.dark-mode .unit-progress-card .text-muted {
+    color: #CBD5E1 !important;
+}
+
+
+/* Data Saver Items - Dark Mode */
+
+body.dark-mode .data-saver-item {
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .data-saver-item span {
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .data-saver-item i {
+    color: #60A5FA !important;
+}
+
+/* =================================
+   Profile Cards - Dark Mode
+================================= */
+
+body.dark-mode .profile-card {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .profile-card .card-body {
+    background-color: #1E293B !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .profile-card h5,
+body.dark-mode .profile-card h6 {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .profile-card p {
+    color: #CBD5E1 !important;
+}
+
+body.dark-mode .profile-card .text-muted {
+    color: #CBD5E1 !important;
+}
+
+
+/* =================================
+   Profile Subject Cards - Dark Mode
+================================= */
+
+body.dark-mode .profile-subject-card {
+    background-color: #0F172A !important;
+    border-color: #334155 !important;
+    color: #E2E8F0 !important;
+}
+
+body.dark-mode .profile-subject-card h6 {
+    color: #F8FAFC !important;
+}
+
+body.dark-mode .profile-subject-card .text-muted {
+    color: #CBD5E1 !important;
+}
+
+body.dark-mode .profile-subject-card i {
+    color: #60A5FA !important;
+}

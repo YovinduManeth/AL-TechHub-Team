@@ -722,6 +722,9 @@ if ($total_lessons > 0) {
 
 <?php endforeach; ?>
 
+</div> <!-- Close Subject Cards Row -->
+
+
 <!-- ==============================
      QUIZ PROGRESS
 =============================== -->
@@ -739,7 +742,7 @@ if ($total_lessons > 0) {
 </div>
 
 
-<div class="card rounded-4 shadow-sm border-0 mb-5">
+<div class="card rounded-4 shadow-sm border-0 mb-5 quiz-progress-card">
 
     <div class="card-body p-4">
 
@@ -885,18 +888,48 @@ if ($total_lessons > 0) {
         href="quiz-history.php"
         class="btn btn-outline-primary fw-bold"
     >
+
         <i class="bi bi-clock-history me-1"></i>
+
         View Full Quiz History
+
     </a>
 
 </div>
 
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+</main>
 
-    const grade12 =
+
+<!-- =================================
+     Footer
+================================== -->
+
+<footer class="home-footer py-4">
+
+    <div class="container text-center">
+
+        <p class="mb-0 small">
+
+            © 2026 A/L TechHub. Web-Based Data-Saver Learning Platform..
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JavaScript -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<script>
+
+const grade12 =
     document.getElementById("grade12");
 
 const grade13 =
@@ -957,8 +990,13 @@ grade13.addEventListener(
 
 updateGradeLinks();
 
-
 </script>
+
+
+<!-- Main JavaScript -->
+
+<script src="./js/script.js"></script>
+
 
 </body>
 

@@ -827,7 +827,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <p class="mb-0 small">
 
-                © 2026 A/L TechHub. All rights reserved.
+                © 2026 A/L TechHub. Web-Based Data-Saver Learning Platform..
 
             </p>
 
@@ -842,6 +842,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     ></script>
+
+    <script src="./js/script.js"></script>
 
 </body>
 
