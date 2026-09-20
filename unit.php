@@ -316,7 +316,7 @@ $stmt->close();
 
                     <a
                         class="nav-link dashboard-nav-link"
-                        href="index.php"
+                        href="index.html"
                     >
 
                         <i class="bi bi-house me-1"></i>
