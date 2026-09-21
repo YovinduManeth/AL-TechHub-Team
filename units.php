@@ -76,10 +76,6 @@ if ($result->num_rows === 0) {
 $stmt->close();
 
 
-// ==========================================
-// GET UNITS + LESSON PROGRESS
-// ==========================================
-
 $sql = "SELECT
             units.unit_id,
             units.grade,
@@ -208,10 +204,6 @@ $stmt->close();
 
 <body>
 
-
-<!-- ==============================
-     Navigation Bar
-=============================== -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar">
 
@@ -356,11 +348,6 @@ $stmt->close();
 </nav>
 
 
-
-<!-- ==============================
-     Main Content
-=============================== -->
-
 <main class="container py-4">
 
 
@@ -410,10 +397,6 @@ $stmt->close();
 
     </div>
 
-
-   <!-- ==============================
-     Database Units
-=============================== -->
 
 <div class="row g-4">
 
