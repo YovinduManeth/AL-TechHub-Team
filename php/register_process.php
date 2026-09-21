@@ -3,10 +3,6 @@
 require_once "db.php";
 
 
-// ==========================================
-// ONLY ALLOW POST REQUESTS
-// ==========================================
-
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
     header("Location: ../register.html");
@@ -14,10 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 }
 
-
-// ==========================================
-// GET FORM DATA
-// ==========================================
 
 $full_name = trim($_POST["full_name"] ?? "");
 $email = trim($_POST["email"] ?? "");
@@ -30,10 +22,6 @@ $basket03 = $_POST["basket03"] ?? "";
 
 $terms = isset($_POST["terms"]);
 
-
-// ==========================================
-// BASIC VALIDATION
-// ==========================================
 
 if (
     empty($full_name) ||
@@ -55,20 +43,12 @@ if (!$terms) {
 
 }
 
-// ==========================================
-// CHECK EMAIL
-// ==========================================
-
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     die("Please enter a valid email address.");
 
 }
 
-
-// ==========================================
-// CHECK PASSWORD
-// ==========================================
 
 if ($password !== $confirm_password) {
 
@@ -83,10 +63,6 @@ if (strlen($password) < 8) {
 
 }
 
-
-// ==========================================
-// CHECK EMAIL / USERNAME
-// ==========================================
 
 $check_sql = "SELECT user_id FROM users
               WHERE email = ? OR username = ?
@@ -113,26 +89,16 @@ if ($check_result->num_rows > 0) {
 
 $check_stmt->close();
 
-// ==========================================
-// START DATABASE TRANSACTION
-// ==========================================
 
 $conn->begin_transaction();
 
 
-// ==========================================
-// HASH PASSWORD
-// ==========================================
 
 $hashed_password = password_hash(
     $password,
     PASSWORD_DEFAULT
 );
 
-
-// ==========================================
-// INSERT STUDENT INTO USERS
-// ==========================================
 
 $user_sql = "INSERT INTO users
              (full_name, email, username, password, role)
@@ -163,9 +129,6 @@ $user_id = $conn->insert_id;
 $user_stmt->close();
 
 
-// ==========================================
-// SUBJECT ID MAPPING
-// ==========================================
 
 // SFT is compulsory
 $sft_id = 1;
@@ -203,9 +166,6 @@ if ($basket03 === "ICT") {
 }
 
 
-// ==========================================
-// INSERT SELECTED SUBJECTS
-// ==========================================
 
 $subject_sql = "INSERT INTO student_subjects
                 (user_id, subject_id)
@@ -251,9 +211,6 @@ $subject_stmt->close();
 
 $conn->commit();
 
-// ==========================================
-// REGISTRATION SUCCESS
-// ==========================================
 
 header("Location: ../login.html?registered=success");
 exit();
