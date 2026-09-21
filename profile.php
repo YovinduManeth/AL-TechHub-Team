@@ -90,9 +90,6 @@ $subject_stmt->close();
 <body>
 
 
-<!-- ==============================
-     Navigation Bar
-================================ -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar">
 
@@ -236,9 +233,6 @@ $subject_stmt->close();
 
 </nav>
 
-<!-- ==============================
-     Profile Content
-================================ -->
 
 <main class="container py-5">
 
