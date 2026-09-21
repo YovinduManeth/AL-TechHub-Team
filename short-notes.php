@@ -5,10 +5,6 @@ session_start();
 require_once "php/db.php";
 
 
-// ==========================================
-// CHECK LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html?error=login_required");
@@ -17,16 +13,8 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// GET LOGGED-IN STUDENT
-// ==========================================
-
 $full_name = $_SESSION["full_name"];
 
-
-// ==========================================
-// GET UNIT ID
-// ==========================================
 
 $unit_id = $_GET["unit"] ?? "";
 
@@ -42,10 +30,6 @@ if (!is_numeric($unit_id)) {
 
 $unit_id = (int)$unit_id;
 
-
-// ==========================================
-// GET UNIT DETAILS
-// ==========================================
 
 $sql = "SELECT
             units.unit_id,
@@ -76,9 +60,6 @@ $unit = $result->fetch_assoc();
 
 $stmt->close();
 
-// ==========================================
-// CHECK UNIT EXISTS
-// ==========================================
 
 if (!$unit) {
 
@@ -87,10 +68,6 @@ if (!$unit) {
 
 }
 
-
-// ==========================================
-// GET SHORT NOTES FOR THIS UNIT
-// ==========================================
 
 $sql = "SELECT
             note_id,
@@ -315,16 +292,8 @@ $stmt->close();
 
 
 
-<!-- =========================================
-     MAIN CONTENT
-========================================== -->
-
 <main class="container py-4">
 
-
-    <!-- =========================================
-         BACK TO UNIT
-    ========================================== -->
 
     <div class="mb-3">
 
@@ -342,10 +311,6 @@ $stmt->close();
     </div>
 
 
-
-    <!-- =========================================
-         PAGE HEADER
-    ========================================== -->
 
     <div class="welcome-card p-4 rounded-4 shadow-sm mb-4">
 
@@ -389,12 +354,7 @@ $stmt->close();
 
     </div>
 
-
-
-    <!-- =========================================
-         SHORT NOTES HEADING
-    ========================================== -->
-
+   
     <div class="mb-4">
 
         <p class="small dashboard-label mb-1">
@@ -420,10 +380,7 @@ $stmt->close();
 
     </div>
 
-    <!-- =========================================
-         SHORT NOTES
-    ========================================== -->
-
+    
     <?php if (empty($notes)): ?>
 
 
@@ -524,11 +481,6 @@ $stmt->close();
 
 </main>
 
-
-
-<!-- =========================================
-     BOOTSTRAP JAVASCRIPT
-========================================== -->
 
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
