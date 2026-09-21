@@ -6,9 +6,6 @@ $message = "";
 $message_type = "";
 $reset_generated = false;
 
-// ==========================================
-// RECOVERY TYPE
-// ==========================================
 
 $recovery_type =
     $_POST["type"] ??
@@ -26,18 +23,12 @@ if (
 }
 
 
-// ==========================================
-// FORM SUBMISSION
-// ==========================================
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $email = trim($_POST["email"] ?? "");
 
 
-    // ==========================================
-    // BASIC VALIDATION
-    // ==========================================
 
     if (empty($email)) {
 
@@ -55,9 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     else {
 
-        // ==========================================
-        // FIND USER
-        // ==========================================
 
        $sql = "SELECT user_id, full_name, role
         FROM users
@@ -78,20 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = $stmt->get_result();
 
 
-        // ==========================================
-        // USER FOUND
-        // ==========================================
-
         if ($result->num_rows === 1) {
 
             $user = $result->fetch_assoc();
 
             $user_id = $user["user_id"];
 
-
-            // ==========================================
-            // GENERATE RESET TOKEN
-            // ==========================================
 
             $token = bin2hex(random_bytes(32));
 
@@ -105,10 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 );
 
 
-            // ==========================================
-            // DELETE OLD TOKENS
-            // ==========================================
-
+            
             $delete_sql =
                 "DELETE FROM password_resets
                  WHERE user_id = ?";
@@ -125,10 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $delete_stmt->close();
 
-
-            // ==========================================
-            // SAVE NEW TOKEN
-            // ==========================================
 
             $insert_sql =
                 "INSERT INTO password_resets
@@ -154,10 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $reset_generated = true;
 
-             // ==========================================
-                // DEVELOPMENT RESET LINK
-                // ==========================================
-
+           
                 $reset_link =
                     "reset-password.php?token=" .
                     urlencode($token);
@@ -266,9 +236,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="login-wrapper">
 
-<!-- =========================================
-         LEFT SIDE
-    ========================================== -->
 
     <div class="login-sidebar">
 
@@ -404,20 +371,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </div>
 
-    <!-- =========================================
-     RIGHT SIDE
-========================================== -->
-
+    
 <div class="login-content">
 
     <div class="login-form-container">
 
         <?php if ($reset_generated): ?>
 
-            <!-- =========================================
-                 SUCCESS STATE
-            ========================================== -->
-
+            
             <div class="login-heading">
 
                 <span class="login-label">
@@ -476,10 +437,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <?php else: ?>
 
-            <!-- =========================================
-                 NORMAL FORGOT PASSWORD STATE
-            ========================================== -->
-
+           
             <div class="login-heading">
 
                 <span class="login-label">
