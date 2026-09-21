@@ -4,11 +4,6 @@ session_start();
 
 require_once "db.php";
 
-
-// ==========================================
-// REMOVE REMEMBER TOKEN FROM DATABASE
-// ==========================================
-
 if (isset($_SESSION["user_id"])) {
 
     $sql =
@@ -31,10 +26,6 @@ if (isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// DELETE REMEMBER ME COOKIE
-// ==========================================
-
 setcookie(
     "remember_token",
     "",
@@ -48,18 +39,10 @@ setcookie(
 );
 
 
-// ==========================================
-// DESTROY SESSION
-// ==========================================
-
 session_unset();
 
 session_destroy();
 
-
-// ==========================================
-// REDIRECT
-// ==========================================
 
 header("Location: ../login.html?logout=success");
 
