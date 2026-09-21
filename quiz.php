@@ -4,22 +4,12 @@ session_start();
 
 require_once "php/db.php";
 
-
-// ==========================================
-// CHECK LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html?error=login_required");
     exit();
 
 }
-
-
-// ==========================================
-// GET QUIZ ID
-// ==========================================
 
 $quiz_id = $_GET["quiz"] ?? "";
 
@@ -33,10 +23,6 @@ if (!is_numeric($quiz_id)) {
 $quiz_id = (int)$quiz_id;
 $user_id = (int)$_SESSION["user_id"];
 
-
-// ==========================================
-// GET QUIZ DETAILS
-// ==========================================
 
 $sql = "SELECT
             quizzes.quiz_id,
@@ -69,10 +55,6 @@ $quiz = $result->fetch_assoc();
 $stmt->close();
 
 
-// ==========================================
-// CHECK QUIZ EXISTS
-// ==========================================
-
 if (!$quiz) {
 
     header("Location: dashboard.php");
@@ -80,9 +62,6 @@ if (!$quiz) {
 
 }
 
-// ==========================================
-// CHECK STUDENT SUBJECT ENROLLMENT
-// ==========================================
 
 $sql = "SELECT
             student_subject_id
@@ -112,9 +91,6 @@ if ($result->num_rows === 0) {
 
 $stmt->close();
 
-// ==========================================
-// GET QUIZ QUESTIONS
-// ==========================================
 
 $sql = "SELECT
             question_id,
@@ -147,9 +123,6 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 
-// ==========================================
-// STORE SELECTED QUESTIONS IN SESSION
-// ==========================================
 
 $_SESSION["quiz_questions"] = [];
 
@@ -195,10 +168,7 @@ $_SESSION["active_quiz_id"] = $quiz_id;
 <body class="quiz-page">
 
 
-    <!-- =========================================
-         QUIZ HEADER
-    ========================================== -->
-
+    
     <div class="quiz-header sticky-top">
 
         <div class="container">
@@ -249,9 +219,7 @@ $_SESSION["active_quiz_id"] = $quiz_id;
         </div>
 
     </div>
-<!-- =========================================
-         MAIN CONTENT
-    ========================================== -->
+
 
     <main class="container py-5">
 
@@ -470,10 +438,7 @@ $_SESSION["active_quiz_id"] = $quiz_id;
 
 
 
-    <!-- =========================================
-         TIMER SCRIPT
-    ========================================== -->
-
+    
     <script>
 
     let secondsLeft = <?php echo (int)$quiz["time_limit"]; ?> * 60;
