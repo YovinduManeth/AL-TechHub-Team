@@ -5,10 +5,6 @@ session_start();
 require_once "php/db.php";
 
 
-// ==========================================
-// CHECK LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html?error=login_required");
@@ -17,16 +13,8 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// GET LOGGED-IN STUDENT
-// ==========================================
-
 $full_name = $_SESSION["full_name"];
 
-
-// ==========================================
-// GET SUBJECT AND GRADE
-// ==========================================
 
 $subject_id = $_GET["subject"] ?? "";
 
@@ -42,9 +30,6 @@ if (!is_numeric($subject_id)) {
 
 $subject_id = (int)$subject_id;
 
-// ==========================================
-// GET SUBJECT DETAILS
-// ==========================================
 
 $sql = "SELECT
             subject_id,
@@ -66,9 +51,6 @@ $subject = $result->fetch_assoc();
 
 $stmt->close();
 
-// ==========================================
-// CHECK SUBJECT EXISTS
-// ==========================================
 
 if (!$subject) {
 
@@ -77,10 +59,6 @@ if (!$subject) {
 
 }
 
-
-// ==========================================
-// GET PAST PAPERS
-// ==========================================
 
 $sql = "SELECT
             paper_id,
@@ -166,9 +144,6 @@ $stmt->close();
 
 <body>
 
-<!-- =========================================
-     NAVIGATION BAR
-========================================== -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar">
 
@@ -306,17 +281,8 @@ $stmt->close();
 </nav>
 
 
-
-<!-- =========================================
-     MAIN CONTENT
-========================================== -->
-
 <main class="container py-4">
 
-
-    <!-- =========================================
-         BACK TO DASHBOARD
-    ========================================== -->
 
     <div class="mb-3">
 
@@ -333,12 +299,7 @@ $stmt->close();
 
     </div>
 
-
-
-    <!-- =========================================
-         PAGE HEADER
-    ========================================== -->
-
+  
     <div class="welcome-card p-4 rounded-4 shadow-sm mb-4">
 
 
@@ -372,11 +333,7 @@ $stmt->close();
     </div>
 
 
-    <!-- =========================================
-         PAST PAPERS HEADING
-    ========================================== -->
-
-    <div class="mb-4">
+     <div class="mb-4">
 
         <p class="small dashboard-label mb-1">
 
@@ -401,11 +358,6 @@ $stmt->close();
 
     </div>
 
-
-
-    <!-- =========================================
-         PAST PAPERS
-    ========================================== -->
 
     <?php if (empty($papers)): ?>
 
@@ -520,11 +472,6 @@ $stmt->close();
 
 </main>
 
-
-
-<!-- =========================================
-     BOOTSTRAP JAVASCRIPT
-========================================== -->
 
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
