@@ -6,10 +6,6 @@ require_once "php/db.php";
 require_once "php/remember_login.php";
 
 
-// ==========================================
-// REQUIRE LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html");
@@ -17,10 +13,6 @@ if (!isset($_SESSION["user_id"])) {
 
 }
 
-
-// ==========================================
-// CHECK LOGIN
-// ==========================================
 
 if (!isset($_SESSION["user_id"])) {
 
@@ -30,19 +22,12 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// GET LOGGED-IN USER
-// ==========================================
-
 $user_id = $_SESSION["user_id"];
 
 $full_name = $_SESSION["full_name"];
 $username = $_SESSION["username"];
 $email = $_SESSION["email"];
 
-// ==========================================
-// GET LOGGED-IN STUDENT'S SUBJECTS
-// ==========================================
 
 $sql = "SELECT 
             subjects.subject_id,
@@ -73,9 +58,6 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 
-// ==========================================
-// GET SUBJECT PROGRESS
-// ==========================================
 
 $subject_progress = [];
 
@@ -160,10 +142,6 @@ foreach ($student_subjects as $subject) {
 
 }
 
-// ==========================================
-// GET QUIZ HISTORY
-// ==========================================
-
 $sql = "SELECT
             quiz_attempts.attempt_id,
             quiz_attempts.quiz_id,
@@ -197,9 +175,6 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 
-// ==========================================
-// GET OVERALL LESSON PROGRESS
-// ==========================================
 
 $sql = "SELECT
             COUNT(lessons.lesson_id) AS total_lessons,
@@ -242,10 +217,6 @@ $overall_progress = $result->fetch_assoc();
 $stmt->close();
 
 
-// ==========================================
-// CALCULATE OVERALL PROGRESS PERCENTAGE
-// ==========================================
-
 $total_lessons = (int)$overall_progress["total_lessons"];
 
 $completed_lessons = (int)$overall_progress["completed_lessons"];
@@ -285,10 +256,7 @@ if ($total_lessons > 0) {
 
 <body>
 
-    <!-- ==============================
-     Navigation Bar
-=============================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar">
 
     <div class="container">
 
@@ -402,9 +370,6 @@ if ($total_lessons > 0) {
 
 </nav>
 
-    <!-- ==============================
-         Main Content
-    =============================== -->
     <main class="container py-4">
 
 
@@ -550,9 +515,7 @@ if ($total_lessons > 0) {
         </div>
 
 
-        <!-- ==============================
-             Subject Cards
-        =============================== -->
+       
         <div class="row g-4 mb-5">
 
 
@@ -725,9 +688,6 @@ if ($total_lessons > 0) {
 </div> <!-- Close Subject Cards Row -->
 
 
-<!-- ==============================
-     QUIZ PROGRESS
-=============================== -->
 
 <div class="mb-3">
 
@@ -878,9 +838,6 @@ if ($total_lessons > 0) {
 </div>
 
 
-<!-- ==============================
-     FULL QUIZ HISTORY
-=============================== -->
 
 <div class="text-end mb-5">
 
@@ -900,10 +857,6 @@ if ($total_lessons > 0) {
 
 </main>
 
-
-<!-- =================================
-     Footer
-================================== -->
 
 <footer class="home-footer py-4">
 
