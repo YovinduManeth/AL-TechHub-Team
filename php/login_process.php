@@ -4,9 +4,6 @@ session_start();
 
 require_once "db.php";
 
-// ==========================================
-// ONLY ALLOW POST REQUESTS
-// ==========================================
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
@@ -16,17 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 
-// ==========================================
-// GET LOGIN DATA
-// ==========================================
-
 $username = trim($_POST["username"] ?? "");
 $password = $_POST["password"] ?? "";
 
-
-// ==========================================
-// BASIC VALIDATION
-// ==========================================
 
 if (empty($username) || empty($password)) {
 
@@ -35,10 +24,6 @@ if (empty($username) || empty($password)) {
 
 }
 
-
-// ==========================================
-// FIND USER
-// ==========================================
 
 $sql = "SELECT user_id, full_name, username, email, password, role
         FROM users
@@ -58,10 +43,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 
-// ==========================================
-// CHECK USER
-// ==========================================
-
 if ($result->num_rows === 0) {
 
     $stmt->close();
@@ -76,10 +57,6 @@ $user = $result->fetch_assoc();
 
 $stmt->close();
 
-// ==========================================
-// CHECK PASSWORD
-// ==========================================
-
 if (!password_verify($password, $user["password"])) {
 
     header("Location: ../login.html?error=invalid");
@@ -87,17 +64,8 @@ if (!password_verify($password, $user["password"])) {
 
 }
 
-// ==========================================
-// REGENERATE SESSION ID
-// ==========================================
-
 session_regenerate_id(true);
 
-
-
-// ==========================================
-// REMEMBER ME
-// ==========================================
 
 if (isset($_POST["remember_me"])) {
 
@@ -139,20 +107,12 @@ if (isset($_POST["remember_me"])) {
     );
 }
 
-// ==========================================
-// LOGIN SUCCESS
-// ==========================================
-
 $_SESSION["user_id"] = $user["user_id"];
 $_SESSION["full_name"] = $user["full_name"];
 $_SESSION["username"] = $user["username"];
 $_SESSION["email"] = $user["email"];
 $_SESSION["role"] = $user["role"];
 
-
-// ==========================================
-// REDIRECT
-// ==========================================
 
 if ($user["role"] === "admin") {
 
