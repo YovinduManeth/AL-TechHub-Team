@@ -3,17 +3,11 @@
 require_once "php/db.php";
 
 
-// =========================================
-// MESSAGE
-// =========================================
 
 $message = "";
 $message_type = "";
 
 
-// =========================================
-// SELECTED VALUES
-// =========================================
 
 $selected_grade = $_GET["grade"] ?? "";
 
@@ -26,9 +20,6 @@ $selected_unit_id = isset($_GET["unit_id"])
     : 0;
 
 
-// =========================================
-// HANDLE ADD QUESTION
-// =========================================
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -73,10 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         );
 
 
-        // =====================================
-        // BASIC VALIDATION
-        // =====================================
-
         if (
             $post_grade === "" ||
             $post_subject_id <= 0 ||
@@ -100,10 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
 
 
-            // =================================
-            // VERIFY UNIT
-            // =================================
-
+           
             $unit_check_stmt = $conn->prepare("
                 SELECT
                     unit_id,
@@ -146,9 +130,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } else {
 
 
-                // =================================
-                // FIND EXISTING QUIZ
-                // =================================
 
                 $quiz_check_stmt = $conn->prepare("
                     SELECT
@@ -190,10 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         (int) $existing_quiz["quiz_id"];
 
 
-                    // =================================
-                    // COUNT EXISTING QUESTIONS
-                    // =================================
-
+                 
                     $count_stmt = $conn->prepare("
                         SELECT COUNT(*) AS total
                         FROM quiz_questions
@@ -220,9 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         (int) $count_row["total"];
 
 
-                    // =================================
-                    // MAXIMUM 20 QUESTIONS
-                    // =================================
+                 
 
                     if ($current_count >= 20) {
 
@@ -234,9 +210,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     } else {
 
 
-                        // =================================
-                        // INSERT QUESTION
-                        // =================================
 
                         $insert_stmt = $conn->prepare("
                             INSERT INTO quiz_questions
@@ -273,9 +246,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 $current_count + 1;
 
 
-                            // =================================
-                            // REDIRECT AFTER SUCCESS
-                            // =================================
 
                             header(
                                 "Location: quiz-bank.php?grade=" .
@@ -326,9 +296,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 
 
-// =========================================
-// SUCCESS MESSAGE
-// =========================================
 
 if (isset($_GET["success"]) && $_GET["success"] === "1") {
 
@@ -345,10 +312,6 @@ if (isset($_GET["success"]) && $_GET["success"] === "1") {
 
 }
 
-
-// =========================================
-// LOAD SUBJECTS
-// =========================================
 
 $subjects = [];
 
@@ -374,10 +337,6 @@ if ($subject_result) {
 
 }
 
-
-// =========================================
-// LOAD ALL UNITS
-// =========================================
 
 $units = [];
 
@@ -406,10 +365,6 @@ if ($unit_result) {
 }
 
 
-// =========================================
-// QUESTION BANK DATA
-// =========================================
-
 $quiz = null;
 
 $questions = [];
@@ -419,9 +374,6 @@ $question_count = 0;
 $selected_unit = null;
 
 
-// =========================================
-// LOAD SELECTED UNIT
-// =========================================
 
 if (
     $selected_grade !== "" &&
@@ -461,10 +413,7 @@ if (
     $unit_stmt->close();
 
 
-    // =====================================
-    // LOAD QUIZ
-    // =====================================
-
+    
     if ($selected_unit) {
 
         $quiz_stmt = $conn->prepare("
@@ -495,10 +444,7 @@ if (
         $quiz_stmt->close();
 
 
-        // =================================
-        // LOAD QUESTIONS
-        // =================================
-
+        
         if ($quiz) {
 
             $quiz_id =
@@ -597,9 +543,7 @@ if (
 <body class="admin-page">
 
 
-    <!-- =========================================
-         ADMIN NAVBAR
-    ========================================== -->
+   
 
     <nav class="navbar navbar-expand-lg admin-navbar sticky-top">
 
@@ -710,10 +654,7 @@ if (
     </nav>
 
 
-    <!-- =========================================
-         MAIN CONTENT
-    ========================================== -->
-
+  
     <main class="container py-5">
 
 
@@ -736,10 +677,6 @@ if (
 
         </div>
 
-
-        <!-- =========================================
-             MESSAGE
-        ========================================== -->
 
         <?php if ($message !== ""): ?>
 
@@ -778,10 +715,7 @@ if (
         <?php endif; ?>
 
 
-        <!-- =========================================
-             QUIZ SELECTION
-        ========================================== -->
-
+        
         <div class="row justify-content-center mb-4">
 
             <div class="col-lg-9 col-xl-8">
@@ -987,9 +921,6 @@ if (
         </div>
 
 
-        <!-- =========================================
-             SELECTED QUIZ
-        ========================================== -->
 
         <?php if ($selected_unit): ?>
 
@@ -1089,10 +1020,7 @@ if (
                                 </div>
 
 
-                                <!-- =================================
-                                     ADD QUESTION FORM
-                                ================================== -->
-
+                               
                                 <?php if ($question_count < 20): ?>
 
                                     <div class="border rounded-4 p-4">
@@ -1370,10 +1298,7 @@ if (
         <?php endif; ?>
 
 
-        <!-- =========================================
-             QUESTION BANK
-        ========================================== -->
-
+        
         <?php if ($selected_unit && $quiz): ?>
 
             <div class="mt-5">
@@ -1555,10 +1480,6 @@ if (
 
     </main>
 
-
-    <!-- =========================================
-         UNIT DATA
-    ========================================== -->
 
     <script>
 
