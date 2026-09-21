@@ -1,12 +1,3 @@
-// =========================================================
-// A/L TechHub - Main JavaScript
-// =========================================================
-
-
-// =========================================================
-// PASSWORD SHOW / HIDE
-// =========================================================
-
 function setupPasswordToggle(toggleId, passwordId, iconId) {
 
     const toggleButton = document.getElementById(toggleId);
@@ -66,10 +57,6 @@ setupPasswordToggle(
 );
 
 
-// =========================================================
-// REGISTRATION FORM VALIDATION
-// =========================================================
-
 const registerForm = document.getElementById("registerForm");
 const registerPassword = document.getElementById("password");
 const registerConfirmPassword =
@@ -111,10 +98,6 @@ if (
 }
 
 
-// =========================================================
-// REGISTRATION SUCCESS MESSAGE
-// =========================================================
-
 const urlParams =
     new URLSearchParams(window.location.search);
 
@@ -142,10 +125,6 @@ if (
 
 }
 
-
-// =========================================================
-// LOGIN ERROR MESSAGE
-// =========================================================
 
 if (
     urlParams.get("error") ===
@@ -178,10 +157,6 @@ if (
 
 }
 
-
-// =========================================================
-// SMOOTH SCROLLING
-// =========================================================
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -232,9 +207,6 @@ document.addEventListener(
     }
 );
 
-// =========================================================
-// DAY / NIGHT MODE
-// =========================================================
 
 function setupThemeMode() {
 
@@ -245,10 +217,6 @@ function setupThemeMode() {
         return;
     }
 
-
-    // -----------------------------------------------------
-    // APPLY THEME
-    // -----------------------------------------------------
 
     function applyTheme(isDarkMode) {
 
@@ -291,18 +259,10 @@ function setupThemeMode() {
     }
 
 
-    // -----------------------------------------------------
-    // LOAD SAVED THEME
-    // -----------------------------------------------------
-
     const savedTheme = localStorage.getItem("theme");
 
     applyTheme(savedTheme === "dark");
 
-
-    // -----------------------------------------------------
-    // TOGGLE THEME
-    // -----------------------------------------------------
 
     modeButton.onclick = function () {
 
@@ -323,10 +283,6 @@ function setupThemeMode() {
 }
 
 
-// ---------------------------------------------------------
-// START THEME MODE
-// ---------------------------------------------------------
-
 if (document.readyState === "loading") {
 
     document.addEventListener(
@@ -340,10 +296,6 @@ if (document.readyState === "loading") {
 
 }
 
-
-// =========================================================
-// DATA-SAVER MODE
-// =========================================================
 
 function setupDataSaverMode() {
 
@@ -405,10 +357,6 @@ function setupDataSaverMode() {
         "change",
         function () {
 
-
-            // =================================================
-            // DATA-SAVER ON
-            // =================================================
 
             if (toggle.checked) {
 
@@ -478,10 +426,6 @@ function setupDataSaverMode() {
                 }
 
 
-                // -------------------------------------------------
-                // Start audio at video position
-                // -------------------------------------------------
-
                 function startAudioAtVideoPosition() {
 
                     audioPlayer.currentTime =
@@ -528,10 +472,6 @@ function setupDataSaverMode() {
 
             }
 
-
-            // =================================================
-            // DATA-SAVER OFF
-            // =================================================
 
             else {
 
@@ -596,7 +536,3 @@ function setupDataSaverMode() {
 // Start Data-Saver Mode
 setupDataSaverMode();
 
-
-// =========================================================
-// END OF A/L TECHHUB MAIN SCRIPT
-// =========================================================
