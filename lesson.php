@@ -6,9 +6,6 @@ require_once "php/db.php";
 require_once "php/remember_login.php";
 
 
-// ==========================================
-// CHECK LOGIN
-// ==========================================
 
 if (!isset($_SESSION["user_id"])) {
 
@@ -18,17 +15,11 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// GET LOGGED-IN STUDENT
-// ==========================================
 
 $full_name = $_SESSION["full_name"];
 $user_id = (int)$_SESSION["user_id"];
 
 
-// ==========================================
-// GET LESSON ID
-// ==========================================
 
 $lesson_id = $_GET["lesson"] ?? "";
 
@@ -45,9 +36,6 @@ if (!is_numeric($lesson_id)) {
 $lesson_id = (int)$lesson_id;
 
 
-// ==========================================
-// GET LESSON DETAILS
-// ==========================================
 
 $sql = "SELECT
             lessons.lesson_id,
@@ -95,9 +83,6 @@ $lesson = $result->fetch_assoc();
 $stmt->close();
 
 
-// ==========================================
-// CHECK LESSON EXISTS
-// ==========================================
 
 if (!$lesson) {
 
@@ -106,9 +91,6 @@ if (!$lesson) {
 
 }
 
-// ==========================================
-// CHECK STUDENT SUBJECT ENROLLMENT
-// ==========================================
 
 $sql = "SELECT
             student_subject_id
@@ -186,9 +168,6 @@ $stmt->close();
 <body class="lesson-page">
 
 
-    <!-- =========================================
-     NAVIGATION
-========================================= -->
 
 <nav class="navbar navbar-expand-lg lesson-navbar">
 
@@ -258,9 +237,6 @@ $stmt->close();
 
 
 
-    <!-- =========================================
-         MAIN CONTENT
-    ========================================== -->
 
     <main class="container py-4">
 
@@ -268,19 +244,11 @@ $stmt->close();
         <div class="row g-4">
 
 
-            <!-- =================================
-                 MAIN LESSON AREA
-            ================================== -->
-
             <div class="col-lg-8">
 
 
                 <div class="lesson-main-card">
 
-
-                    <!-- =============================
-                         DATA SAVER SWITCHER
-                    ============================== -->
 
                     <div class="data-mode-box">
 
@@ -329,11 +297,6 @@ $stmt->close();
                         </div>
 
                     </div>
-
-
-                    <!-- =========================================
-                            VIDEO QUALITY SELECTOR
-                        ========================================= -->
 
                         <div class="video-quality-box">
 
@@ -385,9 +348,7 @@ $stmt->close();
                             </select>
 
                         </div>
-                        <!-- =============================
-                         VIDEO PLAYER
-                    ============================== -->
+                        
 
                     <div
                         id="videoContainer"
@@ -410,9 +371,6 @@ $stmt->close();
 
 
 
-                    <!-- =============================
-                         AUDIO PLAYER
-                    ============================== -->
 
                     <div
                         id="audioContainer"
@@ -455,9 +413,7 @@ $stmt->close();
 
 
 
-                    <!-- =============================
-                         LESSON INFORMATION
-                    ============================== -->
+                    
 
                     <div class="lesson-information">
 
@@ -493,16 +449,11 @@ $stmt->close();
 
 
 
-            <!-- =================================
-     SIDEBAR
-================================== -->
-
+           
 <div class="col-lg-4">
 
 
-    <!-- =============================
-         UNIT RESOURCES
-    ============================== -->
+
 
     <div class="lesson-side-card mb-4">
 
@@ -552,9 +503,6 @@ $stmt->close();
     </div>
 
 
-     <!-- =============================
-         LESSON INFORMATION
-    ============================== -->
 
     <div class="lesson-side-card">
 
@@ -608,9 +556,6 @@ $stmt->close();
 
 
 
-                <!-- =============================
-                     NEXT STEP
-                ============================== -->
 
                 <div class="lesson-side-card">
 
@@ -696,9 +641,7 @@ const audioPlayer =
     document.getElementById("audioPlayer");
 
 
-// ==========================================
-// VIDEO QUALITY PATHS
-// ==========================================
+
 
 const videoQualities = {
 
@@ -716,9 +659,7 @@ const videoQualities = {
 
 };
 
-// ==========================================
-// MARK LESSON AS COMPLETED
-// ==========================================
+
 
 function completeLesson() {
 
@@ -772,9 +713,6 @@ function completeLesson() {
 }
 
 
-// ==========================================
-// CHANGE VIDEO QUALITY
-// ==========================================
 
 videoQuality.addEventListener(
     "change",
@@ -871,9 +809,7 @@ videoQuality.addEventListener(
     }
 );
 
-// ==========================================
-// DATA-SAVER MODE
-// ==========================================
+
 
 dataModeToggle.addEventListener(
     "change",
@@ -888,9 +824,7 @@ dataModeToggle.addEventListener(
 
         if (this.checked) {
 
-            // ==================================
-            // DATA-SAVER ON
-            // ==================================
+            
 
             videoPlayer.pause();
 
@@ -939,10 +873,7 @@ dataModeToggle.addEventListener(
 
         } else {
 
-            // ==================================
-            // DATA-SAVER OFF
-            // ==================================
-
+            
             const audioTime =
                 audioPlayer.currentTime;
 
@@ -993,9 +924,6 @@ dataModeToggle.addEventListener(
     }
 );
 
-// ==========================================
-// VIDEO ERROR CHECK
-// ==========================================
 
 videoPlayer.addEventListener(
     "error",
@@ -1009,9 +937,6 @@ videoPlayer.addEventListener(
     }
 );
 
-// ==========================================
-// VIDEO COMPLETION
-// ==========================================
 
 videoPlayer.addEventListener(
     "ended",
@@ -1022,10 +947,6 @@ videoPlayer.addEventListener(
     }
 );
 
-
-// ==========================================
-// AUDIO COMPLETION
-// ==========================================
 
 audioPlayer.addEventListener(
     "ended",
