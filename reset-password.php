@@ -3,19 +3,11 @@
 require_once "php/db.php";
 
 
-// ==========================================
-// VARIABLES
-// ==========================================
-
 $message = "";
 $message_type = "";
 
 $token = $_GET["token"] ?? "";
 
-
-// ==========================================
-// CHECK TOKEN
-// ==========================================
 
 if (empty($token)) {
 
@@ -24,10 +16,6 @@ if (empty($token)) {
 
 }
 
-
-// ==========================================
-// FIND TOKEN
-// ==========================================
 
 if (!empty($token)) {
 
@@ -55,10 +43,6 @@ if (!empty($token)) {
     $result = $stmt->get_result();
 
 
-    // ==========================================
-    // TOKEN NOT FOUND
-    // ==========================================
-
     if ($result->num_rows === 0) {
 
         $message =
@@ -72,10 +56,6 @@ if (!empty($token)) {
 
         $reset = $result->fetch_assoc();
 
-
-        // ==========================================
-        // CHECK EXPIRATION
-        // ==========================================
 
         if (
             strtotime($reset["expires_at"]) < time()
@@ -116,10 +96,6 @@ if (!empty($token)) {
 }
 
 
-// ==========================================
-// PROCESS NEW PASSWORD
-// ==========================================
-
 if (
     $_SERVER["REQUEST_METHOD"] === "POST" &&
     !empty($token) &&
@@ -132,9 +108,7 @@ if (
     $confirm_password =
         $_POST["confirm_password"] ?? "";
 
-        // ==========================================
-    // CHECK PASSWORDS
-    // ==========================================
+    
 
     if (
         empty($password) ||
@@ -169,10 +143,6 @@ if (
     else {
 
 
-        // ==========================================
-        // HASH NEW PASSWORD
-        // ==========================================
-
         $hashed_password =
             password_hash(
                 $password,
@@ -180,9 +150,7 @@ if (
             );
 
 
-        // ==========================================
-        // UPDATE USER PASSWORD
-        // ==========================================
+        
 
         $update_sql =
             "UPDATE users
@@ -199,16 +167,11 @@ if (
         );
 
 
-        // ==========================================
-        // SAVE PASSWORD
-        // ==========================================
 
         if ($update_stmt->execute()) {
 
 
-            // ==========================================
-            // DELETE USED TOKEN
-            // ==========================================
+            
 
             $delete_sql =
                 "DELETE FROM password_resets
@@ -226,10 +189,7 @@ if (
 
             $delete_stmt->close();
 
-             // ==========================================
-            // SUCCESS
-            // ==========================================
-
+             
             $login_page =
                 ($reset["role"] === "admin")
                     ? "admin-login.html"
@@ -318,9 +278,6 @@ if (
 <div class="login-wrapper">
 
 
-    <!-- =========================================
-         LEFT SIDE
-    ========================================== -->
 
     <div class="login-sidebar">
 
@@ -453,9 +410,7 @@ if (
 
     </div>
     
-    <!-- =========================================
-         RIGHT SIDE
-    ========================================== -->
+  
 
     <div class="login-content">
 
@@ -669,10 +624,7 @@ if (
 
 <script>
 
-    // ==========================================
-    // NEW PASSWORD TOGGLE
-    // ==========================================
-
+   
     const password =
         document.getElementById("password");
 
@@ -717,12 +669,7 @@ if (
 
     });
 
-
-
-    // ==========================================
-    // CONFIRM PASSWORD TOGGLE
-    // ==========================================
-
+    
     const confirmPassword =
         document.getElementById("confirm_password");
 
