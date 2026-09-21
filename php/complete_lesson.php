@@ -5,10 +5,6 @@ session_start();
 require_once "db.php";
 
 
-// ==========================================
-// CHECK LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     http_response_code(401);
@@ -17,16 +13,8 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// GET USER ID
-// ==========================================
-
 $user_id = (int)$_SESSION["user_id"];
 
-
-// ==========================================
-// GET LESSON ID
-// ==========================================
 
 $lesson_id = $_POST["lesson_id"] ?? "";
 
@@ -42,9 +30,6 @@ if (!is_numeric($lesson_id)) {
 
 $lesson_id = (int)$lesson_id;
 
-// ==========================================
-// SAVE LESSON COMPLETION
-// ==========================================
 
 $sql = "INSERT INTO student_progress
             (user_id, lesson_id, completed, completed_at)
