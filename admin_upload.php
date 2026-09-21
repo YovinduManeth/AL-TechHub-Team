@@ -3,10 +3,6 @@
 session_start();
 
 
-// ==========================================
-// ADMIN ACCESS PROTECTION
-// ==========================================
-
 if (
     !isset($_SESSION["user_id"]) ||
     !isset($_SESSION["role"]) ||
@@ -22,9 +18,6 @@ set_time_limit(600);
 require_once "php/db.php";
 require_once "php/ffmpeg.php";
 
-// ==========================================
-// ONLY ALLOW POST REQUEST
-// ==========================================
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
@@ -33,10 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 }
 
-
-// ==========================================
-// GET FORM DATA
-// ==========================================
 
 $resource_type = $_POST["resource_type"] ?? "";
 
@@ -58,16 +47,10 @@ $description = trim($_POST["description"] ?? "");
 
 
 
-// ==========================================
-// PAST PAPER UPLOAD
-// ==========================================
 
 if ($resource_type === "past_paper") {
 
 
-    // ==========================================
-    // GET PAST PAPER DATA
-    // ==========================================
 
     $subject_id = $_POST["subject_id"] ?? "";
 
@@ -76,9 +59,6 @@ if ($resource_type === "past_paper") {
     $paper_title = trim($_POST["paper_title"] ?? "");
 
 
-    // ==========================================
-    // CHECK REQUIRED DATA
-    // ==========================================
 
     if (
     empty($subject_id) ||
@@ -95,10 +75,6 @@ if ($resource_type === "past_paper") {
 }
 
 
-    // ==========================================
-    // CHECK SUBJECT ID
-    // ==========================================
-
     if (!is_numeric($subject_id)) {
 
         die("Invalid subject selected.");
@@ -107,10 +83,6 @@ if ($resource_type === "past_paper") {
 
     $subject_id = (int)$subject_id;
 
-
-    // ==========================================
-    // CHECK YEAR
-    // ==========================================
 
     if (
         !is_numeric($paper_year) ||
@@ -125,10 +97,6 @@ if ($resource_type === "past_paper") {
     $paper_year = (int)$paper_year;
 
 
-    // ==========================================
-    // CHECK FILE UPLOAD
-    // ==========================================
-
     if (
         $_FILES["paper_file"]["error"] !==
         UPLOAD_ERR_OK
@@ -142,10 +110,7 @@ if ($resource_type === "past_paper") {
     $paper_file = $_FILES["paper_file"];
 
 
-    // ==========================================
-    // CHECK FILE TYPE
-    // ==========================================
-
+ 
     $file_extension = strtolower(
         pathinfo(
             $paper_file["name"],
@@ -164,11 +129,7 @@ if ($resource_type === "past_paper") {
     }
 
 
-    // ==========================================
-    // CREATE UPLOAD DIRECTORY
-    // ==========================================
-
-    $past_paper_directory =
+      $past_paper_directory =
         "uploads/past_papers/";
 
 
@@ -183,10 +144,6 @@ if ($resource_type === "past_paper") {
     }
 
 
-    // ==========================================
-    // CREATE UNIQUE FILE NAME
-    // ==========================================
-
     $unique_name =
         "paper_" .
         time() .
@@ -199,10 +156,6 @@ if ($resource_type === "past_paper") {
         $past_paper_directory .
         $unique_name;
 
-
-    // ==========================================
-    // MOVE PDF FILE
-    // ==========================================
 
     if (
         !move_uploaded_file(
@@ -217,10 +170,6 @@ if ($resource_type === "past_paper") {
 
     }
 
-
-    // ==========================================
-// INSERT PAST PAPER INTO DATABASE
-// ==========================================
 
 $sql = "INSERT INTO past_papers
         (
@@ -243,10 +192,7 @@ $stmt->bind_param(
     $paper_path
 );
 
-    // ==========================================
-    // DATABASE INSERT
-    // ==========================================
-
+    
     if (!$stmt->execute()) {
 
 
@@ -270,10 +216,6 @@ $stmt->bind_param(
 
     $stmt->close();
 
-
-// ==========================================
-    // SUCCESS
-    // ==========================================
 
     echo "<h2>Past paper uploaded successfully!</h2>";
 
@@ -303,11 +245,6 @@ $stmt->bind_param(
     exit();
 
 }
-
-
-// ==========================================
-// CHECK UNIT
-// ==========================================
 // Video Lessons and Short Notes need a unit.
 // Past Papers do not reach this section.
 
@@ -318,16 +255,8 @@ if (empty($unit_id)) {
 }
 
 
-// ==========================================
-// SHORT NOTES UPLOAD
-// ==========================================
-
 if ($resource_type === "short_notes") {
 
-
-    // ==========================================
-    // CHECK REQUIRED DATA
-    // ==========================================
 
     if (
         empty($title) ||
@@ -342,9 +271,6 @@ if ($resource_type === "short_notes") {
     }
 
 
-    // ==========================================
-    // CHECK FILE UPLOAD
-    // ==========================================
 
     if (
         $_FILES["note_file"]["error"] !==
@@ -358,10 +284,6 @@ if ($resource_type === "short_notes") {
 
     $note_file = $_FILES["note_file"];
 
-
-    // ==========================================
-    // CHECK FILE TYPE
-    // ==========================================
 
     $file_extension = strtolower(
         pathinfo(
@@ -380,11 +302,6 @@ if ($resource_type === "short_notes") {
 
     }
 
-
-    // ==========================================
-    // CREATE UPLOAD DIRECTORY
-    // ==========================================
-
     $notes_directory = "uploads/notes/";
 
 
@@ -397,9 +314,6 @@ if ($resource_type === "short_notes") {
         );
 
     }
-// ==========================================
-    // CREATE UNIQUE FILE NAME
-    // ==========================================
 
     $unique_name =
         "note_" .
@@ -414,10 +328,7 @@ if ($resource_type === "short_notes") {
         $unique_name;
 
 
-    // ==========================================
-    // MOVE PDF FILE
-    // ==========================================
-
+   
     if (
         !move_uploaded_file(
             $note_file["tmp_name"],
@@ -431,10 +342,6 @@ if ($resource_type === "short_notes") {
 
     }
 
-
-    // ==========================================
-    // INSERT SHORT NOTE INTO DATABASE
-    // ==========================================
 
     $sql = "INSERT INTO short_notes
             (
@@ -456,10 +363,7 @@ if ($resource_type === "short_notes") {
     );
 
 
-    // ==========================================
-    // DATABASE INSERT
-    // ==========================================
-
+  
     if (!$stmt->execute()) {
 
 
@@ -484,10 +388,7 @@ if ($resource_type === "short_notes") {
     $stmt->close();
 
 
-    // ==========================================
-    // SUCCESS
-    // ==========================================
-
+   
     echo "<h2>Short note uploaded successfully!</h2>";
 
 
@@ -509,9 +410,6 @@ if ($resource_type === "short_notes") {
 }
 
 
-// ==========================================
-// VIDEO LESSON UPLOAD
-// ==========================================
 
 if ($resource_type !== "lesson") {
 
@@ -523,9 +421,6 @@ if ($resource_type !== "lesson") {
 }
 
 
-// ==========================================
-// CHECK REQUIRED DATA
-// ==========================================
 
 if (
     empty($lesson_number) ||
@@ -539,10 +434,6 @@ if (
 
 }
 
-// ==========================================
-// CHECK VIDEO FILE
-// ==========================================
-
 if (
     $_FILES["video"]["error"] !==
     UPLOAD_ERR_OK
@@ -555,10 +446,6 @@ if (
 
 $video_file = $_FILES["video"];
 
-
-// ==========================================
-// CHECK VIDEO FILE TYPE
-// ==========================================
 
 $file_extension = strtolower(
     pathinfo(
@@ -577,10 +464,6 @@ if ($file_extension !== "mp4") {
 }
 
 
-// ==========================================
-// CREATE UNIQUE VIDEO FILE NAME
-// ==========================================
-
 $unique_name =
     "lesson_" .
     time() .
@@ -589,9 +472,6 @@ $unique_name =
     ".mp4";
 
 
-// ==========================================
-// UPLOAD DIRECTORIES
-// ==========================================
 
 $video_directory =
     "uploads/videos/";
@@ -601,10 +481,6 @@ $video_quality_directory =
 
 $audio_directory =
     "uploads/audios/";
-
-// ==========================================
-// CREATE DIRECTORIES
-// ==========================================
 
 if (!is_dir($video_directory)) {
 
@@ -638,11 +514,6 @@ if (!is_dir($audio_directory)) {
 
 
 
-
-// ==========================================
-// FILE PATHS
-// ==========================================
-
 $video_path =
     $video_directory .
     $unique_name;
@@ -661,9 +532,6 @@ $audio_path =
     $audio_name;
 
 
-// ==========================================
-// VIDEO QUALITY FILE PATHS
-// ==========================================
 
 $video_filename =
     pathinfo(
@@ -696,10 +564,6 @@ $video_360p_path =
     "_360p.mp4";
 
 
-// ==========================================
-// MOVE UPLOADED VIDEO
-// ==========================================
-
 if (
     !move_uploaded_file(
         $video_file["tmp_name"],
@@ -712,10 +576,6 @@ if (
     );
 
 }
-
-// ==========================================
-// GENERATE VIDEO QUALITY VERSIONS
-// ==========================================
 
 // 1080p
 $result_1080p =
@@ -813,9 +673,6 @@ if (!$result_360p["success"]) {
 }
 
 
-// ==========================================
-// GENERATE AUDIO USING FFMPEG
-// ==========================================
 
 $audio_result =
     generateAudioFromVideo(
@@ -823,10 +680,6 @@ $audio_result =
         $audio_path
     );
 
-
-// ==========================================
-// CHECK AUDIO GENERATION
-// ==========================================
 
 if (!$audio_result["success"]) {
 
@@ -855,10 +708,6 @@ if (!$audio_result["success"]) {
 
 }
 
-
-// ==========================================
-// VIDEO DURATION
-// ==========================================
 
 $duration_seconds = getVideoDuration($video_path);
 
@@ -899,10 +748,6 @@ if ($duration_seconds === false) {
 $duration_minutes =
     round($duration_seconds / 60, 2);
 
-
-// ==========================================
-// INSERT LESSON INTO DATABASE
-// ==========================================
 
 $sql = "INSERT INTO lessons
         (
@@ -982,10 +827,6 @@ if (!$stmt->execute()) {
 
 $stmt->close();
 
-
-// ==========================================
-// SUCCESS
-// ==========================================
 
 echo "<h2>Lesson uploaded successfully!</h2>";
 
