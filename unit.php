@@ -5,10 +5,6 @@ session_start();
 require_once "php/db.php";
 
 
-// ==========================================
-// CHECK LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html?error=login_required");
@@ -17,17 +13,9 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// GET LOGGED-IN STUDENT
-// ==========================================
-
 $full_name = $_SESSION["full_name"];
 $user_id = (int)$_SESSION["user_id"];
 
-
-// ==========================================
-// GET UNIT ID
-// ==========================================
 
 $unit_id = $_GET["unit"] ?? "";
 
@@ -43,10 +31,6 @@ if (!is_numeric($unit_id)) {
 
 $unit_id = (int)$unit_id;
 
-
-// ==========================================
-// GET UNIT DETAILS
-// ==========================================
 
 $sql = "SELECT
             units.unit_id,
@@ -73,10 +57,6 @@ $unit = $result->fetch_assoc();
 
 $stmt->close();
 
-
-// ==========================================
-// CHECK UNIT EXISTS
-// ==========================================
 
 if (!$unit) {
 
@@ -112,12 +92,6 @@ if ($result->num_rows === 0) {
 }
 
 $stmt->close();
-
-
-// ==========================================
-// GET LESSONS FOR THIS UNIT
-// ==========================================
-
 
 
 $sql = "SELECT
@@ -166,9 +140,6 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 
-// ==========================================
-// Calculate Unit Progress
-// ==========================================
 
 $total_lessons = count($lessons);
 
@@ -193,9 +164,6 @@ if ($total_lessons > 0) {
 
 }
 
-// ==========================================
-// GET QUIZ FOR THIS UNIT
-// ==========================================
 
 $sql = "SELECT
             quiz_id,
@@ -265,10 +233,6 @@ $stmt->close();
 
 <body>
 
-
-<!-- ==============================
-     Navigation Bar
-=============================== -->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar">
 
@@ -412,9 +376,6 @@ $stmt->close();
 
 </nav>
 
-<!-- ==============================
-     Main Content
-=============================== -->
 
 <main class="container py-4">
 
@@ -666,9 +627,6 @@ $stmt->close();
 
         </div>
 
-        <!-- ==============================
-         LESSONS
-    =============================== -->
 
     <div class="mt-5">
 
