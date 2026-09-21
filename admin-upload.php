@@ -6,10 +6,6 @@ $message = "";
 $message_type = "";
 
 
-// ==========================================
-// GET ALL UNITS
-// ==========================================
-
 $sql = "SELECT
             units.unit_id,
             units.grade,
@@ -34,10 +30,6 @@ while ($row = $result->fetch_assoc()) {
 
 }
 
-
-// ==========================================
-// GET ALL PAST PAPERS
-// ==========================================
 
 $sql = "SELECT
             past_papers.paper_id,
@@ -98,10 +90,6 @@ while ($row = $result->fetch_assoc()) {
 
 <body class="admin-page">
 
-
-    <!-- =========================================
-         ADMIN NAVBAR
-    ========================================== -->
 
     <nav class="navbar navbar-expand-lg admin-navbar sticky-top">
 
@@ -194,10 +182,7 @@ while ($row = $result->fetch_assoc()) {
     </nav>
 
 
-    <!-- =========================================
-         MAIN CONTENT
-    ========================================== -->
-
+   
     <main class="container py-5">
 
 
@@ -221,10 +206,6 @@ while ($row = $result->fetch_assoc()) {
         </div>
 
 
-
-        <!-- =========================================
-             UPLOAD CARD
-        ========================================== -->
 
         <div class="row justify-content-center">
 
@@ -271,10 +252,6 @@ while ($row = $result->fetch_assoc()) {
                         >
 
 
-                            <!-- =========================================
-                                 RESOURCE TYPE
-                            ========================================== -->
-
                             <div class="mb-4">
 
                                 <label class="form-label fw-bold">
@@ -317,10 +294,6 @@ while ($row = $result->fetch_assoc()) {
                             </div>
 
 
-
-                            <!-- =========================================
-                                 LEARNING CONTENT LOCATION
-                            ========================================== -->
 
                             <div class="mb-4" id="unitLocationFields">
 
@@ -407,10 +380,6 @@ while ($row = $result->fetch_assoc()) {
                             </div>
 
 
-
-                            <!-- =========================================
-                                 VIDEO LESSON FIELDS
-                            ========================================== -->
 
                             <div id="lessonFields">
 
@@ -584,10 +553,6 @@ while ($row = $result->fetch_assoc()) {
 
 
 
-                            <!-- =========================================
-                                 SHORT NOTES FIELDS
-                            ========================================== -->
-
                             <div
                                 id="shortNotesFields"
                                 style="display: none;"
@@ -672,10 +637,6 @@ while ($row = $result->fetch_assoc()) {
 
 
                             
-                                <!-- =========================================
-                                    PAST PAPER FIELDS
-                                ========================================== -->
-
                                                             
                                     <div id="pastPaperFields" style="display: none;">
 
@@ -805,10 +766,7 @@ while ($row = $result->fetch_assoc()) {
 
 
 
-                            <!-- =========================================
-                                 SUBMIT BUTTON
-                            ========================================== -->
-
+                        
                             <button
                                 type="submit"
                                 class="btn btn-admin-primary w-100 py-3 fw-bold"
@@ -832,10 +790,7 @@ while ($row = $result->fetch_assoc()) {
 
         </div>
 
-                <!-- =========================================
-             PAST PAPER MANAGEMENT
-        ========================================== -->
-
+              
                 <div
             class="row justify-content-center mx-auto"
             id="pastPaperManagement"
@@ -1095,18 +1050,10 @@ const submitButton =
     document.getElementById("submitButton");
 
 
-// ==========================================
-// RESOURCE TYPE CHANGE
-// ==========================================
-
 resourceType.addEventListener("change", function () {
 
     const type = this.value;
 
-
-    // ==========================================
-    // HIDE EVERYTHING FIRST
-    // ==========================================
 
     lessonFields.style.display = "none";
 
@@ -1119,10 +1066,7 @@ resourceType.addEventListener("change", function () {
     unitLocationFields.style.display = "block";
 
 
-    // ==========================================
-    // RESET REQUIRED ATTRIBUTES
-    // ==========================================
-
+  
     generalGrade.required = false;
 
     unitSelect.required = false;
@@ -1145,10 +1089,6 @@ resourceType.addEventListener("change", function () {
 
     paperFile.required = false;
 
-
-    // ==========================================
-    // VIDEO LESSON
-    // ==========================================
 
     if (type === "lesson") {
 
@@ -1180,10 +1120,6 @@ resourceType.addEventListener("change", function () {
     }
 
 
-    // ==========================================
-    // SHORT NOTES
-    // ==========================================
-
     else if (type === "short_notes") {
 
         shortNotesFields.style.display = "block";
@@ -1211,10 +1147,6 @@ resourceType.addEventListener("change", function () {
 
     }
 
-
-    // ==========================================
-    // PAST PAPER
-    // ==========================================
 
     else if (type === "past_paper") {
 
@@ -1248,10 +1180,6 @@ resourceType.addEventListener("change", function () {
     }
 
 
-    // ==========================================
-    // OTHER
-    // ==========================================
-
     else {
 
         submitButton.innerHTML =
@@ -1262,10 +1190,6 @@ resourceType.addEventListener("change", function () {
 
 });
 
-
-// ==========================================
-// GRADE → UNIT FILTER
-// ==========================================
 
 generalGrade.addEventListener("change", function () {
 
