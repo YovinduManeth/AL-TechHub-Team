@@ -6,10 +6,6 @@ require_once "php/db.php";
 require_once "php/remember_login.php";
 
 
-// ==========================================
-// REQUIRE LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html?error=login_required");
@@ -18,19 +14,11 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-// ==========================================
-// GET LOGGED-IN USER
-// ==========================================
-
 $user_id = (int)$_SESSION["user_id"];
 
 $full_name = $_SESSION["full_name"];
 $username = $_SESSION["username"];
 
-
-// ==========================================
-// GET QUIZ HISTORY
-// ==========================================
 
 $sql = "SELECT
             quiz_attempts.attempt_id,
@@ -129,10 +117,7 @@ $stmt->close();
 <body>
 
 
-    <!-- ==============================
-         Navigation Bar
-    =============================== -->
-
+ 
     <nav
         class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar"
     >
@@ -299,10 +284,7 @@ $stmt->close();
 
     </nav>
 
-    <!-- ==============================
-         Main Content
-    =============================== -->
-
+  
     <main class="container py-4">
 
 
@@ -332,10 +314,6 @@ $stmt->close();
 
         </div>
 
-
-        <!-- ==============================
-             Quiz History Card
-        =============================== -->
 
         <div
     class="card rounded-4 shadow-sm border-0 mb-4 quiz-history-card"
