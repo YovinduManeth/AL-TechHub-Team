@@ -3,10 +3,6 @@
 session_start();
 
 
-// ==========================================
-// ADMIN ACCESS PROTECTION
-// ==========================================
-
 if (
     !isset($_SESSION["user_id"]) ||
     !isset($_SESSION["role"]) ||
@@ -19,10 +15,6 @@ if (
 
 require_once "php/db.php";
 
-// ==========================================
-// GET PAPER ID
-// ==========================================
-
 $paper_id = $_GET["paper_id"] ?? "";
 
 if (!is_numeric($paper_id)) {
@@ -33,10 +25,6 @@ if (!is_numeric($paper_id)) {
 
 $paper_id = (int)$paper_id;
 
-
-// ==========================================
-// GET PAPER INFORMATION
-// ==========================================
 
 $sql = "SELECT
             paper_id,
@@ -59,21 +47,12 @@ $paper = $result->fetch_assoc();
 
 $stmt->close();
 
-
-// ==========================================
-// CHECK PAPER EXISTS
-// ==========================================
-
 if (!$paper) {
 
     die("Past paper not found.");
 
 }
 
-
-// ==========================================
-// DELETE PHYSICAL PDF FILE
-// ==========================================
 
 $file_path = $paper["file_path"];
 
@@ -83,10 +62,6 @@ if (file_exists($file_path)) {
 
 }
 
-
-// ==========================================
-// DELETE DATABASE RECORD
-// ==========================================
 
 $sql = "DELETE FROM past_papers
         WHERE paper_id = ?";
