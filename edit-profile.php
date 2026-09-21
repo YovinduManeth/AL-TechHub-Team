@@ -6,9 +6,6 @@ require_once "php/db.php";
 require_once "php/remember_login.php";
 
 
-// ==========================================
-// CHECK LOGIN
-// ==========================================
 
 if (!isset($_SESSION["user_id"])) {
 
@@ -19,10 +16,6 @@ if (!isset($_SESSION["user_id"])) {
 
 $user_id = $_SESSION["user_id"];
 
-
-// ==========================================
-// GET CURRENT USER DATA
-// ==========================================
 
 $sql = "SELECT full_name, username, email
         FROM users
@@ -55,9 +48,6 @@ $user = $result->fetch_assoc();
 
 $stmt->close();
 
-// ==========================================
-// UPDATE PROFILE
-// ==========================================
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -65,10 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST["username"] ?? "");
     $email = trim($_POST["email"] ?? "");
 
-
-    // ==========================================
-    // BASIC VALIDATION
-    // ==========================================
 
     if (
         empty($full_name) ||
@@ -84,10 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } else {
 
-
-        // ==========================================
-        // CHECK USERNAME / EMAIL
-        // ==========================================
 
         $check_sql = "SELECT user_id
                       FROM users
@@ -116,10 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
 
 
-            // ==========================================
-            // UPDATE USER
-            // ==========================================
-
             $update_sql = "UPDATE users
                            SET full_name = ?,
                                username = ?,
@@ -140,10 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($update_stmt->execute()) {
 
 
-                // ==========================================
-                // UPDATE SESSION
-                // ==========================================
-
+               
                 $_SESSION["full_name"] = $full_name;
                 $_SESSION["username"] = $username;
                 $_SESSION["email"] = $email;
@@ -154,10 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $conn->close();
 
 
-                // ==========================================
-                // RETURN TO PROFILE
-                // ==========================================
-
+              
                 header("Location: profile.php?updated=success");
                 exit();
 
@@ -223,9 +195,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-<!-- ==============================
-     Top Navigation
-================================ -->
 
 <nav class="navbar navbar-light bg-white sticky-top dashboard-navbar">
 
