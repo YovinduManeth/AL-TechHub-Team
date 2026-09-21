@@ -16,10 +16,6 @@ $subject = "";
 $message = "";
 
 
-// =================================
-// Database Connection
-// =================================
-
 $conn = new mysqli("localhost", "root", "", "al_techhub_team");
 
 if ($conn->connect_error) {
@@ -28,10 +24,6 @@ if ($conn->connect_error) {
 
 $conn->set_charset("utf8mb4");
 
-
-// =================================
-// Handle Contact Form Submission
-// =================================
 
 $success_message = "";
 $error_message = "";
@@ -44,20 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $message = trim($_POST["message"] ?? "");
 
 
-    // =================================
-    // Validate Required Fields
-    // =================================
-
     if ($name === "" || $email === "" || $subject === "" || $message === "") {
 
         $error_message = "Please fill in all fields.";
 
     }
 
-    // =================================
-    // Validate Email
-    // =================================
-
+    
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
         $error_message = "Please enter a valid email address.";
@@ -66,10 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     else {
 
-        // =================================
-        // Insert Message into Database
-        // =================================
-
+       
         $stmt = $conn->prepare(
     "INSERT INTO contact_messages
     (name, email, subject, message)
@@ -94,10 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $message
             );
 
-            // =================================
-            // Execute Insert
-            // =================================
-
+            
             if ($stmt->execute()) {
 
                 $success_message = "Your message has been sent successfully.";
@@ -168,11 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body class="contact-page">
 
 
-    <!-- =================================
-         Navigation Bar
-    ================================== -->
-
-    <nav
+       <nav
         class="navbar navbar-expand-lg navbar-light bg-white sticky-top dashboard-navbar"
     >
 
@@ -334,10 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    <!-- =================================
-         Contact Hero
-    ================================== -->
-
+    
     <section class="contact-hero">
 
         <div class="container">
@@ -365,19 +337,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    <!-- =================================
-         Contact Section
-    ================================== -->
-
+    
     <main class="container py-5">
 
         <div class="row g-4">
 
 
-            <!-- =================================
-                 Contact Information
-            ================================== -->
-
+            
             <div class="col-lg-5">
 
                 <div class="contact-info-card h-100">
@@ -497,10 +463,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-            <!-- =================================
-                 Contact Form
-            ================================== -->
-
+            
             <div class="col-lg-7">
 
                 <div class="contact-form-card">
@@ -525,10 +488,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
 
 
-
-                    <!-- =================================
-                         SUCCESS MESSAGE
-                    ================================== -->
 
                     <?php if ($success_message !== ""): ?>
 
@@ -559,10 +518,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-                    <!-- =================================
-                         ERROR MESSAGE
-                    ================================== -->
-
+                   
                     <?php if ($error_message !== ""): ?>
 
                         <div
@@ -592,10 +548,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-                    <!-- =================================
-                         Contact Form
-                    ================================== -->
-
+                   
                     <form
                         method="POST"
                         action="contact.php"
@@ -817,10 +770,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    <!-- =================================
-         Footer
-    ================================== -->
-
+ 
     <footer class="home-footer py-4">
 
         <div class="container text-center">
