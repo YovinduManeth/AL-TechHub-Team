@@ -6,10 +6,6 @@ require_once "php/db.php";
 require_once "php/remember_login.php";
 
 
-// ==========================================
-// CHECK LOGIN
-// ==========================================
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html");
@@ -20,20 +16,12 @@ if (!isset($_SESSION["user_id"])) {
 $user_id = $_SESSION["user_id"];
 
 
-// ==========================================
-// CHANGE PASSWORD
-// ==========================================
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $current_password = $_POST["current_password"] ?? "";
     $new_password = $_POST["new_password"] ?? "";
     $confirm_password = $_POST["confirm_password"] ?? "";
 
-
-    // ==========================================
-    // BASIC VALIDATION
-    // ==========================================
 
     if (
         empty($current_password) ||
@@ -54,9 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
 
 
-        // ==========================================
-        // GET CURRENT PASSWORD
-        // ==========================================
 
         $sql = "SELECT password
                 FROM users
@@ -86,10 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stored_password = $user["password"];
 
 
-            // ==========================================
-            // VERIFY CURRENT PASSWORD
-            // ==========================================
-
+            
             if (!password_verify($current_password, $stored_password)) {
 
                 $error = "Current password is incorrect.";
@@ -101,19 +83,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } else {
 
 
-                // ==========================================
-                // HASH NEW PASSWORD
-                // ==========================================
-
+               
                 $hashed_password = password_hash(
                     $new_password,
                     PASSWORD_DEFAULT
                 );
 
-
-                // ==========================================
-                // UPDATE PASSWORD
-                // ==========================================
 
                 $update_sql = "UPDATE users
                                SET password = ?
@@ -197,9 +172,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-<!-- ==============================
-     Top Navigation
-================================ -->
 
 <nav class="navbar navbar-light bg-white sticky-top dashboard-navbar">
 
