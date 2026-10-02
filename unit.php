@@ -140,6 +140,49 @@ while ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 
+/*
+    Get lesson parts for each lesson
+*/
+
+foreach ($lessons as &$lesson) {
+
+    $lesson["parts"] = [];
+
+    $sql = "SELECT
+                part_id,
+                part_number,
+                title,
+                duration_minutes
+
+            FROM lesson_parts
+
+            WHERE lesson_id = ?
+
+            ORDER BY part_number";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bind_param(
+        "i",
+        $lesson["lesson_id"]
+    );
+
+    $stmt->execute();
+
+    $part_result = $stmt->get_result();
+
+    while ($part = $part_result->fetch_assoc()) {
+
+        $lesson["parts"][] = $part;
+
+    }
+
+    $stmt->close();
+
+}
+
+unset($lesson);
+
 
 $total_lessons = count($lessons);
 
@@ -660,77 +703,149 @@ $stmt->close();
 
         <?php else: ?>
 
-
+            
             <?php foreach ($lessons as $lesson): ?>
 
-                <div class="lesson-item mb-3">
+    <?php if (!empty($lesson["parts"])): ?>
 
-                    <div class="lesson-info">
+        <?php foreach ($lesson["parts"] as $part): ?>
 
-                        <div class="lesson-icon">
+            <div class="lesson-item mb-3">
 
-                            <i class="bi bi-play-circle-fill"></i>
+                <div class="lesson-info">
 
-                        </div>
+                    <div class="lesson-icon">
 
-
-                        <div>
-
-                            <h6 class="fw-bold mb-1">
-
-                                Lesson
-                                <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
-
-                                <?php echo htmlspecialchars($lesson["title"]); ?>
-
-                            </h6>
-
-
-                            <small class="text-muted">
-
-                                <i class="bi bi-clock me-1"></i>
-
-                                <?php echo htmlspecialchars($lesson["duration_minutes"]); ?>
-                                mins
-
-                                <span class="mx-1">•</span>
-
-                                <?php echo htmlspecialchars($lesson["description"]); ?>
-
-                            </small>
-
-                        </div>
+                        <i class="bi bi-play-circle-fill"></i>
 
                     </div>
 
-                    <div class="lesson-actions">
 
-    <a
-    href="lesson.php?lesson=<?php echo $lesson["lesson_id"]; ?>"
-    class="btn btn-units-primary btn-sm"
->
+                    <div>
 
-    <i class="bi bi-play-circle me-1"></i>
+                        <h6 class="fw-bold mb-1">
 
-    <?php if ($lesson["completed"] == 1): ?>
+                            Lesson
+                            <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
 
-        Watch Again
+                            <?php echo htmlspecialchars($part["title"]); ?>
 
-    <?php else: ?>
+                        </h6>
 
-        Start Lesson
 
-    <?php endif; ?>
+                        <small class="text-muted">
 
-</a>
+                            <i class="bi bi-clock me-1"></i>
 
-</div>
-                    
+                            <?php echo htmlspecialchars($part["duration_minutes"] ?? ""); ?>
+                            mins
+
+                            <span class="mx-1">•</span>
+
+                            <?php echo htmlspecialchars($part["title"]); ?>
+
+                        </small>
+
+                    </div>
 
                 </div>
 
-            <?php endforeach; ?>
 
+                <div class="lesson-actions">
+
+                    <a
+                        href="lesson.php?lesson=<?php echo (int)$lesson["lesson_id"]; ?>&part=<?php echo (int)$part["part_number"]; ?>"
+                        class="btn btn-units-primary btn-sm"
+                    >
+
+                        <i class="bi bi-play-circle me-1"></i>
+
+                        Start Lesson
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        <?php endforeach; ?>
+
+
+    <?php else: ?>
+
+
+        <!-- Normal lesson without parts -->
+
+        <div class="lesson-item mb-3">
+
+            <div class="lesson-info">
+
+                <div class="lesson-icon">
+
+                    <i class="bi bi-play-circle-fill"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h6 class="fw-bold mb-1">
+
+                        Lesson
+                        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
+
+                        <?php echo htmlspecialchars($lesson["title"]); ?>
+
+                    </h6>
+
+
+                    <small class="text-muted">
+
+                        <i class="bi bi-clock me-1"></i>
+
+                        <?php echo htmlspecialchars($lesson["duration_minutes"] ?? ""); ?>
+                        mins
+
+                        <span class="mx-1">•</span>
+
+                        <?php echo htmlspecialchars($lesson["description"]); ?>
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="lesson-actions">
+
+                <a
+                    href="lesson.php?lesson=<?php echo (int)$lesson["lesson_id"]; ?>"
+                    class="btn btn-units-primary btn-sm"
+                >
+
+                    <i class="bi bi-play-circle me-1"></i>
+
+                    <?php if ($lesson["completed"] == 1): ?>
+
+                        Watch Again
+
+                    <?php else: ?>
+
+                        Start Lesson
+
+                    <?php endif; ?>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    <?php endif; ?>
+
+<?php endforeach; ?>
 
         <?php endif; ?>
 

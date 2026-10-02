@@ -8600,3 +8600,77 @@ body.dark-mode .quiz-history-card p {
 body.dark-mode .quiz-history-card .text-muted i {
     color: #94A3B8 !important;
 }
+
+
+/* Lesson Parts */
+
+.lesson-parts {
+    margin-left: 52px;
+}
+
+
+.lesson-part-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 14px;
+
+    margin-bottom: 8px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    background: #f8fafc;
+
+    transition: 0.2s ease;
+}
+
+
+.lesson-part-item:hover {
+
+    transform: translateX(4px);
+
+}
+
+
+.lesson-part-icon {
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e9f2ff;
+
+    color: #0d6efd;
+
+}
+
+
+.lesson-part-title {
+
+    flex: 1;
+
+    font-size: 0.9rem;
+
+    font-weight: 500;
+
+}
+
+
+.lesson-part-duration {
+
+    font-size: 0.8rem;
+
+    color: #6c757d;
+
+}

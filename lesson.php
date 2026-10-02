@@ -6,7 +6,6 @@ require_once "php/db.php";
 require_once "php/remember_login.php";
 
 
-
 if (!isset($_SESSION["user_id"])) {
 
     header("Location: login.html?error=login_required");
@@ -15,13 +14,12 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 
-
 $full_name = $_SESSION["full_name"];
 $user_id = (int)$_SESSION["user_id"];
 
 
-
 $lesson_id = $_GET["lesson"] ?? "";
+$part_number = $_GET["part"] ?? 1;
 
 
 // Make sure lesson ID is a number
@@ -34,6 +32,15 @@ if (!is_numeric($lesson_id)) {
 }
 
 $lesson_id = (int)$lesson_id;
+
+
+$part_number = (int)$part_number;
+
+if ($part_number < 1) {
+
+    $part_number = 1;
+
+}
 
 
 
@@ -92,11 +99,71 @@ if (!$lesson) {
 }
 
 
+
+/*
+    Get lesson parts.
+
+    New lessons such as the Agriculture lessons
+    use the lesson_parts table.
+*/
+
+$parts = [];
+
+/*
+    Get the selected lesson part
+*/
+
+$selected_part = null;
+
+$sql = "SELECT
+            part_id,
+            lesson_id,
+            part_number,
+            title,
+            video_path,
+            video_1080p_path,
+            video_720p_path,
+            video_480p_path,
+            video_360p_path,
+            audio_path,
+            duration_minutes
+
+        FROM lesson_parts
+
+        WHERE lesson_id = ?
+        AND part_number = ?";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    "ii",
+    $lesson_id,
+    $part_number
+);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+$selected_part = $result->fetch_assoc();
+
+$stmt->close();
+
+
+
+/*
+    Check whether the student is enrolled
+    in this subject.
+*/
+
 $sql = "SELECT
             student_subject_id
+
         FROM student_subjects
+
         WHERE user_id = ?
         AND subject_id = ?";
+
 
 $stmt = $conn->prepare($sql);
 
@@ -213,7 +280,8 @@ $stmt->close();
 
         </span>
 
-<!-- Day / Night Mode -->
+
+        <!-- Day / Night Mode -->
 
         <button
             type="button"
@@ -238,347 +306,46 @@ $stmt->close();
 
 
 
-    <main class="container py-4">
+<main class="container py-4">
 
 
-        <div class="row g-4">
+    <div class="row g-4">
 
 
-            <div class="col-lg-8">
+        <div class="col-lg-8">
 
 
-                <div class="lesson-main-card">
+            <div class="lesson-main-card">
 
 
-                    <div class="data-mode-box">
+                <!-- Data Saver -->
 
+                <div class="data-mode-box">
 
-                        <div class="d-flex align-items-center">
 
+                    <div class="d-flex align-items-center">
 
-                            <div class="data-mode-icon">
 
-                                <i class="bi bi-lightning-fill"></i>
+                        <div class="data-mode-icon">
 
-                            </div>
-
-
-                            <div>
-
-                                <h6 class="fw-bold mb-1">
-
-                                    Data-Saver Mode
-
-                                </h6>
-
-                                <small>
-
-                                    Switch to low-bitrate audio
-                                    when your connection is weak.
-
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Switch -->
-
-                        <div class="form-check form-switch">
-
-                            <input
-                                class="form-check-input data-mode-switch"
-                                type="checkbox"
-                                role="switch"
-                                id="dataModeToggle"
-                            >
-
-                        </div>
-
-                    </div>
-
-                        <div class="video-quality-box">
-
-                            <div class="d-flex align-items-center">
-
-                                <div class="video-quality-icon">
-
-                                    <i class="bi bi-camera-video-fill"></i>
-
-                                </div>
-
-                                <div>
-
-                                    <h6 class="fw-bold mb-1">
-                                        Video Quality
-                                    </h6>
-
-                                    <small>
-                                        Select a quality based on your internet connection.
-                                    </small>
-
-                                </div>
-
-                            </div>
-
-
-                            <select
-                                id="videoQuality"
-                                class="form-select form-select-sm video-quality-select"
-                                aria-label="Select video quality"
-                            >
-
-                                <option value="1080p"selected>
-                                    1080p
-                                </option>
-
-                                <option value="720p">
-                                    720p
-                                </option>
-
-                                <option value="480p">
-                                    480p
-                                </option>
-
-                                <option value="360p">
-                                    360p
-                                </option>
-
-                            </select>
-
-                        </div>
-                        
-
-                    <div
-                        id="videoContainer"
-                        class="lesson-video-container"
-                    >
-
-                       <video
-                            id="videoPlayer"
-                            controls
-                            class="w-100"
-                            src="<?php echo htmlspecialchars($lesson["video_path"]); ?>"
-                        >
-
-                            Your browser does not support
-                            video streaming.
-
-                        </video>
-
-                    </div>
-
-
-
-
-                    <div
-                        id="audioContainer"
-                        class="lesson-audio-container"
-                        style="display: none;"
-                    >
-
-                        <div class="audio-icon">
-
-                            <i class="bi bi-broadcast"></i>
-
-                        </div>
-
-
-                        <h5 class="fw-bold mb-1">
-                            Data-Saver Mode Active
-                        </h5>
-
-                        <p class="audio-description">
-                            64 kbps Mono
-                            <span>•</span>
-                            Reduced Data Usage
-                        </p>
-
-
-                        <audio
-                            id="audioPlayer"
-                            controls
-                            class="w-100"
-                        >
-
-                            <source
-                                src="<?php echo htmlspecialchars($lesson["audio_path"] ?? ""); ?>"
-                                type="audio/mpeg"
-                            >
-
-                        </audio>
-
-                    </div>
-
-
-
-                    
-
-                    <div class="lesson-information">
-
-                        <span class="lesson-label">
-
-    LESSON <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
-
-</span>
-
-
-<h3 class="fw-bold">
-
-    Lesson
-    <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
-
-    <?php echo htmlspecialchars($lesson["title"]); ?>
-
-</h3>
-
-
-<p class="lesson-description mb-0">
-
-    <?php echo htmlspecialchars($lesson["description"]); ?>
-
-</p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-
-           
-<div class="col-lg-4">
-
-
-
-
-    <div class="lesson-side-card mb-4">
-
-        <div class="lesson-side-heading">
-
-            <div class="side-icon blue-side-icon">
-
-                <i class="bi bi-collection-fill"></i>
-
-            </div>
-
-            <div>
-
-                <h6 class="fw-bold mb-0">
-                    Unit Resources
-                </h6>
-
-                <small>
-                    Resources for Unit 01
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <p class="small text-muted mb-3">
-
-            Additional learning resources for
-            this unit are available from the
-            Unit page.
-
-        </p>
-
-
-        <a
-            href="units.php?subject=<?php echo urlencode($lesson["subject_code"]); ?>"
-            class="btn btn-lesson-primary w-100 fw-bold"
-        >
-
-            <i class="bi bi-arrow-left me-1"></i>
-
-            Back to Unit Resources
-
-        </a>
-
-    </div>
-
-
-
-    <div class="lesson-side-card">
-
-        <div class="lesson-side-heading">
-
-            <div class="side-icon teal-side-icon">
-
-                <i class="bi bi-check-circle-fill"></i>
-
-            </div>
-
-            <div>
-
-                <h6 class="fw-bold mb-0">
-                    Lesson
-                </h6>
-
-                <small>
-                    Current lesson
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <div class="d-flex align-items-center gap-2">
-
-            <i class="bi bi-play-circle-fill text-primary"></i>
-
-            <span class="small">
-                Lesson
-                <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
-                is currently selected
-            </span>
-
-        </div>
-
-
-        <p class="small text-muted mt-3 mb-0">
-
-            Complete the lesson before moving
-            to the next lesson in this unit.
-
-        </p>
-
-    </div>
-
-
-</div>
-
-
-
-
-                <div class="lesson-side-card">
-
-
-                    <div class="lesson-side-heading">
-
-                        <div class="side-icon teal-side-icon">
-
-                            <i class="bi bi-question-circle-fill"></i>
+                            <i class="bi bi-lightning-fill"></i>
 
                         </div>
 
 
                         <div>
 
-                            <h6 class="fw-bold mb-0">
+                            <h6 class="fw-bold mb-1">
 
-                                Next Step
+                                Data-Saver Mode
 
                             </h6>
 
                             <small>
-                                Test your understanding
+
+                                Switch to low-bitrate audio
+                                when your connection is weak.
+
                             </small>
 
                         </div>
@@ -586,26 +353,169 @@ $stmt->close();
                     </div>
 
 
-                    <p class="small text-muted mb-3">
+                    <!-- Switch -->
 
-                        Complete the assessment to test
-                        your understanding of the concepts
-                        covered in this lesson.
+                    <div class="form-check form-switch">
+
+                        <input
+                            class="form-check-input data-mode-switch"
+                            type="checkbox"
+                            role="switch"
+                            id="dataModeToggle"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- Video Quality -->
+
+                <div class="video-quality-box">
+
+                    <div class="d-flex align-items-center">
+
+                        <div class="video-quality-icon">
+
+                            <i class="bi bi-camera-video-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6 class="fw-bold mb-1">
+                                Video Quality
+                            </h6>
+
+                            <small>
+                                Select a quality based on your internet connection.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <select
+                        id="videoQuality"
+                        class="form-select form-select-sm video-quality-select"
+                        aria-label="Select video quality"
+                    >
+
+                        <option value="1080p">
+                            1080p
+                        </option>
+
+                        <option value="720p">
+                            720p
+                        </option>
+
+                        <option value="480p">
+                            480p
+                        </option>
+
+                        <option value="360p">
+                            360p
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Video -->
+
+                <div
+                    id="videoContainer"
+                    class="lesson-video-container"
+                >
+
+                    <video
+                        id="videoPlayer"
+                        controls
+                        class="w-100"
+                    >
+
+                        Your browser does not support
+                        video streaming.
+
+                    </video>
+
+                </div>
+
+
+
+                <!-- Audio -->
+
+                <div
+                    id="audioContainer"
+                    class="lesson-audio-container"
+                    style="display: none;"
+                >
+
+                    <div class="audio-icon">
+
+                        <i class="bi bi-broadcast"></i>
+
+                    </div>
+
+
+                    <h5 class="fw-bold mb-1">
+                        Data-Saver Mode Active
+                    </h5>
+
+
+                    <p class="audio-description">
+
+                        64 kbps Mono
+                        <span>•</span>
+                        Reduced Data Usage
 
                     </p>
 
 
-                    <a
-                        href="quiz.html"
-                        class="btn btn-lesson-primary w-100 fw-bold"
+                    <audio
+                        id="audioPlayer"
+                        controls
+                        class="w-100"
                     >
 
-                        <i class="bi bi-pencil-square me-1"></i>
+                    </audio>
 
-                        Start Lesson Assessment
+                </div>
 
-                    </a>
 
+
+                <!-- Lesson Information -->
+
+                <div class="lesson-information">
+
+                    <span class="lesson-label">
+
+                        LESSON
+                        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
+
+                    </span>
+
+
+                    <h3 class="fw-bold">
+
+                        Lesson
+                        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
+
+                        <?php echo htmlspecialchars($lesson["title"]); ?>
+
+                    </h3>
+
+
+                    <p class="lesson-description mb-0">
+
+                        <?php echo htmlspecialchars($lesson["description"]); ?>
+
+                    </p>
 
                 </div>
 
@@ -614,69 +524,469 @@ $stmt->close();
 
         </div>
 
-    </main>
 
 
-    <script>
+        <div class="col-lg-4">
+
+
+            <!-- Unit Resources -->
+
+            <div class="lesson-side-card mb-4">
+
+                <div class="lesson-side-heading">
+
+                    <div class="side-icon blue-side-icon">
+
+                        <i class="bi bi-collection-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h6 class="fw-bold mb-0">
+                            Unit Resources
+                        </h6>
+
+                        <small>
+
+                            Resources for Unit
+                            <?php echo str_pad(
+                                $lesson["unit_number"],
+                                2,
+                                "0",
+                                STR_PAD_LEFT
+                            ); ?>
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <p class="small text-muted mb-3">
+
+                    Additional learning resources for
+                    this unit are available from the
+                    Unit page.
+
+                </p>
+
+
+                <a
+                    href="units.php?subject=<?php echo urlencode($lesson["subject_code"]); ?>"
+                    class="btn btn-lesson-primary w-100 fw-bold"
+                >
+
+                    <i class="bi bi-arrow-left me-1"></i>
+
+                    Back to Unit Resources
+
+                </a>
+
+            </div>
+
+
+
+            <!-- Current Lesson -->
+
+            <div class="lesson-side-card mb-4">
+
+                <div class="lesson-side-heading">
+
+                    <div class="side-icon teal-side-icon">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h6 class="fw-bold mb-0">
+                            Lesson
+                        </h6>
+
+                        <small>
+                            Current lesson
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex align-items-center gap-2">
+
+                    <i class="bi bi-play-circle-fill text-primary"></i>
+
+                    <span class="small">
+
+                        Lesson
+                        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
+                        is currently selected
+
+                    </span>
+
+                </div>
+
+
+                <p class="small text-muted mt-3 mb-0">
+
+                    Complete the lesson before moving
+                    to the next lesson in this unit.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- Next Step -->
+
+            <div class="lesson-side-card">
+
+
+                <div class="lesson-side-heading">
+
+                    <div class="side-icon teal-side-icon">
+
+                        <i class="bi bi-question-circle-fill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h6 class="fw-bold mb-0">
+
+                            Next Step
+
+                        </h6>
+
+                        <small>
+                            Test your understanding
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <p class="small text-muted mb-3">
+
+                    Complete the assessment to test
+                    your understanding of the concepts
+                    covered in this lesson.
+
+                </p>
+
+
+                <a
+                    href="quiz.html"
+                    class="btn btn-lesson-primary w-100 fw-bold"
+                >
+
+                    <i class="bi bi-pencil-square me-1"></i>
+
+                    Start Lesson Assessment
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<script>
 
 const currentLessonId =
     <?php echo (int)$lesson["lesson_id"]; ?>;
 
+
+const currentPartNumber =
+    <?php echo (int)$part_number; ?>;
+
+
+const selectedPart =
+    <?php echo json_encode(
+        $selected_part,
+        JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+    ); ?>;
+
+
 const videoPlayer =
     document.getElementById("videoPlayer");
+
 
 const videoQuality =
     document.getElementById("videoQuality");
 
+
 const dataModeToggle =
     document.getElementById("dataModeToggle");
+
 
 const videoContainer =
     document.getElementById("videoContainer");
 
+
 const audioContainer =
     document.getElementById("audioContainer");
+
 
 const audioPlayer =
     document.getElementById("audioPlayer");
 
 
 
+/*
+    Old lesson-level video data.
 
-const videoQualities = {
+    Used for existing lessons such as SFT
+    that do not have lesson_parts.
+*/
 
-    "1080p":
-        "<?php echo htmlspecialchars($lesson["video_1080p_path"] ?? ""); ?>",
+const oldLessonData = {
 
-    "720p":
-        "<?php echo htmlspecialchars($lesson["video_720p_path"] ?? ""); ?>",
+    video_path:
+        <?php echo json_encode($lesson["video_path"] ?? ""); ?>,
 
-    "480p":
-        "<?php echo htmlspecialchars($lesson["video_480p_path"] ?? ""); ?>",
+    video_1080p_path:
+        <?php echo json_encode($lesson["video_1080p_path"] ?? ""); ?>,
 
-    "360p":
-        "<?php echo htmlspecialchars($lesson["video_360p_path"] ?? ""); ?>"
+    video_720p_path:
+        <?php echo json_encode($lesson["video_720p_path"] ?? ""); ?>,
+
+    video_480p_path:
+        <?php echo json_encode($lesson["video_480p_path"] ?? ""); ?>,
+
+    video_360p_path:
+        <?php echo json_encode($lesson["video_360p_path"] ?? ""); ?>,
+
+    audio_path:
+        <?php echo json_encode($lesson["audio_path"] ?? ""); ?>
 
 };
 
 
 
+/*
+    Use lesson part if available.
+    Otherwise use the old lesson video.
+*/
+
+const videoData =
+    selectedPart || oldLessonData;
+
+
+
+/*
+    Get video path.
+*/
+
+function getVideoPath(quality) {
+
+    const qualityPath =
+        videoData["video_" + quality + "_path"];
+
+
+    if (qualityPath) {
+
+        return qualityPath;
+
+    }
+
+
+    if (videoData.video_path) {
+
+        return videoData.video_path;
+
+    }
+
+
+    return "";
+
+}
+
+
+
+/*
+    Update available quality options.
+*/
+
+function updateQualityOptions() {
+
+    const qualities = [
+        "1080p",
+        "720p",
+        "480p",
+        "360p"
+    ];
+
+
+    let firstAvailable = "";
+
+
+    qualities.forEach(
+        function (quality) {
+
+            const option =
+                videoQuality.querySelector(
+                    'option[value="' + quality + '"]'
+                );
+
+
+            if (!option) {
+
+                return;
+
+            }
+
+
+            const path =
+                getVideoPath(quality);
+
+
+            if (path) {
+
+                option.disabled = false;
+
+                if (!firstAvailable) {
+
+                    firstAvailable = quality;
+
+                }
+
+            } else {
+
+                option.disabled = true;
+
+            }
+
+        }
+    );
+
+
+    if (
+        !videoQuality.value ||
+        videoQuality.querySelector(
+            'option[value="' +
+            videoQuality.value +
+            '"]'
+        ).disabled
+    ) {
+
+        videoQuality.value =
+            firstAvailable;
+
+    }
+
+}
+
+
+
+/*
+    Load video.
+*/
+
+function loadVideo() {
+
+    updateQualityOptions();
+
+
+    const selectedQuality =
+        videoQuality.value;
+
+
+    const videoPath =
+        getVideoPath(
+            selectedQuality
+        );
+
+
+    if (!videoPath) {
+
+        videoPlayer.removeAttribute("src");
+
+        videoPlayer.load();
+
+        console.log(
+            "No video available."
+        );
+
+        return;
+
+    }
+
+
+    videoPlayer.src =
+        videoPath;
+
+
+    videoPlayer.load();
+
+
+    console.log(
+        "Lesson ID:",
+        currentLessonId
+    );
+
+
+    console.log(
+        "Part:",
+        currentPartNumber
+    );
+
+
+    console.log(
+        "Quality:",
+        selectedQuality
+    );
+
+
+    console.log(
+        "Video:",
+        videoPath
+    );
+
+}
+
+
+
+/*
+    Complete lesson.
+*/
+
 function completeLesson() {
 
-    fetch("php/complete_lesson.php", {
+    fetch(
+        "php/complete_lesson.php",
+        {
 
-        method: "POST",
+            method: "POST",
 
-        headers: {
-            "Content-Type":
-                "application/x-www-form-urlencoded"
-        },
+            headers: {
 
-        body:
-            "lesson_id=" +
-            encodeURIComponent(currentLessonId)
+                "Content-Type":
+                    "application/x-www-form-urlencoded"
 
-    })
+            },
+
+            body:
+                "lesson_id=" +
+                encodeURIComponent(
+                    currentLessonId
+                )
+
+        }
+    )
 
     .then(function (response) {
 
@@ -714,6 +1024,10 @@ function completeLesson() {
 
 
 
+/*
+    Video quality change.
+*/
+
 videoQuality.addEventListener(
     "change",
     function () {
@@ -721,22 +1035,12 @@ videoQuality.addEventListener(
         const selectedQuality =
             this.value;
 
+
         const newVideoPath =
-            videoQualities[selectedQuality];
+            getVideoPath(
+                selectedQuality
+            );
 
-
-        console.log(
-            "Selected quality:",
-            selectedQuality
-        );
-
-        console.log(
-            "Video path:",
-            newVideoPath
-        );
-
-
-        // Check whether video path exists
 
         if (!newVideoPath) {
 
@@ -751,8 +1055,6 @@ videoQuality.addEventListener(
         }
 
 
-        // Remember current position
-
         const currentTime =
             videoPlayer.currentTime;
 
@@ -760,19 +1062,13 @@ videoQuality.addEventListener(
         const wasPlaying =
             !videoPlayer.paused;
 
-        // Change video source directly
 
-            videoPlayer.src =
-                newVideoPath;
-
-
-            // Reload video
-
-            videoPlayer.load();
-        
+        videoPlayer.src =
+            newVideoPath;
 
 
-        // Restore playback position
+        videoPlayer.load();
+
 
         videoPlayer.addEventListener(
             "loadedmetadata",
@@ -811,12 +1107,37 @@ videoQuality.addEventListener(
 
 
 
+/*
+    Data-Saver Mode.
+*/
+
 dataModeToggle.addEventListener(
     "change",
     function () {
 
+        const audioPath =
+            videoData.audio_path || "";
+
+
+        if (
+            this.checked &&
+            !audioPath
+        ) {
+
+            alert(
+                "Data-Saver audio is not available for this lesson part yet."
+            );
+
+            this.checked = false;
+
+            return;
+
+        }
+
+
         const currentTime =
             videoPlayer.currentTime;
+
 
         const wasVideoPlaying =
             !videoPlayer.paused;
@@ -824,23 +1145,29 @@ dataModeToggle.addEventListener(
 
         if (this.checked) {
 
-            
-
             videoPlayer.pause();
+
 
             videoContainer.style.display =
                 "none";
+
 
             audioContainer.style.display =
                 "block";
 
 
-            // Hide video quality selector
+            audioPlayer.src =
+                audioPath;
+
+
+            audioPlayer.load();
+
 
             const videoQualityBox =
                 videoQuality.closest(
                     ".video-quality-box"
                 );
+
 
             if (videoQualityBox) {
 
@@ -849,8 +1176,6 @@ dataModeToggle.addEventListener(
 
             }
 
-
-            // Start audio from video position
 
             audioPlayer.currentTime =
                 currentTime;
@@ -873,26 +1198,26 @@ dataModeToggle.addEventListener(
 
         } else {
 
-            
             const audioTime =
                 audioPlayer.currentTime;
 
 
             audioPlayer.pause();
 
+
             audioContainer.style.display =
                 "none";
+
 
             videoContainer.style.display =
                 "block";
 
 
-            // Show video quality selector
-
             const videoQualityBox =
                 videoQuality.closest(
                     ".video-quality-box"
                 );
+
 
             if (videoQualityBox) {
 
@@ -901,8 +1226,6 @@ dataModeToggle.addEventListener(
 
             }
 
-
-            // Continue video from audio position
 
             videoPlayer.currentTime =
                 audioTime;
@@ -925,6 +1248,11 @@ dataModeToggle.addEventListener(
 );
 
 
+
+/*
+    Video error.
+*/
+
 videoPlayer.addEventListener(
     "error",
     function () {
@@ -937,6 +1265,15 @@ videoPlayer.addEventListener(
     }
 );
 
+
+
+/*
+    Complete the lesson when
+    the selected video finishes.
+
+    For now, this keeps the same
+    completion behavior as before.
+*/
 
 videoPlayer.addEventListener(
     "ended",
@@ -957,7 +1294,17 @@ audioPlayer.addEventListener(
     }
 );
 
+
+
+/*
+    Load selected part.
+*/
+
+loadVideo();
+
 </script>
+
+
 
 <script src="js/script.js"></script>
 
