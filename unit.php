@@ -723,14 +723,11 @@ $stmt->close();
 
                     <div>
 
-                        <h6 class="fw-bold mb-1">
+                    <h6 class="fw-bold mb-1">
 
-                            Lesson
-                            <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
+                        <?php echo htmlspecialchars($part["title"]); ?>
 
-                            <?php echo htmlspecialchars($part["title"]); ?>
-
-                        </h6>
+                    </h6>
 
 
                         <small class="text-muted">

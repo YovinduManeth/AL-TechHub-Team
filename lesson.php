@@ -101,16 +101,11 @@ if (!$lesson) {
 
 
 /*
-    Get lesson parts.
+    Get the selected lesson part.
 
-    New lessons such as the Agriculture lessons
-    use the lesson_parts table.
-*/
-
-$parts = [];
-
-/*
-    Get the selected lesson part
+    If the lesson has parts, the requested part
+    must exist. This prevents an invalid part
+    number from falling back to the parent lesson.
 */
 
 $selected_part = null;
@@ -148,6 +143,54 @@ $result = $stmt->get_result();
 $selected_part = $result->fetch_assoc();
 
 $stmt->close();
+
+
+/*
+    Check whether this lesson has any parts.
+*/
+
+$has_parts = false;
+
+$sql = "SELECT part_id
+        FROM lesson_parts
+        WHERE lesson_id = ?
+        LIMIT 1";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param(
+    "i",
+    $lesson_id
+);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+
+    $has_parts = true;
+
+}
+
+$stmt->close();
+
+
+/*
+    If the lesson uses parts but the requested
+    part does not exist, return to the unit page.
+*/
+
+if ($has_parts && !$selected_part) {
+
+    header(
+        "Location: units.php?subject=" .
+        urlencode($lesson["subject_code"])
+    );
+
+    exit();
+
+}
 
 
 
@@ -202,8 +245,24 @@ $stmt->close();
     >
 
     <title>
-        <?php echo htmlspecialchars($lesson["title"]); ?> | A/L TechHub
-    </title>
+
+    <?php echo htmlspecialchars($lesson["title"]); ?>
+
+    <?php if ($selected_part): ?>
+
+        - Part
+        <?php echo str_pad(
+            $selected_part["part_number"],
+            2,
+            "0",
+            STR_PAD_LEFT
+        ); ?>
+
+    <?php endif; ?>
+
+    | A/L TechHub
+
+</title>
 
 
     <!-- Bootstrap -->
@@ -493,31 +552,66 @@ $stmt->close();
 
                 <div class="lesson-information">
 
-                    <span class="lesson-label">
+    <span class="lesson-label">
 
-                        LESSON
-                        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
+        LESSON
+        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>
 
-                    </span>
+        <?php if ($selected_part): ?>
+
+            <span class="lesson-divider">•</span>
+
+            PART
+            <?php echo str_pad(
+                $selected_part["part_number"],
+                2,
+                "0",
+                STR_PAD_LEFT
+            ); ?>
+
+        <?php endif; ?>
+
+    </span>
 
 
-                    <h3 class="fw-bold">
+    <h3 class="fw-bold">
 
-                        Lesson
-                        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
+        Lesson
+        <?php echo htmlspecialchars($lesson["lesson_number"]); ?>:
 
-                        <?php echo htmlspecialchars($lesson["title"]); ?>
+        <?php echo htmlspecialchars($lesson["title"]); ?>
 
-                    </h3>
+        <?php if ($selected_part): ?>
+
+            <br>
+
+            <small class="text-muted">
+
+                Part
+                <?php echo str_pad(
+                    $selected_part["part_number"],
+                    2,
+                    "0",
+                    STR_PAD_LEFT
+                ); ?>:
+                <?php echo htmlspecialchars(
+                    $selected_part["title"]
+                ); ?>
+
+            </small>
+
+        <?php endif; ?>
+
+    </h3>
 
 
-                    <p class="lesson-description mb-0">
+    <p class="lesson-description mb-0">
 
-                        <?php echo htmlspecialchars($lesson["description"]); ?>
+        <?php echo htmlspecialchars($lesson["description"]); ?>
 
-                    </p>
+    </p>
 
-                </div>
+</div>
 
 
             </div>
@@ -639,62 +733,7 @@ $stmt->close();
 
             </div>
 
-
-
-            <!-- Next Step -->
-
-            <div class="lesson-side-card">
-
-
-                <div class="lesson-side-heading">
-
-                    <div class="side-icon teal-side-icon">
-
-                        <i class="bi bi-question-circle-fill"></i>
-
-                    </div>
-
-
-                    <div>
-
-                        <h6 class="fw-bold mb-0">
-
-                            Next Step
-
-                        </h6>
-
-                        <small>
-                            Test your understanding
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <p class="small text-muted mb-3">
-
-                    Complete the assessment to test
-                    your understanding of the concepts
-                    covered in this lesson.
-
-                </p>
-
-
-                <a
-                    href="quiz.html"
-                    class="btn btn-lesson-primary w-100 fw-bold"
-                >
-
-                    <i class="bi bi-pencil-square me-1"></i>
-
-                    Start Lesson Assessment
-
-                </a>
-
-
-            </div>
-
+            
 
         </div>
 

@@ -2,3 +2,7 @@
 php/db.php
 
 
+
+# Generated lesson videos and audio files
+/uploads/videos/
+/uploads/audios/
