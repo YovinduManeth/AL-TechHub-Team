@@ -25,6 +25,15 @@ if (empty($username) || empty($password)) {
 }
 
 
+
+if (strlen($password) < 8) {
+
+    header("Location: ../login.html?error=short_password");
+    exit();
+
+}
+
+
 $sql = "SELECT user_id, full_name, username, email, password, role
         FROM users
         WHERE username = ? OR email = ?
@@ -47,7 +56,7 @@ if ($result->num_rows === 0) {
 
     $stmt->close();
 
-    header("Location: ../login.html?error=invalid");
+    header("Location: ../login.html?error=user_not_found");
     exit();
 
 }
@@ -59,7 +68,7 @@ $stmt->close();
 
 if (!password_verify($password, $user["password"])) {
 
-    header("Location: ../login.html?error=invalid");
+    header("Location: ../login.html?error=wrong_password");
     exit();
 
 }

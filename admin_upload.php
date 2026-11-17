@@ -245,8 +245,396 @@ $stmt->bind_param(
     exit();
 
 }
+
+
+if ($resource_type === "quiz") {
+
+   
+
+    $grade = $_POST["grade"] ?? "";
+
+    $quiz_title = trim($_POST["quiz_title"] ?? "");
+
+    $time_limit = $_POST["time_limit"] ?? "";
+
+
+
+
+    $question_text = $_POST["question_text"] ?? [];
+
+    $option_a = $_POST["option_a"] ?? [];
+
+    $option_b = $_POST["option_b"] ?? [];
+
+    $option_c = $_POST["option_c"] ?? [];
+
+    $option_d = $_POST["option_d"] ?? [];
+
+    $correct_answer = $_POST["correct_answer"] ?? [];
+
+
+   
+
+    if (
+        empty($unit_id) ||
+        empty($grade) ||
+        empty($quiz_title) ||
+        $time_limit === ""
+    ) {
+
+        die("Please complete all quiz details.");
+
+    }
+
+
+    if (
+        !is_numeric($unit_id) ||
+        !in_array((string)$grade, ["12", "13"], true) ||
+        !ctype_digit((string)$time_limit)
+    ) {
+
+        die("Invalid quiz information.");
+
+    }
+
+
+    $unit_id = (int)$unit_id;
+
+    $time_limit = (int)$time_limit;
+
+
+    if ($unit_id <= 0) {
+
+        die("Invalid syllabus unit.");
+
+    }
+
+
+    if ($time_limit < 1 || $time_limit > 180) {
+
+        die("Time limit must be between 1 and 180 minutes.");
+
+    }
+
+
+
+
+    $unit_sql = "SELECT unit_id
+                 FROM units
+                 WHERE unit_id = ?
+                 AND grade = ?";
+
+    $unit_stmt = $conn->prepare($unit_sql);
+
+    $unit_stmt->bind_param(
+        "is",
+        $unit_id,
+        $grade
+    );
+
+    $unit_stmt->execute();
+
+    $unit_result = $unit_stmt->get_result();
+
+    if ($unit_result->num_rows === 0) {
+
+        $unit_stmt->close();
+
+        die("The selected unit does not belong to the selected grade.");
+
+    }
+
+    $unit_stmt->close();
+
+
+    
+
+    if (
+        !is_array($question_text) ||
+        !is_array($option_a) ||
+        !is_array($option_b) ||
+        !is_array($option_c) ||
+        !is_array($option_d) ||
+        !is_array($correct_answer)
+    ) {
+
+        die("Invalid quiz question data.");
+
+    }
+
+
+    $question_count = count($question_text);
+
+
+    if ($question_count < 1) {
+
+        die("Please add at least one quiz question.");
+
+    }
+
+
+    if (
+        count($option_a) !== $question_count ||
+        count($option_b) !== $question_count ||
+        count($option_c) !== $question_count ||
+        count($option_d) !== $question_count ||
+        count($correct_answer) !== $question_count
+    ) {
+
+        die("Some quiz questions have missing information.");
+
+    }
+
+
+
+    $valid_answers = ["A", "B", "C", "D"];
+
+    $questions = [];
+
+
+    for ($i = 0; $i < $question_count; $i++) {
+
+        $question = trim($question_text[$i]);
+
+        $a = trim($option_a[$i]);
+
+        $b = trim($option_b[$i]);
+
+        $c = trim($option_c[$i]);
+
+        $d = trim($option_d[$i]);
+
+        $answer = strtoupper(
+            trim($correct_answer[$i])
+        );
+
+
+        if (
+            $question === "" ||
+            $a === "" ||
+            $b === "" ||
+            $c === "" ||
+            $d === ""
+        ) {
+
+            die(
+                "Please complete Question " .
+                ($i + 1) .
+                " and all four options."
+            );
+
+        }
+
+
+        if (!in_array($answer, $valid_answers, true)) {
+
+            die(
+                "Please select a valid correct answer " .
+                "for Question " .
+                ($i + 1) .
+                "."
+            );
+
+        }
+
+
+        if (
+            strlen($a) > 500 ||
+            strlen($b) > 500 ||
+            strlen($c) > 500 ||
+            strlen($d) > 500
+        ) {
+
+            die(
+                "An option in Question " .
+                ($i + 1) .
+                " exceeds the allowed length."
+            );
+
+        }
+
+
+        $questions[] = [
+            "question" => $question,
+            "a" => $a,
+            "b" => $b,
+            "c" => $c,
+            "d" => $d,
+            "answer" => $answer
+        ];
+
+    }
+
+
+   
+
+    try {
+
+        // Start database transaction.
+
+        $conn->begin_transaction();
+
+
+        // Insert quiz information.
+
+        $quiz_sql = "INSERT INTO quizzes
+                     (
+                         unit_id,
+                         title,
+                         time_limit
+                     )
+                     VALUES (?, ?, ?)";
+
+
+        $quiz_stmt = $conn->prepare($quiz_sql);
+
+        $quiz_stmt->bind_param(
+            "isi",
+            $unit_id,
+            $quiz_title,
+            $time_limit
+        );
+
+
+        if (!$quiz_stmt->execute()) {
+
+            throw new Exception(
+                "Failed to create quiz: " .
+                $quiz_stmt->error
+            );
+
+        }
+
+
+        // Get the newly created quiz ID.
+
+        $quiz_id = $conn->insert_id;
+
+        $quiz_stmt->close();
+
+
+        // Prepare question insertion.
+
+        $question_sql = "INSERT INTO quiz_questions
+                         (
+                             quiz_id,
+                             question_text,
+                             option_a,
+                             option_b,
+                             option_c,
+                             option_d,
+                             correct_answer
+                         )
+                         VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+
+        $question_stmt = $conn->prepare($question_sql);
+
+
+        
+
+        foreach ($questions as $question) {
+
+            $question_stmt->bind_param(
+                "issssss",
+                $quiz_id,
+                $question["question"],
+                $question["a"],
+                $question["b"],
+                $question["c"],
+                $question["d"],
+                $question["answer"]
+            );
+
+
+            if (!$question_stmt->execute()) {
+
+                throw new Exception(
+                    "Failed to save a quiz question: " .
+                    $question_stmt->error
+                );
+
+            }
+
+        }
+
+
+        $question_stmt->close();
+
+
+        
+
+        $conn->commit();
+
+
+      
+
+        echo "<div style='
+                max-width:600px;
+                margin:60px auto;
+                padding:30px;
+                text-align:center;
+                font-family:Arial;
+                border:1px solid #ddd;
+                border-radius:10px;
+              '>";
+
+        echo "<h2 style='color:green;'>
+                Quiz created successfully!
+              </h2>";
+
+        echo "<p><strong>Quiz Title:</strong> " .
+             htmlspecialchars($quiz_title) .
+             "</p>";
+
+        echo "<p><strong>Questions Added:</strong> " .
+             $question_count .
+             "</p>";
+
+        echo "<p><strong>Time Limit:</strong> " .
+             $time_limit .
+             " minutes</p>";
+
+        echo "<a href='admin-upload.php'
+                 style='
+                    display:inline-block;
+                    margin-top:15px;
+                    padding:12px 20px;
+                    background:#2563eb;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:6px;
+                 '>
+                 Back to Admin Portal
+              </a>";
+
+        echo "</div>";
+
+
+        exit();
+
+
+    } catch (Throwable $e) {
+
+        // Undo all database changes if something fails.
+
+        $conn->rollback();
+
+
+        die(
+            "Quiz creation failed: " .
+            htmlspecialchars($e->getMessage())
+        );
+
+    }
+
+}
+
+
+
+
 // Video Lessons and Short Notes need a unit.
-// Past Papers do not reach this section.
+// Past Papers and Quizzes are handled separately.
 
 if (empty($unit_id)) {
 

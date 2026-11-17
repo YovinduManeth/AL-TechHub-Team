@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+if (
+    !isset($_SESSION["user_id"]) ||
+    !isset($_SESSION["role"]) ||
+    $_SESSION["role"] !== "admin"
+) {
+    header("Location: admin-login.html?error=unauthorized");
+    exit();
+}
+
 require_once "php/db.php";
 
 $message = "";
@@ -145,6 +156,18 @@ while ($row = $result->fetch_assoc()) {
                             Upload Content
 
                         </a>
+
+                        <li class="nav-item">
+
+                            <a
+                                class="nav-link admin-nav-link"
+                                href="admin-change-password.php"
+                            >
+                                <i class="bi bi-key me-1"></i>
+                                Change Password
+                            </a>
+
+                        </li>
 
                     </li>
 
@@ -378,6 +401,143 @@ while ($row = $result->fetch_assoc()) {
                                 </select>
 
                             </div>
+
+                            <!-- Quiz Fields -->
+<div id="quizFields" style="display: none;">
+
+    <h5 class="fw-bold mb-3">
+        <i class="bi bi-pencil-square me-2"></i>
+        Quiz Details
+    </h5>
+
+    <!-- Quiz Title -->
+    <div class="mb-4">
+        <label class="form-label fw-bold">Quiz Title</label>
+        <input
+            type="text"
+            class="form-control"
+            name="quiz_title"
+            id="quizTitle"
+            placeholder="e.g. Unit 01 Assessment"
+        >
+    </div>
+
+    <!-- Time Limit -->
+    <div class="mb-4">
+        <label class="form-label fw-bold">
+            Time Limit (Minutes)
+        </label>
+        <input
+            type="number"
+            class="form-control"
+            name="time_limit"
+            id="timeLimit"
+            min="1"
+            max="180"
+            value="15"
+        >
+    </div>
+
+    <hr>
+
+    <h5 class="fw-bold mb-3">Quiz Questions</h5>
+
+    <div id="questionContainer">
+
+        <!-- First Question -->
+        <div class="quiz-question-form border rounded p-3 mb-4">
+
+            <h6 class="fw-bold question-heading">
+                Question 01
+            </h6>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    Question Text
+                </label>
+
+                <textarea
+                    class="form-control"
+                    name="question_text[]"
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Option A</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="option_a[]"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Option B</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="option_b[]"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Option C</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="option_c[]"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Option D</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="option_d[]"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">
+                    Correct Answer
+                </label>
+
+                <select
+                    class="form-select"
+                    name="correct_answer[]"
+                    required
+                >
+                    <option value="" selected disabled>
+                        -- Select Correct Answer --
+                    </option>
+                    <option value="A">Option A</option>
+                    <option value="B">Option B</option>
+                    <option value="C">Option C</option>
+                    <option value="D">Option D</option>
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        class="btn btn-outline-primary w-100 mb-3"
+        id="addQuestionButton"
+    >
+        <i class="bi bi-plus-circle me-1"></i>
+        Add Another Question
+    </button>
+
+</div>
 
 
 
@@ -977,8 +1137,18 @@ while ($row = $result->fetch_assoc()) {
 
     <script>
 
-const resourceType =
-    document.getElementById("resourceType");
+
+
+const resourceType = document.getElementById("resourceType");
+
+const unitLocationFields =
+    document.getElementById("unitLocationFields");
+
+const generalGrade =
+    document.getElementById("generalGrade");
+
+const unitSelect =
+    document.getElementById("unitSelect");
 
 const lessonFields =
     document.getElementById("lessonFields");
@@ -992,20 +1162,26 @@ const pastPaperFields =
 const pastPaperManagement =
     document.getElementById("pastPaperManagement");
 
-const unitLocationFields =
-    document.getElementById("unitLocationFields");
+const quizFields =
+    document.getElementById("quizFields");
+
+const quizTitle =
+    document.getElementById("quizTitle");
+
+const timeLimit =
+    document.getElementById("timeLimit");
+
+const questionContainer =
+    document.getElementById("questionContainer");
+
+const addQuestionButton =
+    document.getElementById("addQuestionButton");
+
+const submitButton =
+    document.getElementById("submitButton");
 
 
-// General Grade and Unit
 
-const generalGrade =
-    document.getElementById("generalGrade");
-
-const unitSelect =
-    document.getElementById("unitSelect");
-
-
-// Lesson fields
 
 const lessonNumber =
     document.getElementById("lessonNumber");
@@ -1020,7 +1196,7 @@ const videoFile =
     document.getElementById("videoFile");
 
 
-// Short note fields
+
 
 const noteTitle =
     document.getElementById("noteTitle");
@@ -1029,7 +1205,7 @@ const noteFile =
     document.getElementById("noteFile");
 
 
-// Past paper fields
+
 
 const pastPaperSubject =
     document.getElementById("pastPaperSubject");
@@ -1044,10 +1220,39 @@ const paperFile =
     document.querySelector('input[name="paper_file"]');
 
 
-// Submit button
 
-const submitButton =
-    document.getElementById("submitButton");
+function toggleSection(section, show) {
+
+    section.style.display = show ? "block" : "none";
+
+
+    const fields = section.querySelectorAll(
+        "input, select, textarea, button"
+    );
+
+    fields.forEach(function (field) {
+
+        field.disabled = !show;
+
+    });
+
+}
+
+
+
+
+toggleSection(unitLocationFields, false);
+
+toggleSection(lessonFields, false);
+
+toggleSection(shortNotesFields, false);
+
+toggleSection(pastPaperFields, false);
+
+toggleSection(quizFields, false);
+
+pastPaperManagement.style.display = "none";
+
 
 
 resourceType.addEventListener("change", function () {
@@ -1055,62 +1260,28 @@ resourceType.addEventListener("change", function () {
     const type = this.value;
 
 
-    lessonFields.style.display = "none";
+    
 
-    shortNotesFields.style.display = "none";
+    toggleSection(unitLocationFields, false);
 
-    pastPaperFields.style.display = "none";
+    toggleSection(lessonFields, false);
+
+    toggleSection(shortNotesFields, false);
+
+    toggleSection(pastPaperFields, false);
+
+    toggleSection(quizFields, false);
 
     pastPaperManagement.style.display = "none";
 
-    unitLocationFields.style.display = "block";
 
-
-  
-    generalGrade.required = false;
-
-    unitSelect.required = false;
-
-    lessonNumber.required = false;
-
-    lessonTitle.required = false;
-
-    videoFile.required = false;
-
-    noteTitle.required = false;
-
-    noteFile.required = false;
-
-    pastPaperSubject.required = false;
-
-    paperYear.required = false;
-
-    paperTitle.required = false;
-
-    paperFile.required = false;
 
 
     if (type === "lesson") {
 
-        lessonFields.style.display = "block";
+        toggleSection(unitLocationFields, true);
 
-        unitLocationFields.style.display = "block";
-
-
-        // Grade + Unit required
-
-        generalGrade.required = true;
-
-        unitSelect.required = true;
-
-
-        // Lesson fields required
-
-        lessonNumber.required = true;
-
-        lessonTitle.required = true;
-
-        videoFile.required = true;
+        toggleSection(lessonFields, true);
 
 
         submitButton.innerHTML =
@@ -1120,25 +1291,13 @@ resourceType.addEventListener("change", function () {
     }
 
 
+    
+
     else if (type === "short_notes") {
 
-        shortNotesFields.style.display = "block";
+        toggleSection(unitLocationFields, true);
 
-        unitLocationFields.style.display = "block";
-
-
-        // Grade + Unit required
-
-        generalGrade.required = true;
-
-        unitSelect.required = true;
-
-
-        // Short note fields required
-
-        noteTitle.required = true;
-
-        noteFile.required = true;
+        toggleSection(shortNotesFields, true);
 
 
         submitButton.innerHTML =
@@ -1148,29 +1307,13 @@ resourceType.addEventListener("change", function () {
     }
 
 
+   
+
     else if (type === "past_paper") {
 
-        // Hide Grade + Unit
-
-        unitLocationFields.style.display = "none";
-
-
-        // Show Past Paper fields
-
-        pastPaperFields.style.display = "block";
+        toggleSection(pastPaperFields, true);
 
         pastPaperManagement.style.display = "block";
-
-
-        // Past Paper fields required
-
-        pastPaperSubject.required = true;
-
-        paperYear.required = true;
-
-        paperTitle.required = true;
-
-        paperFile.required = true;
 
 
         submitButton.innerHTML =
@@ -1180,58 +1323,304 @@ resourceType.addEventListener("change", function () {
     }
 
 
-    else {
+    
+
+    else if (type === "quiz") {
+
+        toggleSection(unitLocationFields, true);
+
+        toggleSection(quizFields, true);
+
+
+        
+
+        quizTitle.required = true;
+
+        timeLimit.required = true;
+
+
+        
+
+        updateQuestionNumbers();
+
 
         submitButton.innerHTML =
-            '<i class="bi bi-cloud-upload me-1"></i>' +
-            'Upload Content';
+            '<i class="bi bi-pencil-square me-1"></i>' +
+            'Create Quiz';
 
     }
 
 });
 
 
+
+
 generalGrade.addEventListener("change", function () {
 
     const selectedGrade = this.value;
 
-    const options =
-        unitSelect.querySelectorAll("option");
+    const options = unitSelect.querySelectorAll("option");
 
+
+    
 
     unitSelect.value = "";
 
 
     options.forEach(function (option) {
 
+        
+
         if (option.value === "") {
 
-            option.style.display = "";
+            option.disabled = false;
 
             return;
 
         }
 
 
-        const unitGrade =
-            option.getAttribute("data-grade");
+        const unitGrade = option.getAttribute("data-grade");
 
+
+        
 
         if (unitGrade === selectedGrade) {
 
-            option.style.display = "";
+            option.disabled = false;
 
-        }
+        } else {
 
-        else {
-
-            option.style.display = "none";
+            option.disabled = true;
 
         }
 
     });
 
 });
+
+
+
+
+addQuestionButton.addEventListener("click", function () {
+
+    const newQuestion = document.createElement("div");
+
+    newQuestion.className =
+        "quiz-question-form border rounded p-3 mb-4";
+
+
+    newQuestion.innerHTML = `
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h6 class="fw-bold question-heading mb-0">
+                New Question
+            </h6>
+
+            <button
+                type="button"
+                class="btn btn-sm btn-outline-danger remove-question"
+            >
+
+                <i class="bi bi-trash"></i>
+
+                Remove
+
+            </button>
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label fw-bold">
+                Question Text
+            </label>
+
+            <textarea
+                class="form-control"
+                name="question_text[]"
+                rows="3"
+                required
+            ></textarea>
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label fw-bold">
+                Option A
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                name="option_a[]"
+                required
+            >
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label fw-bold">
+                Option B
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                name="option_b[]"
+                required
+            >
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label fw-bold">
+                Option C
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                name="option_c[]"
+                required
+            >
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label fw-bold">
+                Option D
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                name="option_d[]"
+                required
+            >
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label fw-bold">
+                Correct Answer
+            </label>
+
+            <select
+                class="form-select"
+                name="correct_answer[]"
+                required
+            >
+
+                <option value="" selected disabled>
+                    -- Select Correct Answer --
+                </option>
+
+                <option value="A">Option A</option>
+
+                <option value="B">Option B</option>
+
+                <option value="C">Option C</option>
+
+                <option value="D">Option D</option>
+
+            </select>
+
+        </div>
+
+    `;
+
+
+    questionContainer.appendChild(newQuestion);
+
+    updateQuestionNumbers();
+
+});
+
+
+
+
+questionContainer.addEventListener("click", function (event) {
+
+    const removeButton =
+        event.target.closest(".remove-question");
+
+
+    // Check whether the Remove button was clicked.
+
+    if (!removeButton) {
+
+        return;
+
+    }
+
+
+    const questionForms =
+        questionContainer.querySelectorAll(
+            ".quiz-question-form"
+        );
+
+
+    
+
+    if (questionForms.length <= 1) {
+
+        alert("At least one question is required.");
+
+        return;
+
+    }
+
+
+    removeButton.closest(
+        ".quiz-question-form"
+    ).remove();
+
+
+    updateQuestionNumbers();
+
+});
+
+
+
+function updateQuestionNumbers() {
+
+    const questionForms =
+        questionContainer.querySelectorAll(
+            ".quiz-question-form"
+        );
+
+
+    questionForms.forEach(function (form, index) {
+
+        const heading =
+            form.querySelector(".question-heading");
+
+
+        heading.textContent =
+            "Question " +
+            String(index + 1).padStart(2, "0");
+
+    });
+
+}
+
+
+
+
+updateQuestionNumbers();
 
 </script>
 

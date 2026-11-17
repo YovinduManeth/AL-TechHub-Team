@@ -289,7 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <!-- Logout -->
 
                     <a
-                        href="login.php"
+                        href="php/logout.php"
                         class="btn btn-outline-primary btn-sm px-3"
                     >
 

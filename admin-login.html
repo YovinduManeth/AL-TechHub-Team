@@ -309,7 +309,7 @@
                             </div>
 
 
-                            <a href="forgot-admin-password.php" class="admin-forgot-link">
+                            <a href="forgot-password.php?type=admin" class="admin-forgot-link">
                                 Forgot Password?
                             </a>
 
@@ -371,68 +371,83 @@
 
     </div>
 
-    <script>
-function togglePassword() {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-    const passwordInput = document.getElementById("adminPassword");
-    const passwordIcon = document.getElementById("passwordIcon");
+    // Show / Hide Password
+    function togglePassword() {
 
-    if (passwordInput.type === "password") {
+        const passwordInput = document.getElementById("adminPassword");
+        const passwordIcon = document.getElementById("passwordIcon");
 
-        passwordInput.type = "text";
+        if (passwordInput.type === "password") {
 
-        passwordIcon.classList.remove("bi-eye");
-        passwordIcon.classList.add("bi-eye-slash");
+            passwordInput.type = "text";
 
-    } else {
+            passwordIcon.classList.remove("bi-eye");
+            passwordIcon.classList.add("bi-eye-slash");
 
-        passwordInput.type = "password";
+        } else {
 
-        passwordIcon.classList.remove("bi-eye-slash");
-        passwordIcon.classList.add("bi-eye");
+            passwordInput.type = "password";
+
+            passwordIcon.classList.remove("bi-eye-slash");
+            passwordIcon.classList.add("bi-eye");
+
+        }
+    }
+
+    // Make togglePassword available to the HTML
+    window.togglePassword = togglePassword;
+
+    // Get URL error parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get("error");
+
+    const loginError = document.getElementById("loginError");
+
+    if (!loginError) {
+        console.error("Admin login error element not found.");
+        return;
+    }
+
+    // Display appropriate error messages
+    if (error === "short_password") {
+
+        loginError.textContent =
+            "Password must contain at least 8 characters. Please try again.";
 
     }
-}
 
+    else if (error === "empty") {
 
-const urlParams = new URLSearchParams(
-    window.location.search
-);
+        loginError.textContent =
+            "Please enter your username and password.";
 
-const error = urlParams.get("error");
+    }
 
-const loginError =
-    document.getElementById("loginError");
+    else if (error === "invalid") {
 
+        loginError.textContent =
+            "Invalid administrator username or password.";
 
-if (error === "empty") {
+    }
 
-    loginError.textContent =
-        "Please enter your username and password.";
+    else if (error === "unauthorized") {
 
+        loginError.textContent =
+            "You are not authorized to access the administration portal.";
+
+    }
+
+    else {
+        return;
+    }
+
+    // Show error message
     loginError.classList.remove("d-none");
 
-}
-
-
-if (error === "invalid") {
-
-    loginError.textContent =
-        "Invalid administrator username or password.";
-
-    loginError.classList.remove("d-none");
-
-}
-
-
-if (error === "unauthorized") {
-
-    loginError.textContent =
-        "You are not authorized to access the administration portal.";
-
-    loginError.classList.remove("d-none");
-
-}
+});
 </script>
 
 </body>

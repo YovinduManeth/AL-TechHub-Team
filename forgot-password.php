@@ -13,6 +13,7 @@ $recovery_type =
     "student";
 
 
+
 // Only allow student or admin
 
 if (
@@ -22,42 +23,44 @@ if (
     $recovery_type = "student";
 }
 
+$is_admin = ($recovery_type === "admin");
+
+$account_name = $is_admin ? "administrator" : "student";
+
+$login_page = $is_admin
+    ? "admin-login.html"
+    : "login.html";
+
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $email = trim($_POST["email"] ?? "");
+    $account = trim($_POST["account"] ?? "");
 
 
 
-    if (empty($email)) {
+    if (empty($account)) {
 
-        $message = "Please enter your email address.";
-        $message_type = "danger";
+    $message = "Please enter your email address or username.";
+    $message_type = "danger";
 
-    }
-
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
-        $message = "Please enter a valid email address.";
-        $message_type = "danger";
-
-    }
+}
 
     else {
 
 
        $sql = "SELECT user_id, full_name, role
         FROM users
-        WHERE email = ?
+        WHERE (email = ? OR username = ?)
         AND role = ?
         LIMIT 1";
 
         $stmt = $conn->prepare($sql);
 
         $stmt->bind_param(
-            "ss",
-            $email,
+            "sss",
+            $account,
+            $account,
             $recovery_type
         );
 
@@ -274,13 +277,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
                 <p>
-
                     Recover access to your A/L TechHub
-                    student account and continue your
-                    learning journey.
-
+                    <?php echo htmlspecialchars($account_name); ?>
+                    account and continue your
+                    <?php echo $is_admin ? "administrative work." : "learning journey."; ?>
                 </p>
-
 
                 <!-- Benefits -->
 
@@ -420,7 +421,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </span>
 
                     <a
-                        href="login.html"
+                        href="<?php echo htmlspecialchars($login_page); ?>"
                         class="login-link"
                     >
 
@@ -450,7 +451,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <p>
                     Enter your registered email address
-                    to reset your password.
+                    to reset your <?php echo htmlspecialchars($account_name); ?> password.
                 </p>
 
             </div>
@@ -490,35 +491,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     <div class="mb-4">
 
-                        <label
-                            for="email"
-                            class="form-label fw-semibold"
-                        >
-                            Email Address
+                        <label for="account" class="form-label fw-semibold">
+                            Email Address or Username
                         </label>
 
+<div class="input-group">
 
-                        <div class="input-group">
+    <span class="input-group-text">
+        <i class="bi bi-person"></i>
+    </span>
 
-                            <span class="input-group-text">
+    <input
+        type="text"
+        name="account"
+        id="account"
+        class="form-control"
+        placeholder="Enter your email or username"
+        required
+    >
 
-                                <i class="bi bi-envelope"></i>
+</div>
 
-                            </span>
-
-
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                class="form-control"
-                                placeholder="Enter your registered email"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
+                </div>
 
 
                     <!-- Submit -->
@@ -546,7 +540,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </span>
 
                     <a
-                        href="login.html"
+                        href="<?php echo htmlspecialchars($login_page); ?>"
                         class="login-link"
                     >
 
