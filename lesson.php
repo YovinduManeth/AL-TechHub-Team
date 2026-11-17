@@ -495,12 +495,11 @@ $stmt->close();
                     <video
                         id="videoPlayer"
                         controls
+                        controlsList="nodownload"
                         class="w-100"
                     >
-
                         Your browser does not support
                         video streaming.
-
                     </video>
 
                 </div>
